@@ -15,13 +15,13 @@ data <- read_csv("data/_raw/prostateCancerData.csv")
 
 
 # Wrangle data ------------------------------------------------------------
-<<<<<<< HEAD
+
 data %>% 
-  rename(
-=======
+  rename(patno = patientID, rx = treatment, dtime = monthFollowUp, wt = weightIndex, hx = historyCardio, sbp = systolicBP, dbp = diastolicBP, ekg = electroCardioG, hg= hemoglobin, sz= tumorSize, sg = SGindex, ap = acidPhosphatase, bm = boneMetastase)
+
 
 glimpse(data)
->>>>>>> 157592f07dcfc31c9e0d0fd6c58d7f71246aa326
+
 
 sum(is.na(data)) # 27 NA values
 
