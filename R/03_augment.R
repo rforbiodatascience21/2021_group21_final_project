@@ -38,7 +38,9 @@ data_clean_aug <- data_clean_aug %>%
   mutate(status =as_factor(status)) %>% 
   mutate(electroCardioG =as_factor(electroCardioG)) %>%
   mutate(performance =as_factor(performance)) %>%
-  mutate(stage =as_factor(stage))
+  mutate(stage =as_factor(stage)) %>% 
+  mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
+  mutate(boneMetastase = as_factor(boneMetastase))
 
 glimpse(data_clean_aug)
 
