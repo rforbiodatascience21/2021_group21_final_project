@@ -11,11 +11,11 @@ source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-data <- read_csv("data/_raw/prostateCancerData.csv")
+data <- read_csv("data/01_my_data.tsv")
 
 
 # Wrangle data ------------------------------------------------------------
-data_clean <- data # %>% ...
+
 
 
 # Write data --------------------------------------------------------------
