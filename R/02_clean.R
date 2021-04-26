@@ -11,26 +11,19 @@ source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-data <- read_csv("data/_raw/prostateCancerData.csv")
+raw_data <- read_tsv(file = "data/01_my_data.tsv.gz")
 
 
 # Wrangle data ------------------------------------------------------------
-<<<<<<< HEAD
-data %>% 
-  rename(
-=======
 
-glimpse(data)
->>>>>>> 157592f07dcfc31c9e0d0fd6c58d7f71246aa326
+glimpse(raw_data)
 
-sum(is.na(data)) # 27 NA values
+NA_values ->sum(is.na(raw_data)) # 27 NA values
 
-data %>%
+raw_data %>%
   summarise(n = n_distinct(patno))  # 502 rows, 502 unique patients, so no duplicates in patients
 
-
-
-data_clean <- data # %>% ...
+data_clean <- data %>%
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean,
