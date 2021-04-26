@@ -15,6 +15,15 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 
+#changing chr to factors (We will check if doing this makes sense)
+data_clean <- data_clean %>%
+  mutate(treatment =as_factor(treatment)) %>%
+  mutate(status =as_factor(status)) %>% 
+  mutate(electroCardioG =as_factor(electroCardioG)) %>%
+  mutate(performance =as_factor(performance)) %>%
+  mutate(stage =as_factor(stage))
+
+
 data_clean_aug <- data_clean %>% separate(status,
                                           c("status","reasonDeath"),
                                           " - ") %>% 
@@ -32,6 +41,7 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "respiratory disease" ~ 0,
                           reasonDeath == "unspecified non-ca" ~ 0))
 
+<<<<<<< HEAD
 #changing chr to factors
 data_clean_aug <- data_clean_aug %>%
   mutate(treatment =as_factor(treatment)) %>%
@@ -41,6 +51,8 @@ data_clean_aug <- data_clean_aug %>%
   mutate(stage =as_factor(stage)) %>% 
   mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
   mutate(boneMetastase = as_factor(boneMetastase))
+=======
+>>>>>>> 7ac5699813f11e4631ab888d2c4fefee01de33f3
 
 glimpse(data_clean_aug)
 
@@ -67,6 +79,7 @@ data_clean_pca <- data_clean %>%
                                     electroCardioG == "old MI" ~ 5,
                                     electroCardioG == "recent MI" ~ 6))
 
+glimpse(data_clean_pca)
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
