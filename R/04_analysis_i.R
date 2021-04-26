@@ -27,13 +27,20 @@ data_clean_aug %>% ...
 # Visualise data ----------------------------------------------------------
 data_clean_aug %>% ...
 
+# Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this
+ggplot(data_clean_aug, aes(stage, ..count..)) + 
+  geom_bar(alpha=0.7,aes(fill = stage), position = "dodge")+
+  scale_fill_manual(values=c ("#edae49", "#66a182"))
+
+# Plot 1 - tumor Size vs cancer Stage
 data_clean_aug %>%
   ggplot( aes(y=stage, x=tumorSize,  fill=stage)) +
   geom_density_ridges(alpha=0.7) +
   theme_ridges() +
   xlab("Tumor Size (cm2)") +
-  ylab("Cancer Stages") + 
-  scale_fill_manual(values=c ("#E69F00", "#611DEB"))
+  ylab("Cancer Stage") + 
+  scale_fill_manual(values=c ("#edae49", "#66a182"))
+
 
 
 # Write data --------------------------------------------------------------
