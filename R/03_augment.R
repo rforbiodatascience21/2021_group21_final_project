@@ -33,7 +33,19 @@ data_clean <- data_clean %>%
                           reasonDeath == "pulmonary embolus" ~ 1,
                           reasonDeath == "respiratory disease" ~ 0,
                           reasonDeath == "unspecified non-ca" ~ 0))
-  
+
+#changing chr to factors
+data_clean <- data_clean %>%
+  mutate(treatment =as_factor(treatment))
+data_clean <- data_clean %>%
+  mutate(status =as_factor(status))
+data_clean <- data_clean %>%
+  mutate(electroCardioG =as_factor(electroCardioG))
+data_clean <- data_clean %>%
+  mutate(performance =as_factor(performance))
+
+
+
 glimpse(data_clean)
 
 
