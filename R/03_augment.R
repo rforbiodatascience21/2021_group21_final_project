@@ -41,7 +41,8 @@ data_clean <- data_clean %>%
   mutate(electroCardioG =as_factor(electroCardioG))
 data_clean <- data_clean %>%
   mutate(performance =as_factor(performance))
-
+data_clean <- data_clean %>%
+  mutate(stage =as_factor(stage))
 
 
 glimpse(data_clean)
