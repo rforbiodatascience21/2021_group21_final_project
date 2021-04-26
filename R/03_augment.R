@@ -44,8 +44,7 @@ data_clean <- data_clean %>%
 data_clean <- data_clean %>%
   mutate(stage =as_factor(stage))
 
-
-glimpse(data_clean)
+glimpse(data_clean_aug)
 
 data_clean_pca <- data_clean %>%
   mutate (status = case_when(status == "alive"  ~ 0,
@@ -69,6 +68,7 @@ data_clean_pca <- data_clean %>%
                                     electroCardioG == "heart strain" ~ 4,
                                     electroCardioG == "old MI" ~ 5,
                                     electroCardioG == "recent MI" ~ 6))
+
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
