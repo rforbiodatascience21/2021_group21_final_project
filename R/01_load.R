@@ -16,4 +16,4 @@ my_data_raw <- read_csv(file = "data/_raw/prostateCancerData.csv")
 
 # Write data --------------------------------------------------------------
 write_tsv(x = my_data_raw,
-          file = "data/01_my_data.tsv.gz")
+          file = "data/01_raw_data.tsv.gz")

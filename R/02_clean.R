@@ -11,7 +11,7 @@ source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-raw_data <- read_tsv(file = "data/01_my_data.tsv.gz")
+raw_data <- read_tsv(file = "data/01_raw_data.tsv.gz")
 
 
 # Wrangle data ------------------------------------------------------------
@@ -26,10 +26,8 @@ raw_data %>%
 
 NA_values <- sum(is.na(raw_data)) # 27 NA values
 
-raw_data <- raw_data %>% drop_na()
-
-data_clean <- raw_data
+data_clean <- raw_data %>% drop_na()
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean,
-          file = "data/02_data_clean.tsv")
+          file = "data/02_data_clean.tsv.gz")
