@@ -16,19 +16,19 @@ raw_data <- read_tsv(file = "data/01_my_data.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 
-raw_data %>% 
+raw_data <- raw_data %>% 
   rename(patientID  = patno, treatment = rx, monthFollowUp = dtime, weightIndex = wt, historyCardio = hx, systolicBP = sbp,diastolicBP = dbp , electroCardioG = ekg  , hemoglobin = hg ,  tumorSize = sz , SGindex = sg , acidPhosphatase =  ap , boneMetastase = bm )
 
 glimpse(raw_data)
 
-NA_values ->sum(is.na(raw_data)) # 27 NA values
+NA_values <- sum(is.na(raw_data)) # 27 NA values
 
 raw_data %>% drop_na()
 
 raw_data %>%
   summarise(n = n_distinct(patno))  # 502 rows, 502 unique patients, so no duplicates in patients
 
-data_clean <- raw_data %>%
+data_clean <- raw_data
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean,
