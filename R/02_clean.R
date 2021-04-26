@@ -26,7 +26,9 @@ raw_data %>%
 
 NA_values <- sum(is.na(raw_data)) # 27 NA values
 
+# Let's make sure that removing NA's is logical, and we did not do anything unnecessary
 data_clean <- raw_data %>% drop_na()
+
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean,
