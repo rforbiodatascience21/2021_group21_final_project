@@ -16,23 +16,16 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 
-#changing chr to factors (We will check if doing this makes sense)
-data_clean <- data_clean %>%
-  mutate(treatment =as_factor(treatment)) %>%
-  mutate(status =as_factor(status)) %>% 
-  mutate(electroCardioG =as_factor(electroCardioG)) %>%
-  mutate(performance =as_factor(performance)) %>%
-  mutate(stage =as_factor(stage))
-
-
 data_clean_aug <- data_clean %>% separate(status,
                                           c("status","reasonDeath"),
                                           " - ") %>% 
   mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
                           str_detect(treatment, pattern = "placebo") ~ "0")) %>%
+  mutate(dose = as.numeric(dose)) %>%
+  relocate(dose, .after = stage) %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
                                 str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
-  mutate(dose = as.numeric(dose)) %>%
+  
   mutate(reasonDeathNum = case_when(reasonDeath == "prostatic ca" ~ 2,
                           reasonDeath == "cerebrovascular" ~ 1,
                           reasonDeath == "heart or vascular" ~ 1,
@@ -42,41 +35,24 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "respiratory disease" ~ 0,
                           reasonDeath == "unspecified non-ca" ~ 0))
 
-
-#changing chr to factors
-data_clean_aug <- data_clean_aug %>%
-  mutate(treatment =as_factor(treatment)) %>%
-  mutate(status =as_factor(status)) %>% 
-  mutate(electroCardioG =as_factor(electroCardioG)) %>%
-  mutate(performance =as_factor(performance)) %>%
-  mutate(stage =as_factor(stage)) %>% 
-  mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
-  mutate(boneMetastase = as_factor(boneMetastase))
-
 glimpse(data_clean_aug)
 
-data_clean_pca <- data_clean %>%
+data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
   mutate (status = case_when(status == "alive"  ~ 0,
-                               status == "dead"  ~ 1)) %>%
-  mutate(status = case_when(status == "alive" ~ 0,
-                            status == "dead - prostatic ca" ~ 1,
-                            status == "dead - heart or vascular" ~ 2,
-                            status == "dead - cerebrovascular" ~ 3,
-                            status == "dead - pulmonary embolus" ~ 4,
-                            status == "dead - other ca" ~ 5,
-                            status == "dead - respiratory disease" ~ 6,
-                            status == "dead - other specific non-ca" ~ 7,
-                            status == "dead - unspecified non-ca" ~ 8,
-                            status == "dead - unknown cause" ~ 9)) %>%
-  mutate(treatment = case_when(str_detect(treatment, pattern = "estrogen") ~ as.numeric(str_sub(treatment, start = 1, end = 3)),
-                               str_detect(treatment, pattern = "placebo") ~ 0)) %>%
+                             status == "dead"  ~ 1)) %>%
+  relocate(reasonDeathNum, .after = status) %>%
   mutate(electroCardioG = case_when(electroCardioG == "normal" ~ 0,
                                     electroCardioG == "benign" ~ 1,
                                     electroCardioG == "rhytmic disturb & electrolyte ch" ~ 2,
                                     electroCardioG == "heart block or conduction def" ~ 3,
                                     electroCardioG == "heart strain" ~ 4,
                                     electroCardioG == "old MI" ~ 5,
-                                    electroCardioG == "recent MI" ~ 6))
+                                    electroCardioG == "recent MI" ~ 6)) %>%
+  mutate(performance = case_when(performance == "normal activity" ~ 0,
+                                 performance == "in bed < 50% daytime" ~ 1,
+                                 performance == "in bed > 50% daytime" ~ 2,
+                                 performance == "confined to bed" ~ 3))
+
 
 glimpse(data_clean_pca)
 

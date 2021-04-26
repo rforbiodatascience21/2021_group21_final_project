@@ -6,7 +6,7 @@ rm(list = ls())
 library("tidyverse")
 library("ggridges")
 library("ggplot2")
-
+library("ggridges")
 
 # Define functions --------------------------------------------------------
 source(file = "R/99_project_functions.R")
@@ -17,8 +17,14 @@ data_clean_aug <- read_tsv(file = "data/03_data_clean_aug.tsv.gz")
 
 
 # Wrangle data ------------------------------------------------------------
-data_clean_aug %>% ...
-
+data_clean_aug <- data_clean_aug %>% 
+  mutate(treatment =as_factor(treatment)) %>%
+  mutate(status =as_factor(status)) %>% 
+  mutate(electroCardioG =as_factor(electroCardioG)) %>%
+  mutate(performance =as_factor(performance)) %>%
+  mutate(stage =as_factor(stage)) %>% 
+  mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
+  mutate(boneMetastase = as_factor(boneMetastase))
 
 # Model data
 data_clean_aug %>% ...
