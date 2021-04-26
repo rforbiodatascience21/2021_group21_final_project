@@ -14,9 +14,15 @@ source(file = "R/99_project_functions.R")
 data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
+
 data_clean_aug <- data_clean %>% separate(status,
                                           c("status","reasonDeath"),
-                                          " - ")
+                                          " - ") %>% 
+  mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
+                          str_detect(treatment, pattern = "placebo") ~ "0")) %>%
+  mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
+                                str_detect(treatment, pattern = "estrogen") ~ "estrogen")) 
+
 glimpse(data_clean_aug)
 
 data_clean_aug <- data_clean %>% 
@@ -29,11 +35,8 @@ data_clean_aug <- data_clean %>%
                             status == "dead - respiratory disease" ~ 6,
                             status == "dead - other specific non-ca" ~ 7,
                             status == "dead - unspecified non-ca" ~ 8,
-                            status == "dead - unknown cause" ~ 9)) %>%
-  mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
-                          str_detect(treatment, pattern = "placebo") ~ "0")) %>%
-  mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ 0,
-                                str_detect(treatment, pattern = "estrogen") ~ 1)) 
+                            status == "dead - unknown cause" ~ 9))
+
   
 
 data_clean_aug$dose
