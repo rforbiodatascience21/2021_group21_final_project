@@ -42,6 +42,18 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "respiratory disease" ~ 0,
                           reasonDeath == "unspecified non-ca" ~ 0))
 
+<<<<<<< HEAD
+#changing chr to factors
+data_clean_aug <- data_clean_aug %>%
+  mutate(treatment =as_factor(treatment)) %>%
+  mutate(status =as_factor(status)) %>% 
+  mutate(electroCardioG =as_factor(electroCardioG)) %>%
+  mutate(performance =as_factor(performance)) %>%
+  mutate(stage =as_factor(stage)) %>% 
+  mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
+  mutate(boneMetastase = as_factor(boneMetastase))
+=======
+>>>>>>> 7ac5699813f11e4631ab888d2c4fefee01de33f3
 
 glimpse(data_clean_aug)
 
