@@ -28,15 +28,12 @@ data_clean_aug %>% ...
 data_clean_aug %>% ...
 
 data_clean_aug %>%
-  ggplot( aes(y=stage, x=tumorSize,  fill=stage, group = stage)) +
-  geom_density_ridges(alpha=0.6) +
+  ggplot( aes(y=stage, x=tumorSize,  fill=stage)) +
+  geom_density_ridges(alpha=0.7) +
   theme_ridges() +
-  theme(
-    legend.position="none",
-    panel.spacing = unit(0.1, "lines"),
-    strip.text.x = element_text(size = 8)) +
-  xlab("tumor Size") +
-  ylab("Cancer Stages")
+  xlab("Tumor Size (cm2)") +
+  ylab("Cancer Stages") + 
+  scale_fill_manual(values=c ("#E69F00", "#611DEB"))
 
 
 # Write data --------------------------------------------------------------
