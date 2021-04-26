@@ -34,10 +34,9 @@ data_clean_aug %>%
   theme(
     legend.position="none",
     panel.spacing = unit(0.1, "lines"),
-    strip.text.x = element_text(size = 8)
-  ) +
-  xlab("") +
-  ylab("Assigned Probability (%)")
+    strip.text.x = element_text(size = 8)) +
+  xlab("tumor Size") +
+  ylab("Cancer Stages")
 
 
 # Write data --------------------------------------------------------------
