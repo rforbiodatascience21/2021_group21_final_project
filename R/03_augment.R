@@ -60,3 +60,6 @@ data_clean_pca <- data_clean %>%
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
           file = "data/03_data_clean_aug.tsv.gz")
+
+write_tsv(x = data_clean_pca,
+          file = "data/03_data_clean_pca.tsv.gz")
