@@ -13,8 +13,12 @@ source(file = "R/99_project_functions.R")
 # Load data ---------------------------------------------------------------
 data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
-
 # Wrangle data ------------------------------------------------------------
+data_clean_aug <- data_clean %>% separate(status,
+                                          c("status","reasonDeath"),
+                                          " - ")
+glimpse(data_clean_aug)
+
 data_clean_aug <- data_clean %>% 
   mutate(status = case_when(status == "alive" ~ 0,
                             status == "dead - prostatic ca" ~ 1,
