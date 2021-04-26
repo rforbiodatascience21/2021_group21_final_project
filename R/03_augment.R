@@ -33,15 +33,12 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "unspecified non-ca" ~ 0))
 
 #changing chr to factors
-data_clean <- data_clean %>%
-  mutate(treatment =as_factor(treatment))
-data_clean <- data_clean %>%
-  mutate(status =as_factor(status))
-data_clean <- data_clean %>%
-  mutate(electroCardioG =as_factor(electroCardioG))
-data_clean <- data_clean %>%
-  mutate(performance =as_factor(performance))
-
+data_clean_aug <- data_clean_aug %>%
+  mutate(treatment =as_factor(treatment)) %>%
+  mutate(status =as_factor(status)) %>% 
+  mutate(electroCardioG =as_factor(electroCardioG)) %>%
+  mutate(performance =as_factor(performance)) %>%
+  mutate(stage =as_factor(stage))
 
 glimpse(data_clean_aug)
 
