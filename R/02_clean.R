@@ -17,7 +17,7 @@ raw_data <- read_tsv(file = "data/01_my_data.tsv.gz")
 # Wrangle data ------------------------------------------------------------
 
 raw_data %>% 
-  rename(patno = patientID, rx = treatment, dtime = monthFollowUp, wt = weightIndex, hx = historyCardio, sbp = systolicBP, dbp = diastolicBP, ekg = electroCardioG, hg= hemoglobin, sz= tumorSize, sg = SGindex, ap = acidPhosphatase, bm = boneMetastase)
+  rename(patientID  = patno, treatment = rx, monthFollowUp = dtime, weightIndex = wt, historyCardio = hx, systolicBP = sbp,diastolicBP = dbp , electroCardioG = ekg  , hemoglobin = hg ,  tumorSize = sz , sg = SGindex, acidPhosphatase =  ap , boneMetastase = bm )
 
 glimpse(raw_data)
 
