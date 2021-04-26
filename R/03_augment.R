@@ -24,6 +24,16 @@ data_clean <- data_clean %>% separate(status,
                                 str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
   mutate(dose = as.numeric(dose))
 
+data_clean <- data_clean %>% mutate(reasonDeathNum = case_when(reasonDeath == "prostatic ca" ~ 2,
+                                                               reasonDeath == "cerebrovascular" ~ 1,
+                                                               reasonDeath == "heart or vascular" ~ 1,
+                                                               reasonDeath == "other ca" ~ 0,
+                                                               reasonDeath == "other specific non-ca" ~ 0,
+                                                               reasonDeath == "pulmonary embolus" ~ 1,
+                                                               reasonDeath == "respiratory disease" ~ 0,
+                                                               reasonDeath == "unspecified non-ca" ~ 0))
+  
+  
 
 
 
@@ -34,7 +44,7 @@ glimpse(data_clean)
 
   
 
-data_clean_aug$dose
+data_clean$dose
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
