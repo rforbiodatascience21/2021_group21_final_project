@@ -25,9 +25,14 @@ data_clean_aug <- data_clean %>%
                             status == "dead - respiratory disease" ~ 6,
                             status == "dead - other specific non-ca" ~ 7,
                             status == "dead - unspecified non-ca" ~ 8,
-                            status == "dead - unknown cause" ~ 9))
+                            status == "dead - unknown cause" ~ 9)) %>%
+  mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
+                          str_detect(treatment, pattern = "placebo") ~ "0")) %>%
+  mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ 0,
+                                str_detect(treatment, pattern = "estrogen") ~ 1)) 
+  
 
-
+data_clean_aug$dose
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
