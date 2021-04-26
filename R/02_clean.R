@@ -26,7 +26,7 @@ NA_values <- sum(is.na(raw_data)) # 27 NA values
 raw_data %>% drop_na()
 
 raw_data %>%
-  summarise(n = n_distinct(patno))  # 502 rows, 502 unique patients, so no duplicates in patients
+  summarise(n = n_distinct(patientID))  # 502 rows, 502 unique patients, so no duplicates in patients
 
 data_clean <- raw_data
 
