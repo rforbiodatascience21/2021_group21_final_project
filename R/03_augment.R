@@ -21,7 +21,9 @@ data_clean_aug <- data_clean %>% separate(status,
   mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
                           str_detect(treatment, pattern = "placebo") ~ "0")) %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
-                                str_detect(treatment, pattern = "estrogen") ~ "estrogen")) 
+                                str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
+  mutate(dose = as.numeric(dose))
+
 
 glimpse(data_clean_aug)
 
