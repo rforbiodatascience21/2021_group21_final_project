@@ -13,6 +13,7 @@ source(file = "R/99_project_functions.R")
 # Load data ---------------------------------------------------------------
 data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
+
 # Wrangle data ------------------------------------------------------------
 
 #changing chr to factors (We will check if doing this makes sense)
