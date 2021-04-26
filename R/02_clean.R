@@ -21,12 +21,12 @@ raw_data <- raw_data %>%
 
 glimpse(raw_data)
 
-NA_values <- sum(is.na(raw_data)) # 27 NA values
-
-raw_data %>% drop_na()
-
 raw_data %>%
   summarise(n = n_distinct(patientID))  # 502 rows, 502 unique patients, so no duplicates in patients
+
+NA_values <- sum(is.na(raw_data)) # 27 NA values
+
+raw_data <- raw_data %>% drop_na()
 
 data_clean <- raw_data
 
