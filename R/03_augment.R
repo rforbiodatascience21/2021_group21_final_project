@@ -16,10 +16,10 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 
-data_clean_aug <- data_clean %>% separate(status,
-                                          c("status","reasonDeath"),
-                                          " - ") %>% 
-  mutate(reasonDeath = replace_na(reasonDeath, "not dead")) %>%
+data_clean_aug <- data_clean %>% 
+  mutate(status = str_replace(status, pattern = "alive", replacement = "alive - not dead")) %>%
+  separate(status,c("status","reasonDeath"),
+                                          " - ") %>%
   mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
                           str_detect(treatment, pattern = "placebo") ~ "0")) %>%
   mutate(dose = as.numeric(dose)) %>%
@@ -31,6 +31,7 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "heart or vascular" ~ 1,
                           reasonDeath == "other ca" ~ 0,
                           reasonDeath == "other specific non-ca" ~ 0,
+                          reasonDeath == "unknown cause" ~ 0,
                           reasonDeath == "pulmonary embolus" ~ 1,
                           reasonDeath == "respiratory disease" ~ 0,
                           reasonDeath == "unspecified non-ca" ~ 0,
@@ -47,7 +48,7 @@ data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
   relocate(reasonDeathNum, .after = status) %>%
   mutate(electroCardioG = case_when(electroCardioG == "normal" ~ 0,
                                     electroCardioG == "benign" ~ 1,
-                                    electroCardioG == "rhytmic disturb & electrolyte ch" ~ 2,
+                                    electroCardioG == "rhythmic disturb & electrolyte ch" ~ 2,
                                     electroCardioG == "heart block or conduction def" ~ 3,
                                     electroCardioG == "heart strain" ~ 4,
                                     electroCardioG == "old MI" ~ 5,

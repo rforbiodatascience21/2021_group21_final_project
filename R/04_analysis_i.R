@@ -30,6 +30,7 @@ data_clean_aug <- data_clean_aug %>%
   mutate(boneMetastase = as_factor(boneMetastase))
 
 # Model data
+model_data = model_logit(data_clean_pca)
 
 # we could add some simple command such as
 
@@ -39,23 +40,14 @@ data_clean_aug <- data_clean_aug %>%
 
 # to get quick info about distribution in our dataset in case it is relevant
 
-# one measurement fitting model
-fit <- data_clean_pca %>% 
-  glm(status ~ hemoglobin,
-      data = .,
-      family = binomial(link = "logit"))
-
-fit %>%
-  #summary
-  tidy
 # all measures at once
 pca_data <- data_clean_pca %>%
   pivot_longer(!status, names_to = "measurements", values_to = "values")
 
 pca_data <- pca_data %>%
   group_by(measurements) %>%
-  nest() %>%
-  ungroup()
+  nest %>%
+  ungroup
 
 pca_data <- pca_data %>%
   mutate(model = map(data, ~ glm(status ~ values, 
