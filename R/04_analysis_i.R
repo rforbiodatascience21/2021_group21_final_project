@@ -30,13 +30,14 @@ data_clean_aug <- data_clean_aug %>%
 data_clean_aug %>% ...
 
 
-# Visualise data ----------------------------------------------------------
+# Visualize data ----------------------------------------------------------
 data_clean_aug %>% ...
 
 # Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this
 ggplot(data_clean_aug, aes(stage, ..count..)) + 
   geom_bar(alpha=0.7,aes(fill = stage), position = "dodge")+
   scale_fill_manual(values=c ("#edae49", "#66a182"))
+
 
 # Plot 1 - tumor Size vs cancer Stage
 data_clean_aug %>%
@@ -45,8 +46,23 @@ data_clean_aug %>%
   theme_ridges() +
   xlab("Tumor Size (cm2)") +
   ylab("Cancer Stage") + 
-  scale_fill_manual(values=c ("#edae49", "#66a182"))
+  scale_fill_manual(values=c("#00AFBB", "#E7B800"))
 
+
+# Plot 2 - Reason of Death Count, grouped by stage
+data_clean_aug %>% 
+  filter(!is.na(reasonDeath) & 
+           reasonDeath != "unknown cause" & 
+           reasonDeath != "other ca" & 
+           reasonDeath != "other specific non-ca" &
+           reasonDeath != "unspecified non-ca") %>% 
+  count(reasonDeath, stage) %>% 
+  ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 25, vjust = 0.8, hjust=0.5, size=11))+ 
+  xlab("Reason of Death") +
+  ylab("Count") + 
+  scale_fill_manual(values=c( "#00AFBB", "#E7B800"))
 
 
 # Write data --------------------------------------------------------------
