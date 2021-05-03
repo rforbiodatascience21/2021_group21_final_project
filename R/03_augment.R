@@ -49,12 +49,11 @@ data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
                                     electroCardioG == "heart strain" ~ 4,
                                     electroCardioG == "old MI" ~ 5,
                                     electroCardioG == "recent MI" ~ 6)) %>%
-  mutate(performance = case_when(performance == "normal activity" ~ 0,
-                                 performance == "in bed < 50% daytime" ~ 1,
-                                 performance == "in bed > 50% daytime" ~ 2,
-                                 performance == "confined to bed" ~ 3))
-
-
+  mutate(performance = case_when(performance == "normal activity" ~ 0, # we will make this value go from 0 to 10, being the total time
+                                 performance == "in bed < 50% daytime" ~ 2.5, # in bed, and thus for <50% and > 50%, the mid-points 2.5
+                                 performance == "in bed > 50% daytime" ~ 7.5, # and 7.5 will be used, respectively
+                                 performance == "confined to bed" ~ 10)) %>%
+  select(everything(), -c(patientID,sdate))
 
 glimpse(data_clean_pca)
 
