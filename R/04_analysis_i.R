@@ -8,8 +8,6 @@ library("ggridges")
 library("ggplot2")
 library("ggridges")
 library("broom")
-library(extrafont)
-loadfonts(device = "win")
 
 # Define functions --------------------------------------------------------
 source(file = "R/99_project_functions.R")
@@ -40,36 +38,9 @@ model_data = model_logit(data_clean_pca)
 
 # to get quick info about distribution in our dataset in case it is relevant
 
-# all measures at once
-pca_data <- data_clean_pca %>%
-  pivot_longer(!status, names_to = "measurements", values_to = "values")
+# Manhattan plot
 
-pca_data <- pca_data %>%
-  group_by(measurements) %>%
-  nest %>%
-  ungroup
-
-pca_data <- pca_data %>%
-  mutate(model = map(data, ~ glm(status ~ values, 
-                               data = .,
-                               family = binomial(link = "logit"))))
-
-pca_data <- pca_data %>%
-  mutate(model_tidy = map(model, ~tidy(., conf.int = TRUE))) %>%
-  unnest(model_tidy)
-
-pca_data <- pca_data %>%
-  filter(str_detect(term, "values"))
-
-pca_data = pca_data %>% 
-  mutate(identified_as = case_when(p.value < 0.05 ~ "Significant",
-                                   TRUE ~ "Non-significant"))
-
-pca_data <- pca_data %>%
-  mutate(neg_log10_p = -log10(p.value))
-
-
-pca_data %>% 
+model_data %>% 
   ggplot(aes(x = reorder(measurements, -neg_log10_p),
              y = neg_log10_p,
              colour = identified_as)) + 
@@ -83,7 +54,7 @@ pca_data %>%
   labs(x = "Parameters",
        y = "Minus log10(p)")
 
-pca_data %>% 
+model_data %>% 
   ggplot(aes(x = estimate,
              y = reorder(measurements, -estimate),
              colour = identified_as)) +
@@ -103,10 +74,10 @@ pca_data %>%
 PCA(data_clean_pca)
 
 # Visualize data ----------------------------------------------------------
-data_clean_aug %>% ...
 
 # Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this
-ggplot(data_clean_aug, aes(stage, ..count..)) + 
+data_clean_aug %>%
+ggplot(aes(stage, ..count..)) + 
   geom_bar(alpha=0.7,aes(fill = stage), position = "dodge")+
   scale_fill_manual(values=c ("#edae49", "#66a182"))
 
@@ -153,5 +124,6 @@ data_clean_aug %>% ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
 
 
 # Write data --------------------------------------------------------------
+save(model_data, file = "data.RData")
 write_tsv(...)
 ggsave(...)
