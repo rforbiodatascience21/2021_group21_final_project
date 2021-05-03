@@ -79,6 +79,18 @@ data_clean_aug %>%
   scale_fill_manual(values=c( "#00AFBB", "#E7B800"))
 
 
+#plot stage vs acid phosphatase
+data_clean_aug %>% ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
+                      geom_violin() +
+                      stat_summary(fun = mean, fun.min = mean, fun.max = mean,
+                                   geom = "crossbar", 
+                                   width = 0.25,
+                                   position = position_dodge(width = .25)) +
+                      ggtitle("Log of acid Phosphatase depending on cancer stage") + 
+                      labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
+                      theme(legend.position = "none")
+
+
 # Write data --------------------------------------------------------------
 write_tsv(...)
 ggsave(...)
