@@ -34,7 +34,11 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "pulmonary embolus" ~ 1,
                           reasonDeath == "respiratory disease" ~ 0,
                           reasonDeath == "unspecified non-ca" ~ 0,
-                          reasonDeath == "not dead" ~ 0))
+                          reasonDeath == "not dead" ~ 0)) %>%
+
+  mutate(reasonDeath = case_when( reasonDeath == "other specific non-ca" ~ "other non-ca",
+                                reasonDeath == "unspecified non-ca" ~ "other non-ca",
+                                TRUE ~ reasonDeath))
 
 glimpse(data_clean_aug)
 

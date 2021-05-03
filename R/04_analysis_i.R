@@ -68,10 +68,8 @@ data_clean_aug %>%
 # Plot 2 - Reason of Death Count, grouped by stage
 data_clean_aug %>% 
   filter(!is.na(reasonDeath) & 
-           reasonDeath != "unknown cause" & 
-           reasonDeath != "other ca" & 
-           reasonDeath != "other specific non-ca" &
-           reasonDeath != "unspecified non-ca") %>% 
+           reasonDeath != "unknown cause"& 
+           reasonDeath != "other non-ca") %>% 
   count(reasonDeath, stage) %>% 
   ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
   geom_col() +
@@ -79,9 +77,6 @@ data_clean_aug %>%
   xlab("Reason of Death") +
   ylab("Count") + 
   scale_fill_manual(values=c( "#00AFBB", "#E7B800"))
-
-
-
 
 
 # Write data --------------------------------------------------------------
