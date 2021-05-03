@@ -7,6 +7,7 @@ library("tidyverse")
 library("ggridges")
 library("ggplot2")
 library("ggridges")
+library("broom")
 
 # Define functions --------------------------------------------------------
 source(file = "R/99_project_functions.R")
@@ -27,8 +28,23 @@ data_clean_aug <- data_clean_aug %>%
   mutate(boneMetastase = as_factor(boneMetastase))
 
 # Model data
-data_clean_aug %>% ...
 
+# we could add some simple command such as
+
+#gravier_data %>%
+#group_by(outcome) %>%
+#  summarise(n = n())
+
+# to get quick info about distribution in our dataset in case it is relevant
+
+fit <- data_clean_pca %>% 
+  glm(status ~ hemoglobin,
+      data = .,
+      family = binomial(link = "logit"))
+
+fit %>%
+  #summary
+  tidy
 
 # Visualise data ----------------------------------------------------------
 data_clean_aug %>% ...

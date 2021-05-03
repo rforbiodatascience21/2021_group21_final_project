@@ -19,13 +19,13 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 data_clean_aug <- data_clean %>% separate(status,
                                           c("status","reasonDeath"),
                                           " - ") %>% 
+  mutate(reasonDeath = replace_na(reasonDeath, "not dead")) %>%
   mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
                           str_detect(treatment, pattern = "placebo") ~ "0")) %>%
   mutate(dose = as.numeric(dose)) %>%
   relocate(dose, .after = stage) %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
                                 str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
-  
   mutate(reasonDeathNum = case_when(reasonDeath == "prostatic ca" ~ 2,
                           reasonDeath == "cerebrovascular" ~ 1,
                           reasonDeath == "heart or vascular" ~ 1,
@@ -33,7 +33,8 @@ data_clean_aug <- data_clean %>% separate(status,
                           reasonDeath == "other specific non-ca" ~ 0,
                           reasonDeath == "pulmonary embolus" ~ 1,
                           reasonDeath == "respiratory disease" ~ 0,
-                          reasonDeath == "unspecified non-ca" ~ 0))
+                          reasonDeath == "unspecified non-ca" ~ 0,
+                          reasonDeath == "not dead" ~ 0))
 
 glimpse(data_clean_aug)
 
@@ -52,6 +53,7 @@ data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
                                  performance == "in bed < 50% daytime" ~ 1,
                                  performance == "in bed > 50% daytime" ~ 2,
                                  performance == "confined to bed" ~ 3))
+
 
 
 glimpse(data_clean_pca)
