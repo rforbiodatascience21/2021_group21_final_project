@@ -81,6 +81,9 @@ data_clean_aug %>%
   scale_fill_manual(values=c( "#00AFBB", "#E7B800"))
 
 
+
+
+
 # Write data --------------------------------------------------------------
 write_tsv(...)
 ggsave(...)

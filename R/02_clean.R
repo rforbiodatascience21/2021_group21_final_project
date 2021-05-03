@@ -15,7 +15,7 @@ raw_data <- read_tsv(file = "data/01_raw_data.tsv.gz")
 
 
 # Wrangle data ------------------------------------------------------------
-
+#renaming columns
 raw_data <- raw_data %>% 
   rename(patientID  = patno, 
          treatment = rx, 
@@ -31,6 +31,7 @@ raw_data <- raw_data %>%
          acidPhosphatase =  ap, 
          boneMetastase = bm )
 
+#checking the data
 glimpse(raw_data)
 
 raw_data %>%
@@ -38,8 +39,20 @@ raw_data %>%
 
 NA_values <- sum(is.na(raw_data)) # 27 NA values
 
-# Let's make sure that removing NA's is logical, and we did not do anything unnecessary
-data_clean <- raw_data %>% drop_na()
+# for age, weightIndex, tumorSize and SGIndex we filled the NAs with the mean
+meanAge <- raw_data %>% drop_na() %>% summarise(m = mean(age))
+meanWI <- raw_data %>% drop_na() %>% summarise(m = mean(weightIndex))
+meanTS <- raw_data %>% drop_na() %>% summarise(m = mean(tumorSize))
+meanSGI <- raw_data %>% drop_na() %>% summarise(m = mean(SGindex))
+raw_data <- raw_data %>% replace_na(list(age = meanAge, 
+                                         weightIndex = meanWI,
+                                         tumorSize = meanTS,
+                                         SGindex = meanSGI))
+
+NA_values <- sum(is.na(raw_data)) # 8 values
+
+#for electroCardioG we decided to drop the NaN
+data_clean <- raw_data %>% drop_na() 
 
 
 # Write data --------------------------------------------------------------
