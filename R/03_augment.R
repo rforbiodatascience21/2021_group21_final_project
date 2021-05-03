@@ -56,7 +56,7 @@ data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
                                  performance == "in bed < 50% daytime" ~ 2.5, # in bed, and thus for <50% and > 50%, the mid-points 2.5
                                  performance == "in bed > 50% daytime" ~ 7.5, # and 7.5 will be used, respectively
                                  performance == "confined to bed" ~ 10)) %>%
-  select(everything(), -c(patientID,sdate))
+  select(everything(), -c(patientID,sdate, reasonDeathNum))
 
 glimpse(data_clean_pca)
 

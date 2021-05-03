@@ -8,6 +8,8 @@ library("ggridges")
 library("ggplot2")
 library("ggridges")
 library("broom")
+library(extrafont)
+loadfonts(device = "win")
 
 # Define functions --------------------------------------------------------
 source(file = "R/99_project_functions.R")
@@ -52,13 +54,77 @@ pca_data <- data_clean_pca %>%
 
 pca_data <- pca_data %>%
   group_by(measurements) %>%
-  tidyr::nest() %>%
+  nest() %>%
   ungroup()
 
 pca_data <- pca_data %>%
   mutate(model = map(data, ~ glm(status ~ values, 
                                data = .,
                                family = binomial(link = "logit"))))
+
+pca_data <- pca_data %>%
+  mutate(model_tidy = map(model, ~tidy(., conf.int = TRUE))) %>%
+  unnest(model_tidy)
+
+pca_data <- pca_data %>%
+  filter(str_detect(term, "values"))
+
+pca_data = pca_data %>% 
+  mutate(identified_as = case_when(p.value < 0.05 ~ "Significant",
+                                   TRUE ~ "Non-significant"))
+
+pca_data <- pca_data %>%
+  mutate(neg_log10_p = -log10(p.value))
+
+
+pca_data %>% 
+  ggplot(aes(x = reorder(measurements, -neg_log10_p),
+             y = neg_log10_p,
+             colour = identified_as)) + 
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05),
+             linetype = "dashed") +
+  theme_classic(base_family = "Avenir",
+                base_size = 8) +
+  theme(axis.text.x=element_text(angle=45,hjust=1)) +
+  theme(legend.position = "bottom") +
+  labs(x = "Parameters",
+       y = "Minus log10(p)")
+
+pca_data %>% 
+  ggplot(aes(x = estimate,
+             y = reorder(measurements, -estimate),
+             colour = identified_as)) +
+  geom_vline(xintercept = 0,
+             linetype = "dashed") +
+  geom_point() +
+  geom_errorbarh(aes(xmin = conf.low,
+                     xmax = conf.high,
+                     height = 0.2)) +
+  theme_classic(base_family = "Avenir",
+                base_size = 8) +
+  theme(axis.text.y = element_text("Parameters"),
+        legend.position = "bottom") + 
+  labs(y = "")
+
+pca_data_final <- data_clean_pca %>%
+  select(status, pull(pca_data, measurements))
+
+pca <- pca_data_final %>%
+  select(!status) %>%
+  prcomp(scale = TRUE)
+
+pca %>%
+  augment(pca_data_final) %>%
+  mutate(status = factor(status)) %>%
+  ggplot(aes(x = .fittedPC1,
+             y = .fittedPC2,
+             color = status)) + 
+  geom_point(size = 2) + 
+  theme_classic(base_family = "Avenir", base_size = 8) +
+  theme(legend.position = "bottom")
+
+
 # Visualize data ----------------------------------------------------------
 data_clean_aug %>% ...
 
