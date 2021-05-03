@@ -40,10 +40,10 @@ raw_data %>%
 NA_values <- sum(is.na(raw_data)) # 27 NA values
 
 # for age, weightIndex, tumorSize and SGIndex we filled the NAs with the mean
-meanAge <- raw_data %>% drop_na() %>% summarise(m = mean(age))
-meanWI <- raw_data %>% drop_na() %>% summarise(m = mean(weightIndex))
-meanTS <- raw_data %>% drop_na() %>% summarise(m = mean(tumorSize))
-meanSGI <- raw_data %>% drop_na() %>% summarise(m = mean(SGindex))
+meanAge <- raw_data %>% drop_na() %>% summarise(m = round(mean(age), digits = 0))
+meanWI <- raw_data %>% drop_na() %>% summarise(m = round(mean(weightIndex), digits = 0))
+meanTS <- raw_data %>% drop_na() %>% summarise(m = round(mean(tumorSize), digits = 0))
+meanSGI <- raw_data %>% drop_na() %>% summarise(m = round(mean(SGindex), digits = 0))
 raw_data <- raw_data %>% replace_na(list(age = meanAge, 
                                          weightIndex = meanWI,
                                          tumorSize = meanTS,
