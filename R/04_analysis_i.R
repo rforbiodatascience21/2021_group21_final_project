@@ -37,6 +37,7 @@ data_clean_aug <- data_clean_aug %>%
 
 # to get quick info about distribution in our dataset in case it is relevant
 
+# one measurement fitting model
 fit <- data_clean_pca %>% 
   glm(status ~ hemoglobin,
       data = .,
@@ -45,7 +46,19 @@ fit <- data_clean_pca %>%
 fit %>%
   #summary
   tidy
+# all measures at once
+pca_data <- data_clean_pca %>%
+  pivot_longer(!status, names_to = "measurements", values_to = "values")
 
+pca_data <- pca_data %>%
+  group_by(measurements) %>%
+  tidyr::nest() %>%
+  ungroup()
+
+pca_data <- pca_data %>%
+  mutate(model = map(data, ~ glm(status ~ values, 
+                               data = .,
+                               family = binomial(link = "logit"))))
 # Visualize data ----------------------------------------------------------
 data_clean_aug %>% ...
 
@@ -67,9 +80,11 @@ data_clean_aug %>%
 
 # Plot 2 - Reason of Death Count, grouped by stage
 data_clean_aug %>% 
-  filter(reasonDeath != "not dead" &
-           reasonDeath != "unknown cause"& 
-           reasonDeath != "other non-ca") %>% 
+  filter(!is.na(reasonDeath) & 
+           reasonDeath != "unknown cause" & 
+           reasonDeath != "other ca" & 
+           reasonDeath != "other specific non-ca" &
+           reasonDeath != "unspecified non-ca") %>% 
   count(reasonDeath, stage) %>% 
   ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
   geom_col() +
