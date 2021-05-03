@@ -67,7 +67,7 @@ data_clean_aug %>%
 
 # Plot 2 - Reason of Death Count, grouped by stage
 data_clean_aug %>% 
-  filter(!is.na(reasonDeath) & 
+  filter(reasonDeath != "not dead" &
            reasonDeath != "unknown cause"& 
            reasonDeath != "other non-ca") %>% 
   count(reasonDeath, stage) %>% 
