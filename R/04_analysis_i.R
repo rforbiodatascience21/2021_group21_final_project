@@ -59,10 +59,11 @@ ggplot(data_clean_aug, aes(stage, ..count..)) +
 data_clean_aug %>%
   ggplot( aes(y=stage, x=tumorSize,  fill=stage)) +
   geom_density_ridges(alpha=0.7) +
-  theme_ridges() +
+  scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
+  ggtitle("Tumor Size Density With Cancer Stages") +
   xlab("Tumor Size (cm2)") +
   ylab("Cancer Stage") + 
-  scale_fill_manual(values=c("#00AFBB", "#E7B800"))
+  theme_ridges()
 
 
 # Plot 2 - Reason of Death Count, grouped by stage
@@ -73,10 +74,12 @@ data_clean_aug %>%
   count(reasonDeath, stage) %>% 
   ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
   geom_col() +
-  theme(axis.text.x = element_text(angle = 25, vjust = 0.8, hjust=0.5, size=11))+ 
+  scale_fill_manual(values=c( "#00AFBB", "#E7B800")) +
+  ggtitle("Count Of Death Reasons - Grouped By Cancer Stage") +
   xlab("Reason of Death") +
-  ylab("Count") + 
-  scale_fill_manual(values=c( "#00AFBB", "#E7B800"))
+  ylab("Count") +   
+  theme_ridges() +
+  theme(axis.text.x = element_text(angle = 25, vjust = 0.8, hjust=0.5, size=11))
 
 
 #plot stage vs acid phosphatase
