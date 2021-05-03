@@ -99,23 +99,8 @@ pca_data %>%
         legend.position = "bottom") + 
   labs(y = "")
 
-pca_data_final <- data_clean_pca %>%
-  select(status, pull(pca_data, measurements))
-
-pca <- pca_data_final %>%
-  select(!status) %>%
-  prcomp(scale = TRUE)
-
-pca %>%
-  augment(pca_data_final) %>%
-  mutate(status = factor(status)) %>%
-  ggplot(aes(x = .fittedPC1,
-             y = .fittedPC2,
-             color = status)) + 
-  geom_point(size = 2) + 
-  theme_classic(base_family = "Avenir", base_size = 8) +
-  theme(legend.position = "bottom")
-
+# we run the PCA and plot the results
+PCA(data_clean_pca)
 
 # Visualize data ----------------------------------------------------------
 data_clean_aug %>% ...

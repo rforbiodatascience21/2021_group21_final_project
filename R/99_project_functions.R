@@ -7,6 +7,7 @@ bar <- function(x){
 }
 
 model_logit <- function(data) {
+  # try to do something to insert also the target attribute by using function names() that gives column names of a dataframe
   data <- data %>%
     pivot_longer(!status, names_to = "measurements", values_to = "values") %>%
     group_by(measurements) %>%
@@ -22,4 +23,23 @@ model_logit <- function(data) {
                                      TRUE ~ "Non-significant")) %>%
     mutate(neg_log10_p = -log10(p.value))
   return(data)
+}
+
+PCA <- function(data) {
+  pca_columns <- data %>%
+    select(status, everything())
+  
+  pca_data <- pca_columns %>% 
+    select(!status) %>%
+    prcomp(scale = TRUE)
+    
+  plot <- pca_data %>% augment(pca_columns) %>%
+    mutate(status = factor(status)) %>%
+    ggplot(aes(x = .fittedPC1,
+               y = .fittedPC2,
+               color = status)) + 
+    geom_point(size = 2) + 
+    theme_classic(base_family = "Avenir", base_size = 8) +
+    theme(legend.position = "bottom")
+  return(plot)
 }
