@@ -122,6 +122,28 @@ data_clean_aug %>% ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
                       labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
                       theme(legend.position = "none")
 
+#Plot 4 - Reason of death per treatment - unfinished (in process)
+
+#Get table causeDeath vs ppl_no
+causeDeath <- data_clean_aug %>%
+  group_by(reasonDeath) %>% 
+  drop_na() %>%   #drop alive people
+  dplyr::summarize(ppl_no = n())
+
+#Add percentage
+causeDeath <- causeDeath %>% group_by(reasonDeath,ppl_no) %>%
+  dplyr::summarise(patients = sum(ppl_no)) %>% 
+  group_by(ppl_no) %>% 
+  mutate(percentage=round(ppl_no/sum(patients)*100)) %>% select(-patients)
+
+ggplot(causeDeath, aes(x="", y=percentage, fill=reasonDeath)) +
+  geom_bar(stat="identity", width=1, color="white" ) +
+  coord_polar("y", start=0) +
+  geom_text(aes(label = percentage), position = position_stack(vjust = 0.5))+
+  theme_void()+ # remove background, grid, numeric labels
+  #scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Cause of death")+
+  theme(plot.title = element_text(hjust = 0.5))
 
 # Write data --------------------------------------------------------------
 save(model_data, file = "data.RData")
