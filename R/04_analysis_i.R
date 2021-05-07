@@ -19,11 +19,11 @@ data_clean_pca <- read_tsv(file = "data/03_data_clean_pca.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 data_clean_aug <- data_clean_aug %>% 
-  mutate(treatment =as_factor(treatment)) %>%
-  mutate(status =as_factor(status)) %>% 
-  mutate(electroCardioG =as_factor(electroCardioG)) %>%
-  mutate(performance =as_factor(performance)) %>%
-  mutate(stage =as_factor(stage)) %>% 
+  mutate(treatment = as_factor(treatment)) %>%
+  mutate(status = as_factor(status)) %>% 
+  mutate(electroCardioG = as_factor(electroCardioG)) %>%
+  mutate(performance = as_factor(performance)) %>%
+  mutate(stage = as_factor(stage)) %>% 
   mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
   mutate(boneMetastase = as_factor(boneMetastase))
 
@@ -111,7 +111,7 @@ data_clean_aug %>%
   theme(axis.text.x = element_text(angle = 25, vjust = 0.8, hjust=0.5, size=11))
 
 
-#plot stage vs acid phosphatase
+#Plot 3 - stage vs acid phosphates
 data_clean_aug %>% ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
                       geom_violin() +
                       stat_summary(fun = mean, fun.min = mean, fun.max = mean,
@@ -122,8 +122,8 @@ data_clean_aug %>% ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
                       labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
                       theme(legend.position = "none")
 
-#Plot 4 - Reason of death per treatment - unfinished (in process)
 
+#Plot 4 - Reason of death per treatment - unfinished (in process)
 #Get table causeDeath vs ppl_no
 causeDeath <- data_clean_aug %>%
   group_by(reasonDeath) %>% 
@@ -144,6 +144,7 @@ ggplot(causeDeath, aes(x="", y=percentage, fill=reasonDeath)) +
   #scale_fill_brewer(palette = "Dark2") +
   labs(title = "Cause of death")+
   theme(plot.title = element_text(hjust = 0.5))
+
 
 # Write data --------------------------------------------------------------
 save(model_data, file = "data.RData")

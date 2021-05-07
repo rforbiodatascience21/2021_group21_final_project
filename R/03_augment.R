@@ -61,6 +61,7 @@ data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
 
 glimpse(data_clean_pca)
 
+
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
           file = "data/03_data_clean_aug.tsv.gz")
