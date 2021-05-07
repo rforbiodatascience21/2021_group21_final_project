@@ -123,18 +123,26 @@ data_clean_aug %>% ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
                       theme(legend.position = "none")
 
 
-#Plot 4 - Reason of death per treatment - unfinished (in process)
+#Plot 4 - Reason of death per dose - (in process)
+
 #Get table causeDeath vs ppl_no
-causeDeath <- data_clean_aug %>%
-  group_by(reasonDeath) %>% 
+causeDeath <- data_clean_aug %>% 
+  group_by(reasonDeath,dose) %>% 
   drop_na() %>%   #drop alive people
   dplyr::summarize(ppl_no = n())
 
 #Add percentage
-causeDeath <- causeDeath %>% group_by(reasonDeath,ppl_no) %>%
-  dplyr::summarise(patients = sum(ppl_no)) %>% 
-  group_by(ppl_no) %>% 
-  mutate(percentage=round(ppl_no/sum(patients)*100)) %>% select(-patients)
+patients_per_dose <- causeDeath %>% group_by(dose) %>%
+  dplyr::summarise(ppl_total = sum(ppl_no)) 
+
+causeDeath <- full_join(causeDeath, patients_per_dose, by = "dose")
+
+causeDeath <- causeDeath %>% group_by(dose) %>% 
+  mutate(percentage=round((ppl_no/ppl_total)*100, 1))
+
+#Plot
+dose.labs <- c("Placebo", "Estrogen 0.2mg", "Estrogen 1mg", "Estrogen 5mg")
+names(dose.labs) <- c("0", "0.2", "1", "5" )
 
 ggplot(causeDeath, aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
@@ -142,8 +150,10 @@ ggplot(causeDeath, aes(x="", y=percentage, fill=reasonDeath)) +
   geom_text(aes(label = percentage), position = position_stack(vjust = 0.5))+
   theme_void()+ # remove background, grid, numeric labels
   #scale_fill_brewer(palette = "Dark2") +
-  labs(title = "Cause of death")+
-  theme(plot.title = element_text(hjust = 0.5))
+  labs(title = "Cause of death per treatment")+
+  facet_wrap(~ dose, nrow = 1, labeller = labeller(dose = dose.labs)) +
+  theme(plot.title = element_text(hjust = 0.5), legend.position = "bottom", legend.title = element_blank())
+
 
 
 # Write data --------------------------------------------------------------
