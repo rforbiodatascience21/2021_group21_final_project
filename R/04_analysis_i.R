@@ -134,7 +134,7 @@ distribution_death_reason <- data_clean_aug %>%
   group_by(dose) %>% 
   mutate(percentage=percentage/sum(percentage)*100)
 
-#Plot
+#Make the plot
 dose.labs <- c("Placebo", "Estrogen 0.2mg", "Estrogen 1mg", "Estrogen 5mg")
 names(dose.labs) <- c("0", "0.2", "1", "5" )
 
@@ -150,6 +150,58 @@ plot_4 <- ggplot(distribution_death_reason, aes(x="", y=percentage, fill=reasonD
   theme(plot.title = element_text(hjust = 0.5), 
         legend.position = "bottom", 
         legend.title = element_blank())
+
+
+#Plot 5 - %alive versus treatment doses by age
+
+#Make groups of ages
+dataPlot5 <- data_clean_aug %>% mutate(
+  # Create groups based on tumor size
+  ageGroup = case_when(
+    age >= 45 & age < 55 ~ "[45-54]",
+    age >= 55 & age < 65 ~ "[55-64]",
+    age >= 65 & age < 75 ~ "[65-74]",
+    age >= 75 & age < 85 ~ "[75-84]",
+    age >= 85 & age < 95 ~ "[85-94]"))
+
+#Get table: dose + ageGroup + ppl_no
+dataPlot5 <- dataPlot5 %>% 
+  group_by(dose, ageGroup) %>% 
+  dplyr::summarize(ppl_no = n())  
+
+#Add percentage
+#-----Total of patients per dose
+patients_per_dose <- dataPlot5 %>% group_by(dose) %>%
+  dplyr::summarise(ppl_total = sum(ppl_no)) 
+
+#-----Put data all together
+dataPlot5 <- full_join(dataPlot5, patients_per_dose, by = "dose")
+
+#-----Compute percentage
+dataPlot5 <- dataPlot5 %>% group_by(dose) %>% 
+  mutate(percentage=round((ppl_no/ppl_total)*100, 1))
+
+#Make the plot
+
+ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
+  geom_bar(stat="identity",position="dodge")+
+  facet_wrap(~ dose, nrow = 1, labeller = labeller(dose = dose.labs),strip.position = "bottom")+
+  theme(panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"),
+        axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        legend.position = "none",
+        strip.placement = "outside",
+        strip.background = element_blank(),
+        plot.title = element_text(hjust = 0.5)) + 
+  scale_y_continuous(expand = c(0,0))+
+  scale_x_discrete(breaks = NULL)+
+  geom_text(aes(label=ageGroup, colour=ageGroup), 
+            vjust=0.4, 
+            hjust=1.1, 
+            angle=-90, 
+            size =3) +
+  labs(title= "Survival rate based on treatment per age group", y = "Percentage of alive patients")
 
 
 # Write data --------------------------------------------------------------
