@@ -194,12 +194,12 @@ plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
         strip.placement = "outside",
         strip.background = element_blank(),
         plot.title = element_text(hjust = 0.5)) + 
-  scale_y_continuous(expand = c(0,0))+
+  scale_y_continuous(expand = c(0,0), limit = c(0,59))+
   scale_x_discrete(breaks = NULL)+
   geom_text(aes(label=ageGroup, colour=ageGroup), 
             vjust=0.5, 
             hjust=0.5, 
-            size=2.5,
+            size=2.7,
             nudge_y= 1) +
   labs(title= "Survival rate based on treatment per age group", y = "Percentage of alive patients")
 
