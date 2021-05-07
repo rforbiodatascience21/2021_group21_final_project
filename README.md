@@ -11,8 +11,6 @@ In this project, we analysed the prostate cancer data by using R programming ski
 
 The dataset compares four treatments for patients with prostatic cancer in Stages 3 and 4, and it is described in the paper "Prognostic Variables for Survival in a Randomized Comparison of Treatments for Prostatic Cancer". 
 
-It can be found in the project folder /data/_raw or downloaded from the link:
-
-[biostat.app.vumc.org]: https://biostat.app.vumc.org/wiki/pub/Main/DataSets/prostate.xls
+It can be found in the project folder /data/_raw or downloaded from the link: [biostat.app.vumc.org]:https://biostat.app.vumc.org/wiki/pub/Main/DataSets/prostate.xls
  
 .
