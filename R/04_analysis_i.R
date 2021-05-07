@@ -128,7 +128,8 @@ plot3 <- data_clean_aug %>%
 #Plot 4 - Reason of death per dose - (in process)
 #Get distribution of reason of death by treatment dose
 dataPlot4 <- data_clean_aug %>% 
-  filter(reasonDeath!="not dead") %>% 
+  filter(reasonDeath!="not dead" &
+         reasonDeath!="unknown cause") %>% 
   group_by(reasonDeath,dose) %>% 
   summarise(percentage=n()) %>% 
   group_by(dose) %>% 
@@ -141,7 +142,7 @@ names(dose.labs) <- c("0", "0.2", "1", "5" )
 plot4 <- ggplot(dataPlot4, aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
   coord_polar("y", start=0) +
-  geom_text(aes(x = 1.6, label = paste0(round(percentage), "%")), 
+  geom_text(size=3, aes(x = 1.6, label = paste0(round(percentage), "%")), 
             position = position_stack(vjust = 0.5))+
   theme_void()+ # remove background, grid, numeric labels
   #scale_fill_brewer(palette = "Dark2") +
@@ -153,7 +154,6 @@ plot4 <- ggplot(dataPlot4, aes(x="", y=percentage, fill=reasonDeath)) +
 
 
 #Plot 5 - %alive versus treatment doses by age
-
 #Make groups of ages
 dataPlot5 <- data_clean_aug %>% mutate(
   # Create groups based on tumor size
