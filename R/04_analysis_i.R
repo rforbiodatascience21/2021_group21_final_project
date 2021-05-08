@@ -1,7 +1,6 @@
 # Clear workspace ---------------------------------------------------------
 rm(list = ls())
 
-
 # Load libraries ----------------------------------------------------------
 library("tidyverse")
 library("ggridges")
@@ -121,6 +120,7 @@ plot3 <- data_clean_aug %>%
                                    position = position_dodge(width = .25)) +
                      ggtitle("Log of acid Phosphatase depending on cancer stage") + 
                      labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
+                     scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
                      theme(legend.position = "none")
 
 
