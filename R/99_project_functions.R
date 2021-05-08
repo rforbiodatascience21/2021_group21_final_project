@@ -6,6 +6,12 @@ bar <- function(x){
   return(x^2)
 }
 
+mean_column <- function(data, colum_name) {
+  data %>% 
+    drop_na() %>% 
+    summarise(m = round(mean(colum_name), digits = 0)) %>% 
+    pull(m)
+}
 
 PCA <- function(data) {
   pca_columns <- data %>%

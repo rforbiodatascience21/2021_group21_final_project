@@ -11,12 +11,15 @@ source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-raw_data <- read_tsv(file = "data/01_raw_data.tsv.gz")
-
+patient_raw_data <- read_tsv(file = "data/01_patient_raw_data.tsv.gz")
+cancer_raw_data <- read_tsv(file = "data/01_cancer_raw_data.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
-#renaming columns
-raw_data <- raw_data %>% 
+
+# Join both datasets to create one unified
+raw_data <- patient_raw_data %>%
+  inner_join(cancer_raw_data, by = 'patno') %>%
+  select(-sdate) %>%
   rename(patientID  = patno, 
          treatment = rx, 
          monthFollowUp = dtime, 
@@ -27,9 +30,11 @@ raw_data <- raw_data %>%
          diastolicBP = dbp , 
          electroCardioG = ekg, 
          hemoglobin = hg,  
-         tumorSize = sz, SGindex = sg, 
+         tumorSize = sz, 
+         SGindex = sg, 
          acidPhosphatase =  ap, 
          boneMetastase = bm )
+  
 
 #checking the data
 glimpse(raw_data)
@@ -40,6 +45,7 @@ raw_data %>%
 NA_values <- sum(is.na(raw_data)) # 27 NA values
 
 # for age, weightIndex, tumorSize and SGIndex we filled the NAs with the mean
+meanage = mean_column(raw_data, age)
 meanAge <- raw_data %>% drop_na() %>% summarise(m = round(mean(age), digits = 0)) %>% pull(m)
 meanWI <- raw_data %>% drop_na() %>% summarise(m = round(mean(weightIndex), digits = 0)) %>% pull(m)
 meanTS <- raw_data %>% drop_na() %>% summarise(m = round(mean(tumorSize), digits = 0)) %>% pull(m)
