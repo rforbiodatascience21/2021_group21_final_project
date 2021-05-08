@@ -18,12 +18,11 @@ data_clean_pca <- read_tsv(file = "data/03_data_clean_pca.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 data_clean_pca <- data_clean_pca %>% 
-  mutate(treatment = as_factor(treatment)) %>%
   mutate(status = as_factor(status)) %>% 
+  mutate(historyCardio = as_factor(historyCardio)) %>%
   mutate(electroCardioG = as_factor(electroCardioG)) %>%
   mutate(performance = as_factor(performance)) %>%
   mutate(stage = as_factor(stage)) %>% 
-  mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
   mutate(boneMetastase = as_factor(boneMetastase))
 
 # we run the PCA and plot the results
@@ -42,3 +41,6 @@ plot <- pca_data %>% augment(pca_columns) %>%
   geom_point(size = 2) + 
   theme_classic(base_family = "Avenir", base_size = 8) +
   theme(legend.position = "bottom")
+plot
+# Write data --------------------------------------------------------------
+ggsave(plot, file = "results/07_PCA.png")

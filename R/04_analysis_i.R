@@ -27,45 +27,6 @@ data_clean_aug <- data_clean_aug %>%
   mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
   mutate(boneMetastase = as_factor(boneMetastase))
 
-# Model data
-model_data = model_logit(data_clean_pca)
-
-# we could add some simple command such as
-
-# Manhattan plot
-
-model_data %>% 
-  ggplot(aes(x = reorder(measurements, -neg_log10_p),
-             y = neg_log10_p,
-             colour = identified_as)) + 
-  geom_point() +
-  geom_hline(yintercept = -log10(0.05),
-             linetype = "dashed") +
-  theme_classic(base_family = "Avenir",
-                base_size = 8) +
-  theme(axis.text.x=element_text(angle=45,hjust=1)) +
-  theme(legend.position = "bottom") +
-  labs(x = "Parameters",
-       y = "Minus log10(p)")
-
-model_data %>% 
-  ggplot(aes(x = estimate,
-             y = reorder(measurements, -estimate),
-             colour = identified_as)) +
-  geom_vline(xintercept = 0,
-             linetype = "dashed") +
-  geom_point() +
-  geom_errorbarh(aes(xmin = conf.low,
-                     xmax = conf.high,
-                     height = 0.2)) +
-  theme_classic(base_family = "Avenir",
-                base_size = 8) +
-  theme(axis.text.y = element_text("Parameters"),
-        legend.position = "bottom") + 
-  labs(y = "")
-
-
-
 # Visualize data ----------------------------------------------------------
 
 #Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this

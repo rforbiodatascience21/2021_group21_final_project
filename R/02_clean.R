@@ -19,10 +19,9 @@ cancer_raw_data <- read_tsv(file = "data/01_cancer_raw_data.tsv.gz")
 # Join both datasets to create one unified
 raw_data <- patient_raw_data %>%
   inner_join(cancer_raw_data, by = 'patno') %>%
-  select(-sdate) %>%
+  select(-sdate, dtime) %>%
   rename(patientID  = patno, 
          treatment = rx, 
-         monthFollowUp = dtime, 
          weightIndex = wt, 
          historyCardio = hx, 
          performance = pf, 
@@ -45,7 +44,6 @@ raw_data %>%
 NA_values <- sum(is.na(raw_data)) # 27 NA values
 
 # for age, weightIndex, tumorSize and SGIndex we filled the NAs with the mean
-meanage = mean_column(raw_data, age)
 meanAge <- raw_data %>% drop_na() %>% summarise(m = round(mean(age), digits = 0)) %>% pull(m)
 meanWI <- raw_data %>% drop_na() %>% summarise(m = round(mean(weightIndex), digits = 0)) %>% pull(m)
 meanTS <- raw_data %>% drop_na() %>% summarise(m = round(mean(tumorSize), digits = 0)) %>% pull(m)
