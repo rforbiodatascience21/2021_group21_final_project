@@ -40,8 +40,8 @@ kmean_aug <- augment(kClust, data_kmeans) %>%
 #plotting as a confussion matrix
 plot1 <- ggplot(kmean_aug, aes(x=status,y=cluster)) +
                 geom_tile(aes(fill = n), color = "white") +
-                geom_text(aes(label = sprintf("%1.0f",n)), vjust = -1) +
-                geom_text(aes(label = paste0(round(percentage,1),"%")), vjust = 1) +
+                geom_text(aes(label = n), vjust = -1) +
+                geom_text(aes(label = str_c(round(percentage,1),"%")), vjust = 1) +
                 scale_fill_gradient(low = "white", high = "#00AFBB") +
                 theme_minimal() +
                 ggtitle("Confussion matrix for k-means clustering") +

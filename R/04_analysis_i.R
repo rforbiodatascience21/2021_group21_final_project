@@ -32,7 +32,7 @@ data_clean_aug <- data_clean_aug %>%
 #Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this
 plot0 <- data_clean_aug %>%
   ggplot(aes(stage, ..count..)) + 
-  geom_bar(alpha=0.7,aes(fill = stage), position = "dodge")+
+  geom_bar(alpha=0.7,aes(fill = stage), position = "dodge") +
   scale_fill_manual(values=c ("#edae49", "#66a182"))
 
 
@@ -112,11 +112,12 @@ plot4 <-  dataPlot4 %>%
   ggplot(aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
   coord_polar("y", start=0) +
-  geom_text(size=2, aes(x = 1.65, label = str_c(round(percentage), "%")), 
-            position = position_stack(vjust = 0.5))+
+  geom_text(size=2, 
+            aes(x = 1.65, label = str_c(round(percentage), "%")), 
+            position = position_stack(vjust = 0.5)) +
   theme_void()+ # remove background, grid, numeric labels
   #scale_fill_brewer(palette = "Dark2") +
-  labs(title = "Cause of death per treatment")+
+  labs(title = "Cause of death per treatment") +
   facet_wrap(~ dose, nrow = 1, labeller = labeller(dose = dose.labs)) +
   theme(plot.title = element_text(hjust = 0.5), 
         legend.position = "bottom", 
@@ -152,7 +153,7 @@ dataPlot5 <- dataPlot5 %>% group_by(dose) %>%
 #Make the plot
 
 plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
-  geom_bar(stat="identity",position="dodge")+
+  geom_bar(stat="identity",position="dodge") +
   facet_wrap(~ dose, nrow = 1, 
              labeller = labeller(dose = dose.labs), 
              strip.position = "bottom") +
@@ -186,7 +187,8 @@ plot6 <- dataPlot6 %>%
   ggplot(aes(x=stage,y=boneMetastase)) +
   geom_tile(aes(fill = n), color = "white") +
   geom_text (aes(label=n), vjust = -1) +
-  geom_text(aes(label = str_c(round(percentage,1),"%")), vjust = 1) +
+  geom_text(aes(label = str_c(round(percentage,1),"%")), 
+            vjust = 1) +
   scale_fill_gradient(low = "white", high = "#00AFBB") +
   theme_minimal() +
   ggtitle("Bone metastases vs cancer stage") +

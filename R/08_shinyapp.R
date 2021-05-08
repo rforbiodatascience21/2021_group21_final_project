@@ -110,8 +110,8 @@ server <- function(input, output, session) {
       ggplot( aes(y=category, x=density, fill=category)) +
       geom_density_ridges(alpha=0.7) +
       ggtitle(str_c(input$density, " Density Plot Categorized by ", input$category)) +
-      xlab(paste0("Density - ",input$density)) +
-      ylab(paste0("Category - ",input$category)) + 
+      xlab(str_c("Density - ",input$density)) +
+      ylab(str_c("Category - ",input$category)) + 
       theme_minimal()
   })
 }

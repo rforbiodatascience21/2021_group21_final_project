@@ -39,6 +39,8 @@ plot <- pca_data %>% augment(data_clean_num) %>%
              y = .fittedPC2,
              color = status)) + 
   geom_point(size = 2) + 
+  xlab("PC1") +
+  ylab("PC2") + 
   theme_classic(base_family = "Avenir", base_size = 8) +
   theme(legend.position = "bottom")
 plot

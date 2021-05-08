@@ -27,19 +27,18 @@ data_clean_aug <- data_clean %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
                                 str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
   mutate(reasonDeathNum = case_when(reasonDeath == "prostatic ca" ~ 2,
-                          reasonDeath == "cerebrovascular" ~ 1,
-                          reasonDeath == "heart or vascular" ~ 1,
-                          reasonDeath == "other ca" ~ 0,
-                          reasonDeath == "other specific non-ca" ~ 0,
-                          reasonDeath == "unknown cause" ~ 0,
-                          reasonDeath == "pulmonary embolus" ~ 1,
-                          reasonDeath == "respiratory disease" ~ 0,
-                          reasonDeath == "unspecified non-ca" ~ 0,
-                          reasonDeath == "not dead" ~ 0)) %>%
-  mutate(reasonDeath = case_when( reasonDeath == "other specific non-ca" ~ "other non-ca",
-                                reasonDeath == "unspecified non-ca" ~ "other non-ca",
-                                TRUE ~ reasonDeath))
-
+                                    reasonDeath == "cerebrovascular" ~ 1,
+                                    reasonDeath == "heart or vascular" ~ 1,
+                                    reasonDeath == "other ca" ~ 0,
+                                    reasonDeath == "other specific non-ca" ~ 0,
+                                    reasonDeath == "unknown cause" ~ 0,
+                                    reasonDeath == "pulmonary embolus" ~ 1,
+                                    reasonDeath == "respiratory disease" ~ 0,
+                                    reasonDeath == "unspecified non-ca" ~ 0,
+                                    reasonDeath == "not dead" ~ 0)) %>%
+  mutate(reasonDeath = case_when(reasonDeath == "other specific non-ca" ~ "other non-ca",
+                                 reasonDeath == "unspecified non-ca" ~ "other non-ca",
+                                 TRUE ~ reasonDeath))
 glimpse(data_clean_aug)
 
 # Data set with all attributes double
@@ -50,6 +49,11 @@ data_clean_num <- data_clean_aug %>%
   select(-one_of(dropCol)) %>%
   mutate (status = case_when(status == "alive"  ~ 0,
                              status == "dead"  ~ 1)) %>%
+#creation of pca data
+data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
+  mutate (status = case_when(status == "alive" ~ 0,
+                             status == "dead" ~ 1)) %>%
+  relocate(reasonDeathNum, .after = status) %>%
   mutate(electroCardioG = case_when(electroCardioG == "normal" ~ 0,
                                     electroCardioG == "benign" ~ 1,
                                     electroCardioG == "rhythmic disturb & electrolyte ch" ~ 2,
