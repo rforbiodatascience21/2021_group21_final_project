@@ -19,7 +19,7 @@ cancer_raw_data <- read_tsv(file = "data/01_cancer_raw_data.tsv.gz")
 # Join both datasets to create one unified
 raw_data <- patient_raw_data %>%
   inner_join(cancer_raw_data, by = 'patno') %>%
-  select(-sdate, dtime) %>%
+  select(-sdate, -dtime) %>%
   rename(patientID  = patno, 
          treatment = rx, 
          weightIndex = wt, 

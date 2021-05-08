@@ -14,23 +14,23 @@ source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-data_clean_pca <- read_tsv(file = "data/03_data_clean_pca.tsv.gz")
+data_clean_num <- read_tsv(file = "data/03_data_clean_num.tsv.gz")
 
-# try to do something to insert also the target attribute by using function names() that gives column names of a dataframe
-model_data <- data_clean_pca %>% # original data size (494x16)
-  pivot_longer(!status, names_to = "measurements", values_to = "values") %>% # create a pivot_longer structure (7410x3) -> (status, measurements, values)
-  group_by(measurements) %>% # as we have all rows now in the same column in the pivot_longer, it is grouped by measurements -> original columns
-  nest %>% # this function puts together each value for each measurement with the respective status (measurements, data), where data is a tibble with the value of the measurement and status for each row
+
+model_data <- data_clean_num %>% 
+  pivot_longer(!status, names_to = "measurements", values_to = "values") %>% 
+  group_by(measurements) %>% 
+  nest %>% 
   ungroup %>%
-  mutate(model = map(data, ~ glm(status ~ values, # we apply a General Liner Model for each combination of attributes with respect to status
+  mutate(model = map(data, ~ glm(status ~ values,
                                  data = .,
-                                 family = binomial(link = "logit")))) %>% # binomial and logit are used as status is binary
-  mutate(model_tidy = map(model, ~tidy(., conf.int = TRUE))) %>% # tidy gives the results of the fitting in a nice form in a tibble
-  unnest(model_tidy) %>% # the tibble we just created is unnested, showing all results
-  filter(str_detect(term, "values")) %>% # get rid of the intercepts and just keep the linear part
+                                 family = binomial(link = "logit")))) %>% 
+  mutate(model_tidy = map(model, ~tidy(., conf.int = TRUE))) %>%
+  unnest(model_tidy) %>%
+  filter(str_detect(term, "values")) %>% 
   mutate(identified_as = case_when(p.value < 0.05 ~ "Significant",
-                                   TRUE ~ "Non-significant")) %>% # mark each fitting depending on its performance with p value
-  mutate(neg_log10_p = -log10(p.value)) # create a column required for the Manhattan plot
+                                   TRUE ~ "Non-significant")) %>% 
+  mutate(neg_log10_p = -log10(p.value))
 
 # Visualize data ----------------------------------------------------------
 
