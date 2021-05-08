@@ -28,22 +28,28 @@ data <- data %>%
   mutate(reasonDeathNum = as_factor(reasonDeathNum)) %>% 
   mutate(boneMetastase = as_factor(boneMetastase))
 
+#add string values instead of 0 and 1 for bone metastases
+data <- data %>% 
+  mutate(boneMetastase = case_when(boneMetastase == 0 ~ "No",
+                                   boneMetastase == 1 ~ "Yes"))
+
+
 # User Interface
 ui <- fluidPage(theme = shinytheme("united"),
                 
-                titlePanel(" Main Title Here "),
+                titlePanel(" Data explorer - Prostate cancer clinical data "),
                 sidebarLayout(
                   sidebarPanel(
                     
                     selectInput("category", 
                                 label = "Category", 
-                                choices=c("Cancer Stage", "Treatment Dose", "Performance"),
+                                choices=c("Cancer Stage", "Treatment Dose", "Performance","Bone metastases"),
                                 selected= "Cancer Stage"),
                     
                     selectInput("density", 
                                 label = "Density", 
                                 choices=c("Age", "Weight Index", "Tumor Size", "Systolic Blood Pressure",
-                                          "Diastolic Blood Pressure"),
+                                          "Diastolic Blood Pressure","SG Index"),
                                 selected= "Age"),
 
                   ),
@@ -77,7 +83,9 @@ server <- function(input, output, session) {
       "Age", "age",
       "Performance", "performance",
       "Systolic Blood Pressure", "systolicBP",
-      "Diastolic Blood Pressure", "diastolicBP"
+      "Diastolic Blood Pressure", "diastolicBP",
+      "Bone metastases", "boneMetastase",
+      "SG Index","SGindex"
     )
     
     pairs <- spread(pairs,
@@ -102,15 +110,15 @@ server <- function(input, output, session) {
                  filter(performance!="confined to bed")
       df <- shiny_df( first(pairs %>% select(input$density) ) ,first(pairs %>% select(input$category)),perf_df)
       df <- arrange(df, category)
-    }
+    } 
     
     df %>%
       ggplot( aes(y=category, x=density, fill=category)) +
       geom_density_ridges(alpha=0.7) +
-      ggtitle("Generic Title") +
-      xlab("Density - Generic X axis name") +
-      ylab("Category - Generic Y axis name") + 
-      theme_ridges()
+      ggtitle(paste0(input$category," vs. ",input$density)) +
+      xlab(paste0("Density -",input$density)) +
+      ylab(paste0("Category - ",input$category)) + 
+      theme_minimal()
   })
 }
 
