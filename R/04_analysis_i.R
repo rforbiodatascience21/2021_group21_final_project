@@ -70,8 +70,7 @@ model_data %>%
         legend.position = "bottom") + 
   labs(y = "")
 
-# we run the PCA and plot the results
-PCA(data_clean_pca)
+
 
 # Visualize data ----------------------------------------------------------
 
