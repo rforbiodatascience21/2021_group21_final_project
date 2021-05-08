@@ -43,7 +43,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                     
                     selectInput("category", 
                                 label = "Category", 
-                                choices=c("Cancer Stage", "Treatment Dose", "Performance","Bone metastases"),
+                                choices=c("Cancer Stage", "Treatment Dose", "Performance","Bone Metastases"),
                                 selected= "Cancer Stage"),
                     
                     selectInput("density", 
@@ -57,7 +57,6 @@ ui <- fluidPage(theme = shinytheme("united"),
                   mainPanel(
                     
                     plotOutput(outputId = "plot"),
-                    tags$h5(" Subtitle \n NOT COMPLETE - ON GOING "),
                     tags$style(type="text/css",
                                ".shiny-output-error { visibility: hidden; }",
                                ".shiny-output-error:before { visibility: hidden; }"
@@ -74,24 +73,19 @@ server <- function(input, output, session) {
   
   output$plot <- renderPlot({
     
-    pairs <- tribble(
-      ~key, ~val,
-      "Cancer Stage", "stage",
-      "Weight Index", "weightIndex",
-      "Tumor Size", "tumorSize",
-      "Treatment Dose", "dose",
-      "Age", "age",
-      "Performance", "performance",
-      "Systolic Blood Pressure", "systolicBP",
-      "Diastolic Blood Pressure", "diastolicBP",
-      "Bone metastases", "boneMetastase",
-      "SG Index","SGindex"
-    )
+  pairs <- tribble(~key, ~val,
+                   "Cancer Stage", "stage",
+                   "Weight Index", "weightIndex",
+                   "Tumor Size", "tumorSize",
+                   "Treatment Dose", "dose",
+                   "Age", "age",
+                   "Performance", "performance",
+                   "Systolic Blood Pressure", "systolicBP",
+                   "Diastolic Blood Pressure", "diastolicBP",
+                   "Bone Metastases", "boneMetastase",
+                   "SG Index","SGindex")
     
-    pairs <- spread(pairs,
-                    key, 
-                    val
-    )
+    pairs <- spread(pairs, key, val)
     
     df <- shiny_df( first(pairs %>% select(input$density)) ,first(pairs %>% select(input$category)), data)
     
@@ -115,8 +109,8 @@ server <- function(input, output, session) {
     df %>%
       ggplot( aes(y=category, x=density, fill=category)) +
       geom_density_ridges(alpha=0.7) +
-      ggtitle(paste0(input$category," vs. ",input$density)) +
-      xlab(paste0("Density -",input$density)) +
+      ggtitle(str_c(input$density, " Density Plot Categorized by ", input$category)) +
+      xlab(paste0("Density - ",input$density)) +
       ylab(paste0("Category - ",input$category)) + 
       theme_minimal()
   })
