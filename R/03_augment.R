@@ -19,8 +19,7 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 #creation  of our augmented data
 data_clean_aug <- data_clean %>% 
   mutate(status = str_replace(status, pattern = "alive", replacement = "alive - not dead")) %>%
-  separate(status,c("status","reasonDeath"),
-                                          " - ") %>%
+  separate(status,c("status","reasonDeath"), " - ") %>%
   mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
                           str_detect(treatment, pattern = "placebo") ~ "0")) %>%
   mutate(dose = as.numeric(dose)) %>%
@@ -28,25 +27,24 @@ data_clean_aug <- data_clean %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
                                 str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
   mutate(reasonDeathNum = case_when(reasonDeath == "prostatic ca" ~ 2,
-                          reasonDeath == "cerebrovascular" ~ 1,
-                          reasonDeath == "heart or vascular" ~ 1,
-                          reasonDeath == "other ca" ~ 0,
-                          reasonDeath == "other specific non-ca" ~ 0,
-                          reasonDeath == "unknown cause" ~ 0,
-                          reasonDeath == "pulmonary embolus" ~ 1,
-                          reasonDeath == "respiratory disease" ~ 0,
-                          reasonDeath == "unspecified non-ca" ~ 0,
-                          reasonDeath == "not dead" ~ 0)) %>%
-  mutate(reasonDeath = case_when( reasonDeath == "other specific non-ca" ~ "other non-ca",
-                                reasonDeath == "unspecified non-ca" ~ "other non-ca",
-                                TRUE ~ reasonDeath))
-
+                                    reasonDeath == "cerebrovascular" ~ 1,
+                                    reasonDeath == "heart or vascular" ~ 1,
+                                    reasonDeath == "other ca" ~ 0,
+                                    reasonDeath == "other specific non-ca" ~ 0,
+                                    reasonDeath == "unknown cause" ~ 0,
+                                    reasonDeath == "pulmonary embolus" ~ 1,
+                                    reasonDeath == "respiratory disease" ~ 0,
+                                    reasonDeath == "unspecified non-ca" ~ 0,
+                                    reasonDeath == "not dead" ~ 0)) %>%
+  mutate(reasonDeath = case_when(reasonDeath == "other specific non-ca" ~ "other non-ca",
+                                 reasonDeath == "unspecified non-ca" ~ "other non-ca",
+                                 TRUE ~ reasonDeath))
 glimpse(data_clean_aug)
 
 #creation of pca data
 data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
-  mutate (status = case_when(status == "alive"  ~ 0,
-                             status == "dead"  ~ 1)) %>%
+  mutate (status = case_when(status == "alive" ~ 0,
+                             status == "dead" ~ 1)) %>%
   relocate(reasonDeathNum, .after = status) %>%
   mutate(electroCardioG = case_when(electroCardioG == "normal" ~ 0,
                                     electroCardioG == "benign" ~ 1,

@@ -32,7 +32,7 @@ data_clean_aug <- data_clean_aug %>%
 #Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this
 plot0 <- data_clean_aug %>%
   ggplot(aes(stage, ..count..)) + 
-  geom_bar(alpha=0.7,aes(fill = stage), position = "dodge")+
+  geom_bar(alpha=0.7,aes(fill = stage), position = "dodge") +
   scale_fill_manual(values=c ("#edae49", "#66a182"))
 
 
