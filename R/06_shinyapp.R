@@ -12,11 +12,11 @@ library(reshape2)
 library(rsconnect)
 
 # Define functions --------------------------------------------------------
-source(file = "R/99_project_functions.R")
+source(file = "../R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-data <- read_tsv(file = "data/03_data_clean_aug.tsv.gz")
+data <- read_tsv(file = "../data/03_data_clean_aug.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 data <- data %>% 
@@ -37,13 +37,14 @@ ui <- fluidPage(theme = shinytheme("united"),
                     
                     selectInput("category", 
                                 label = "Category", 
-                                choices=c("Cancer Stage", "Treatment Dose"),
+                                choices=c("Cancer Stage", "Treatment Dose", "Performance"),
                                 selected= "Cancer Stage"),
                     
                     selectInput("density", 
                                 label = "Density", 
-                                choices=c("Age", "Weight Index", "Tumor Size"),
-                                selected= "Cancer Stage"),
+                                choices=c("Age", "Weight Index", "Tumor Size", "Systolic Blood Pressure",
+                                          "Diastolic Blood Pressure"),
+                                selected= "Age"),
 
                   ),
                   
@@ -73,7 +74,10 @@ server <- function(input, output, session) {
       "Weight Index", "weightIndex",
       "Tumor Size", "tumorSize",
       "Treatment Dose", "dose",
-      "Age", "age"
+      "Age", "age",
+      "Performance", "performance",
+      "Systolic Blood Pressure", "systolicBP",
+      "Diastolic Blood Pressure", "diastolicBP"
     )
     
     pairs <- spread(pairs,
@@ -81,11 +85,9 @@ server <- function(input, output, session) {
                     val
     )
     
-    print(input)
     df <- shiny_df( first(pairs %>% select(input$density)) ,first(pairs %>% select(input$category)), data)
     
     if (input$category == "Treatment Dose") {
-      
       dose_df <- data %>%
         mutate(dose = case_when (dose == 0.0 ~ "Placebo",
                                  dose == 0.2 ~ "Estrogen 0.2 mg",
@@ -95,8 +97,15 @@ server <- function(input, output, session) {
       df <- arrange(df, category)
     }
     
+    if (input$category == "Performance") {
+      perf_df <- data %>%
+                 filter(performance!="confined to bed")
+      df <- shiny_df( first(pairs %>% select(input$density) ) ,first(pairs %>% select(input$category)),perf_df)
+      df <- arrange(df, category)
+    }
+    
     df %>%
-      ggplot( aes(y=category, x=density,  fill=category)) +
+      ggplot( aes(y=category, x=density, fill=category)) +
       geom_density_ridges(alpha=0.7) +
       ggtitle("Generic Title") +
       xlab("Density - Generic X axis name") +

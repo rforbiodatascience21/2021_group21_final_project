@@ -136,7 +136,7 @@ names(dose.labs) <- c("0", "0.2", "1", "5" )
 plot4 <- ggplot(dataPlot4, aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
   coord_polar("y", start=0) +
-  geom_text(size=3, aes(x = 1.6, label = paste0(round(percentage), "%")), 
+  geom_text(size=2, aes(x = 1.6, label = paste0(round(percentage), "%")), 
             position = position_stack(vjust = 0.5))+
   theme_void()+ # remove background, grid, numeric labels
   #scale_fill_brewer(palette = "Dark2") +
@@ -193,7 +193,7 @@ plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
   geom_text(aes(label=ageGroup, colour=ageGroup), 
             vjust=0.5, 
             hjust=0.5, 
-            size=2.7,
+            size=2,
             nudge_y= 1) +
   labs(title= "Survival rate based on treatment per age group", y = "Percentage of alive patients")
 
