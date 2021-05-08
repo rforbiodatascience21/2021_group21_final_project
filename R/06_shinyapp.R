@@ -12,7 +12,7 @@ library(reshape2)
 library(rsconnect)
 
 # Define functions --------------------------------------------------------
-# source(file = "R/99_project_functions.R")
+source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
@@ -31,20 +31,26 @@ data <- data %>%
 # User Interface
 ui <- fluidPage(theme = shinytheme("united"),
                 
-                titlePanel(" Title Here "),
+                titlePanel(" Main Title Here "),
                 sidebarLayout(
                   sidebarPanel(
-                    selectInput("column", 
+                    
+                    selectInput("category", 
+                                label = "Category", 
+                                choices=c("Cancer Stage", "Treatment Dose"),
+                                selected= "Cancer Stage"),
+                    
+                    selectInput("density", 
                                 label = "Density", 
                                 choices=c("Age", "Weight Index", "Tumor Size"),
                                 selected= "Cancer Stage"),
-                    
+
                   ),
                   
                   mainPanel(
                     
                     plotOutput(outputId = "plot"),
-                    tags$h5(" Title xxx \n NOT COMPLETE - ON GOING "),
+                    tags$h5(" Subtitle \n NOT COMPLETE - ON GOING "),
                     tags$style(type="text/css",
                                ".shiny-output-error { visibility: hidden; }",
                                ".shiny-output-error:before { visibility: hidden; }"
@@ -61,29 +67,40 @@ server <- function(input, output, session) {
   
   output$plot <- renderPlot({
     
-    if (input$column == "Age") {
-      df <- data %>% 
-            select(stage, age)
-      df <- rename(df, col = age)
-    }
-    if (input$column == "Weight Index") {
-      df <- data %>% 
-            select(stage, weightIndex)
-      df <- rename(df, col = weightIndex)
-    }
-    if (input$column == "Tumor Size") {
-      df <- data %>% 
-        select(stage, tumorSize)
-      df <- rename(df, col = tumorSize)
+    pairs <- tribble(
+      ~key, ~val,
+      "Cancer Stage", "stage",
+      "Weight Index", "weightIndex",
+      "Tumor Size", "tumorSize",
+      "Treatment Dose", "dose",
+      "Age", "age"
+    )
+    
+    pairs <- spread(pairs,
+                    key, 
+                    val
+    )
+    
+    print(input)
+    df <- shiny_df( first(pairs %>% select(input$density)) ,first(pairs %>% select(input$category)), data)
+    
+    if (input$category == "Treatment Dose") {
+      
+      dose_df <- data %>%
+        mutate(dose = case_when (dose == 0.0 ~ "Placebo",
+                                 dose == 0.2 ~ "Estrogen 0.2 mg",
+                                 dose == 1 ~ "Estrogen 1 mg",
+                                 dose == 5 ~ "Estrogen 5 mg"))
+      df <- shiny_df( first(pairs %>% select(input$density) ) ,first(pairs %>% select(input$category)),dose_df)
+      df <- arrange(df, category)
     }
     
     df %>%
-      ggplot( aes(y=stage, x=col,  fill=stage)) +
+      ggplot( aes(y=category, x=density,  fill=category)) +
       geom_density_ridges(alpha=0.7) +
-      scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
-      ggtitle("Tumor Size Density With Cancer Stages") +
-      xlab("Tumor Size (cm2)") +
-      ylab("Cancer Stage") + 
+      ggtitle("Generic Title") +
+      xlab("Density - Generic X axis name") +
+      ylab("Category - Generic Y axis name") + 
       theme_ridges()
   })
 }

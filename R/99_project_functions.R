@@ -6,6 +6,13 @@ bar <- function(x){
   return(x^2)
 }
 
+shiny_df <- function(x,y,df){
+  df <- df %>% 
+    select(y, x)
+  df <- df %>% rename(density=x, category=y)
+  return(df)
+}
+
 model_logit <- function(data) {
   # try to do something to insert also the target attribute by using function names() that gives column names of a dataframe
   data <- data %>% # original data size (494x16)
