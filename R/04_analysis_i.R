@@ -31,12 +31,6 @@ model_data = model_logit(data_clean_pca)
 
 # we could add some simple command such as
 
-#gravier_data %>%
-#group_by(outcome) %>%
-#  summarise(n = n())
-
-# to get quick info about distribution in our dataset in case it is relevant
-
 # Manhattan plot
 
 model_data %>% 
