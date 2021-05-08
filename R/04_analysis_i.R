@@ -15,7 +15,7 @@ source(file = "R/99_project_functions.R")
 
 # Load data ---------------------------------------------------------------
 data_clean_aug <- read_tsv(file = "data/03_data_clean_aug.tsv.gz")
-data_clean_pca <- read_tsv(file = "data/03_data_clean_pca.tsv.gz")
+
 
 # Wrangle data ------------------------------------------------------------
 data_clean_aug <- data_clean_aug %>% 

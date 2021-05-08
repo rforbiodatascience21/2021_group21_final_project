@@ -10,16 +10,15 @@ source(file = "R/99_project_functions.R")
 
 # Load data ---------------------------------------------------------------
 #We use the same as for PCA since we need parameters to be numeric
-data_kmeans <- read_tsv(file = "data/03_data_clean_pca.tsv.gz")
+data_kmeans <- read_tsv(file = "data/03_data_clean_num.tsv.gz")
 
 ## kmean Clustering -------------------------------------------------------
 #prepare a table withput y (status alive/death)
 data_kmeans_noLabel <- data_kmeans %>% select(-status)
 
-#retire months follow up since its accesory to the sampling 
 #retire dose, diastolic and sistolic, acid Phosphatase since 
 #they were found to not have goow correlation to status
-dropCol <- c("monthFollowUp","diastolicBP","dose","systolicBP","acidPhosphatase")
+dropCol <- c("diastolicBP","dose","systolicBP","acidPhosphatase")
 
 data_kmeans_noLabel <- data_kmeans_noLabel %>% select(-one_of(dropCol))
 

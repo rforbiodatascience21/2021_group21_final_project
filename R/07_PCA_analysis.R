@@ -14,10 +14,10 @@ source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-data_clean_pca <- read_tsv(file = "data/03_data_clean_pca.tsv.gz")
+data_clean_num <- read_tsv(file = "data/03_data_clean_num.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
-data_clean_pca <- data_clean_pca %>% 
+data_clean_num <- data_clean_num %>% 
   mutate(status = as_factor(status)) %>% 
   mutate(historyCardio = as_factor(historyCardio)) %>%
   mutate(electroCardioG = as_factor(electroCardioG)) %>%
@@ -26,14 +26,14 @@ data_clean_pca <- data_clean_pca %>%
   mutate(boneMetastase = as_factor(boneMetastase))
 
 # we run the PCA and plot the results
-pca_columns <- data_clean_pca %>%
-  select(status, everything())
 
-pca_data <- pca_columns %>% 
+dropCol <- c("performance", "historyCardio", "boneMetastase", "stage", "electroCardioG")
+
+pca_data <- data_clean_num %>% 
   select(!status) %>%
   prcomp(scale = TRUE)
 
-plot <- pca_data %>% augment(pca_columns) %>%
+plot <- pca_data %>% augment(data_clean_num) %>%
   mutate(status = factor(status)) %>%
   ggplot(aes(x = .fittedPC1,
              y = .fittedPC2,
