@@ -16,6 +16,7 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 
+#creation  of our augmented data
 data_clean_aug <- data_clean %>% 
   mutate(status = str_replace(status, pattern = "alive", replacement = "alive - not dead")) %>%
   separate(status,c("status","reasonDeath"),
@@ -42,6 +43,7 @@ data_clean_aug <- data_clean %>%
 
 glimpse(data_clean_aug)
 
+#creation of pca data
 data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
   mutate (status = case_when(status == "alive"  ~ 0,
                              status == "dead"  ~ 1)) %>%
@@ -60,7 +62,6 @@ data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
   select(everything(), -c(patientID,sdate, reasonDeathNum))
 
 glimpse(data_clean_pca)
-
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
