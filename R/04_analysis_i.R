@@ -7,6 +7,7 @@ library("ggridges")
 library("ggplot2")
 library("ggridges")
 library("broom")
+library("patchwork")
 
 # Define functions --------------------------------------------------------
 source(file = "R/99_project_functions.R")
@@ -104,18 +105,30 @@ plot2 <- data_clean_aug %>%
 
 
 #Plot 3 - stage vs acid phosphates
-plot3 <- data_clean_aug %>% 
+p1 <- data_clean_aug %>% 
           ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
                      geom_violin() +
                      stat_summary(fun = mean, fun.min = mean, fun.max = mean,
                                    geom = "crossbar", 
                                    width = 0.25,
                                    position = position_dodge(width = .25)) +
-                     ggtitle("Log of acid Phosphatase depending on cancer stage") + 
                      labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
                      scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
                      theme(legend.position = "none")
 
+p2 <-  data_clean_aug %>% 
+                      ggplot(aes(x=stage, y=SGindex, fill= stage)) +
+                      geom_violin() +
+                      stat_summary(fun = mean, fun.min = mean, fun.max = mean,
+                                   geom = "crossbar", 
+                                   width = 0.25,
+                                   position = position_dodge(width = .25)) +
+                      labs(x= "Cancer stage", y="SG Index", color="Cancer stage") +
+                      scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
+                      theme(legend.position = "none")
+
+
+plot3 <- p1 + p2
 
 
 #Plot 4 - Reason of death per dose - (in process)
@@ -135,7 +148,7 @@ names(dose.labs) <- c("0", "0.2", "1", "5" )
 plot4 <- ggplot(dataPlot4, aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
   coord_polar("y", start=0) +
-  geom_text(size=3, aes(x = 1.6, label = paste0(round(percentage), "%")), 
+  geom_text(size=2, aes(x = 1.6, label = paste0(round(percentage), "%")), 
             position = position_stack(vjust = 0.5))+
   theme_void()+ # remove background, grid, numeric labels
   #scale_fill_brewer(palette = "Dark2") +
@@ -192,10 +205,27 @@ plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
   geom_text(aes(label=ageGroup, colour=ageGroup), 
             vjust=0.5, 
             hjust=0.5, 
-            size=2.7,
+            size=2,
             nudge_y= 1) +
   labs(title= "Survival rate based on treatment per age group", y = "Percentage of alive patients")
 
+#plot 6
+dataPlot6 <- data_clean_aug %>% 
+  select(stage,boneMetastase) %>% 
+  mutate(boneMetastase = case_when(boneMetastase == 0 ~ "No",
+                                   boneMetastase == 1 ~"Yes")) %>% 
+  count(stage,boneMetastase) %>% 
+  mutate(percentage = round(n*100/sum(n),1)) 
+
+plot6 <- ggplot(dataPlot6, aes(x=stage,y=boneMetastase)) +
+  geom_tile(aes(fill = n), color = "white") +
+  geom_text (aes(label=n), vjust = -1) +
+  geom_text(aes(label = paste0(round(percentage,1),"%")), vjust = 1) +
+  scale_fill_gradient(low = "white", high = "#00AFBB") +
+  theme_minimal() +
+  ggtitle("Bone metastases vs cancer stage") +
+  xlab("Cancer stage") +
+  ylab("Bone metastases") 
 
 # Write data --------------------------------------------------------------
 ggsave(plot0, file = "results/04_plot_0.png")
@@ -204,3 +234,4 @@ ggsave(plot2, file = "results/04_plot_2.png")
 ggsave(plot3, file = "results/04_plot_3.png")
 ggsave(plot4, file = "results/04_plot_4.png")
 ggsave(plot5, file = "results/04_plot_5.png")
+ggsave(plot6, file = "results/04_plot_6.png")
