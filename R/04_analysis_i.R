@@ -70,7 +70,7 @@ model_data %>%
 
 #Plot 0 - very basic, see the count of stage 3 and 4, we may exclude this
 plot0 <- data_clean_aug %>%
-ggplot(aes(stage, ..count..)) + 
+  ggplot(aes(stage, ..count..)) + 
   geom_bar(alpha=0.7,aes(fill = stage), position = "dodge")+
   scale_fill_manual(values=c ("#edae49", "#66a182"))
 
@@ -83,50 +83,51 @@ plot1 <- data_clean_aug %>%
   ggtitle("Tumor Size Density With Cancer Stages") +
   xlab("Tumor Size (cm2)") +
   ylab("Cancer Stage") + 
-  theme_ridges()
+  theme_minimal()
 
 
 #Plot 2 - Reason of Death Count, grouped by stage
 plot2 <- data_clean_aug %>% 
   filter(!is.na(reasonDeath) & 
-           reasonDeath != "unknown cause" & 
-           reasonDeath != "other ca" & 
-           reasonDeath != "other specific non-ca" &
-           reasonDeath != "unspecified non-ca") %>% 
+         reasonDeath != "unknown cause" & 
+         reasonDeath != "other ca" & 
+         reasonDeath != "other non-ca") %>% 
   count(reasonDeath, stage) %>% 
   ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
   geom_col() +
   scale_fill_manual(values=c( "#00AFBB", "#E7B800")) +
-  ggtitle("Count Of Death Reasons - Grouped By Cancer Stage") +
+  ggtitle("Death Reason Count - Grouped By Cancer Stage") +
   xlab("Reason of Death") +
   ylab("Count") +   
-  theme_ridges() +
+  theme_minimal() +
   theme(axis.text.x = element_text(angle = 25, vjust = 0.8, hjust=0.5, size=11))
 
 
 #Plot 3 - stage vs acid phosphates
 p1 <- data_clean_aug %>% 
-          ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
-                     geom_violin() +
-                     stat_summary(fun = mean, fun.min = mean, fun.max = mean,
-                                   geom = "crossbar", 
-                                   width = 0.25,
-                                   position = position_dodge(width = .25)) +
-                     labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
-                     scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
-                     theme(legend.position = "none")
+  ggplot(aes(x=stage, y=log(acidPhosphatase), fill= stage)) +
+  geom_violin() +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean,
+               geom = "crossbar", 
+               width = 0.25,
+               position = position_dodge(width = .25)) +
+  labs(x= "Cancer stage", y="Log of acid phosphatase", color="Cancer stage") +
+  ggtitle("Violin Plot of Acid Phosphatases and SG Index") +
+  scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
+  theme_minimal() +
+  theme(legend.position = "none")
 
 p2 <-  data_clean_aug %>% 
-                      ggplot(aes(x=stage, y=SGindex, fill= stage)) +
-                      geom_violin() +
-                      stat_summary(fun = mean, fun.min = mean, fun.max = mean,
-                                   geom = "crossbar", 
-                                   width = 0.25,
-                                   position = position_dodge(width = .25)) +
-                      labs(x= "Cancer stage", y="SG Index", color="Cancer stage") +
-                      scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
-                      theme(legend.position = "none")
-
+  ggplot(aes(x=stage, y=SGindex, fill= stage)) +
+  geom_violin() +
+  stat_summary(fun = mean, fun.min = mean, fun.max = mean,
+               geom = "crossbar", 
+               width = 0.25,
+               position = position_dodge(width = .25)) +
+  labs(x= "Cancer stage", y="SG Index", color="Cancer stage") +
+  scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
+  theme_minimal() +
+  theme(legend.position = "none")
 
 plot3 <- p1 + p2
 
@@ -141,14 +142,16 @@ dataPlot4 <- data_clean_aug %>%
   group_by(dose) %>% 
   mutate(percentage=percentage/sum(percentage)*100)
 
-#Make the plot
+#Prepare labels
 dose.labs <- c("Placebo", "Estrogen 0.2mg", "Estrogen 1mg", "Estrogen 5mg")
 names(dose.labs) <- c("0", "0.2", "1", "5" )
 
-plot4 <- ggplot(dataPlot4, aes(x="", y=percentage, fill=reasonDeath)) +
+#Make the plot
+plot4 <-  dataPlot4 %>%
+  ggplot(aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
   coord_polar("y", start=0) +
-  geom_text(size=2, aes(x = 1.6, label = paste0(round(percentage), "%")), 
+  geom_text(size=2, aes(x = 1.65, label = str_c(round(percentage), "%")), 
             position = position_stack(vjust = 0.5))+
   theme_void()+ # remove background, grid, numeric labels
   #scale_fill_brewer(palette = "Dark2") +
@@ -161,14 +164,12 @@ plot4 <- ggplot(dataPlot4, aes(x="", y=percentage, fill=reasonDeath)) +
 
 #Plot 5 - %alive versus treatment doses by age
 #Make groups of ages
-dataPlot5 <- data_clean_aug %>% mutate(
-  # Create groups based on tumor size
-  ageGroup = case_when(
-    age >= 45 & age < 55 ~ "[45-54]",
-    age >= 55 & age < 65 ~ "[55-64]",
-    age >= 65 & age < 75 ~ "[65-74]",
-    age >= 75 & age < 85 ~ "[75-84]",
-    age >= 85 & age < 95 ~ "[85-94]"))
+dataPlot5 <- data_clean_aug %>% 
+  mutate(ageGroup = case_when(age >= 45 & age < 55 ~ "[45-54]",
+                              age >= 55 & age < 65 ~ "[55-64]",
+                              age >= 65 & age < 75 ~ "[65-74]",
+                              age >= 75 & age < 85 ~ "[75-84]",
+                              age >= 85 & age < 95 ~ "[85-94]"))
 
 #Get table: dose + ageGroup + ppl_no
 dataPlot5 <- dataPlot5 %>% 
@@ -176,14 +177,14 @@ dataPlot5 <- dataPlot5 %>%
   dplyr::summarize(ppl_no = n())  
 
 #Add percentage
-#-----Total of patients per dose
+#Total of patients per dose
 patients_per_dose <- dataPlot5 %>% group_by(dose) %>%
   dplyr::summarise(ppl_total = sum(ppl_no)) 
 
-#-----Put data all together
+#Put data all together
 dataPlot5 <- full_join(dataPlot5, patients_per_dose, by = "dose")
 
-#-----Compute percentage
+#Compute percentage
 dataPlot5 <- dataPlot5 %>% group_by(dose) %>% 
   mutate(percentage=round((ppl_no/ppl_total)*100, 1))
 
@@ -191,7 +192,9 @@ dataPlot5 <- dataPlot5 %>% group_by(dose) %>%
 
 plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
   geom_bar(stat="identity",position="dodge")+
-  facet_wrap(~ dose, nrow = 1, labeller = labeller(dose = dose.labs),strip.position = "bottom")+
+  facet_wrap(~ dose, nrow = 1, 
+             labeller = labeller(dose = dose.labs), 
+             strip.position = "bottom") +
   theme(panel.background = element_blank(), 
         axis.line = element_line(colour = "black"),
         axis.title.x=element_blank(),
@@ -200,14 +203,15 @@ plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
         strip.placement = "outside",
         strip.background = element_blank(),
         plot.title = element_text(hjust = 0.5)) + 
-  scale_y_continuous(expand = c(0,0), limit = c(0,59))+
+  scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
   scale_x_discrete(breaks = NULL)+
   geom_text(aes(label=ageGroup, colour=ageGroup), 
             vjust=0.5, 
             hjust=0.5, 
             size=2,
             nudge_y= 1) +
-  labs(title= "Survival rate based on treatment per age group", y = "Percentage of alive patients")
+  labs(title = "Survival rate based on treatment per age group", 
+       y = "Percentage of alive patients")
 
 #plot 6
 dataPlot6 <- data_clean_aug %>% 
@@ -217,10 +221,11 @@ dataPlot6 <- data_clean_aug %>%
   count(stage,boneMetastase) %>% 
   mutate(percentage = round(n*100/sum(n),1)) 
 
-plot6 <- ggplot(dataPlot6, aes(x=stage,y=boneMetastase)) +
+plot6 <- dataPlot6 %>%
+  ggplot(aes(x=stage,y=boneMetastase)) +
   geom_tile(aes(fill = n), color = "white") +
   geom_text (aes(label=n), vjust = -1) +
-  geom_text(aes(label = paste0(round(percentage,1),"%")), vjust = 1) +
+  geom_text(aes(label = str_c(round(percentage,1),"%")), vjust = 1) +
   scale_fill_gradient(low = "white", high = "#00AFBB") +
   theme_minimal() +
   ggtitle("Bone metastases vs cancer stage") +
