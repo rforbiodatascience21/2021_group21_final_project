@@ -126,17 +126,4 @@ However, some information about the attributes that the PCA found to be more rel
 ## Discussion - to be done
 
 
-## Slide with R 
-
-```{r cars, echo = TRUE}
-summary(cars)
-```
-
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
-
-
 
