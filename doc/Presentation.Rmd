@@ -27,13 +27,13 @@ Data was obtained from a randomized clinical trial.
 
 
 
-## Visualizing our data -> work in progress (Dayana)
+## Visualizing our data 
 - In the dataset the is 284 patients in stage 3 cancer, and 210 in stage 4 cancer.
 - There are no patients with cancer stage 1 or 2 
 ![Testing image](../results/04_plot_0.png){width=50%}
 
 
-## Result and discussion 3 
+## Result and discussion 3  -> work in progress (Dayana)
 
 
 ## Result and discussion 4
