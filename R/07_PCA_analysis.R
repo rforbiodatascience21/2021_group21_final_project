@@ -27,7 +27,7 @@ pca1_data <- data_clean_num %>%
   select(!status) %>%
   prcomp(scale = TRUE)
 
-fviz_eig(pca1_data)
+PCA_variance <- fviz_eig(pca1_data)
 
 PCA1 <- pca1_data %>% augment(data_clean_num) %>%
   mutate(status = factor(status)) %>%
@@ -65,6 +65,7 @@ PCA2 <- pca2_data %>% augment(data_clean_num) %>%
 
 # Write data --------------------------------------------------------------
 ggsave(PCA1, file = "results/07_PCA_continuous.png")
+ggsave(PCA_variance, file = "results/07_PCA_variance.png")
 ggsave(PCA1_contribution, file = "results/07_PCA_contribution.png")
 ggsave(PCA2, file = "results/07_PCA_all_variables.png")
 
