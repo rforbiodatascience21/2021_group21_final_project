@@ -75,44 +75,44 @@ However, some information about the attributes that the PCA found to be more rel
 
 
 
-## Visualizing our data (1/?) 
+## Visualizing our data (1/9) 
 - In the dataset the is 284 patients in stage 3 cancer, and 210 in stage 4 cancer.
 - There are no patients with cancer stage 1 or 2 
 ![Testing image](../results/04_plot_0.png){width=50%}
 
 
-## Visualizing our data (2/?)  
+## Visualizing our data (2/9)  
 - With the higher cancer stage, we can see a skew to higher tumor sizes
 - expected since is more advanced stage where tumor has spread to other tissues
 ![Testing image](../results/04_plot_1.png){width=50%}
 
-## Visualizing our data (3/?)  
+## Visualizing our data (3/9)  
 - deaths caused directly by prostate cancer have a higher component by stage 4 tumors
 - stage 4 characterize by spreading to more tissues and has a worse prognosis
 ![Testing image](../results/04_plot_2.png){width=50%}
 
-## Visualizing our data (4/?)
+## Visualizing our data (4/9)
 - higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade (well differenciated to undifferenciated)
 ![Testing image](../results/04_plot_3.png){width=50%}
 
-## Visualizing our data (5/?)   -> need bullet points (Maria)
+## Visualizing our data (5/9)   -> need bullet points (Maria)
 ![Testing image](../results/04_plot_4.png){width=50%}
 
-## Visualizing our data (6/?)   -> need bullet points (Maria)
+## Visualizing our data (6/9)   -> need bullet points (Maria)
 ![Testing image](../results/04_plot_5.png){width=50%}
 
-## Visualizing our data (7/?) 
+## Visualizing our data (7/9) 
 - There is 16% of patients in stage 4 with bone metastases
 ![Testing image](../results/04_plot_6.png){width=50%}
 
-## Visualizing our data (8/?)  
+## Visualizing our data (8/9)  
 - blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where founf to be non-significant fro the survival rate.
 - The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
 
 ![Testing image](../results/05_plot_estimate.png){width=50%}
 
-## Visualizing our data (9/?)   
+## Visualizing our data (9/9)   
 - The manhattan plot corroborates the previous slides observations
 
 ![Testing image](../results/05_plot_manhattan.png){width=50%}
