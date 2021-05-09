@@ -30,7 +30,13 @@ Four used treatments:
 
 ## Introduction (2/2)
 ### Study data
-Data was obtained from a randomized clinical trial.
+- Study data was obtained from a randomized clinical trial.
+- The starting point for this project was a CSV file attached with the study.
+- Total amount of 502 patients --> 502 rows
+- Initially 18 attributes, but we will work with 16 --> 16 columns
+- 4 categorical attributes and 12 numeric
+- Columns containing numerical and categorical information ("0.2 mg estrogen")
+- 27 NAs found 
 
 ## Methods(1/..)
 ### Data flow
@@ -38,6 +44,19 @@ Data was obtained from a randomized clinical trial.
 
 ## Results and discussion
 ### PCA analysis
+With the objective of getting a differentiation in the status (dead/alive), a PCA analysis was done to analyze attributes relevance and data distribution in space.
+
+```{r image_grobs, fig.show = "hold", out.width = "50%", fig.align = "default"} 
+knitr::include_graphics("../results/07_PCA_continuous.png")
+knitr::include_graphics("../results/07_PCA_variance.png")
+```
+
+## Results and discussion
+### PCA analysis
+
+However, some information about the attributes that the PCA found to be more relevant are:
+
+![PCA attribute contribution](../results/07_PCA_contribution.png){width=65%}
 
 
 
