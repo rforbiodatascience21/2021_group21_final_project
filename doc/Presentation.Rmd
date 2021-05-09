@@ -10,9 +10,9 @@ output: ioslides_presentation
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
- 
-## Introduction (1/2)
-### Study objective
+
+## Introduction (1/2) {.smaller}
+### Study objective 
 
 Analyze the relation between survival of patients with prostate cancer when given different treatments with estrogen. 
 
@@ -28,7 +28,7 @@ Four used treatments:
 - 1.0 mg DES
 - 5.0 mg DES
 
-## Introduction (2/2)
+## Introduction (2/2) {.smaller}
 ### Study data
 - Study data was obtained from a randomized clinical trial.
 - The starting point for this project was a CSV file attached with the study.
@@ -43,7 +43,7 @@ Four used treatments:
 
 ![Workflow](../doc/img/workflow.png){width=80%}
 
-## Data Cleaning and Augmenting
+## Data Cleaning and Augmenting {.smaller}
 - Two datasets are joined into one by their patient IDs.
 - Two columns are unselected (date on study and follow up time).
 - All the columns are renamed.
