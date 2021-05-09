@@ -35,13 +35,15 @@ raw_data <- patient_raw_data %>%
          boneMetastase = bm )
   
 
-#checking the data
+# checking the data
 glimpse(raw_data)
 
 raw_data %>%
   summarise(n = n_distinct(patientID))  # 502 rows, 502 unique patients, so no duplicates in patients
 
-NA_values <- sum(is.na(raw_data)) # 27 NA values
+# checking NAs for each column
+na_per_column <- raw_data %>%
+  summarise_all(~ sum(is.na(.)))
 
 # for age, weightIndex, tumorSize and SGIndex we filled the NAs with the mean
 meanAge <- raw_data %>% 

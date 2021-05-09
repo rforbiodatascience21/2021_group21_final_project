@@ -33,9 +33,10 @@ data_clean_aug <- data_clean_aug %>%
 plot0 <- data_clean_aug %>%
   ggplot(aes(stage, ..count..)) + 
   geom_bar(alpha=0.7,aes(fill = stage), position = "dodge") +
-  scale_fill_manual(values=c ("#00AFBB", "#E7B800")) +
   labs(x= "Cancer stage", y="Total patients") +
   ggtitle("Total patients depending on cancer stage") +
+  geom_text(stat='count', aes(label=..count..), vjust=-1) +
+  ylim(c(0,300)) +
   scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   theme(legend.position = "none")
