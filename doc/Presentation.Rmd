@@ -76,31 +76,40 @@ However, some information about the attributes that the PCA found to be more rel
 - stage 4 characterize by spreading to more tissues and has a worse prognosis
 ![Testing image](../results/04_plot_2.png){width=50%}
 
-## Visualizing our data (4/?)   -> work in progress (Dayana)
+## Visualizing our data (4/?)
 - higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade (well differenciated to undifferenciated)
 ![Testing image](../results/04_plot_3.png){width=50%}
 
-## Visualizing our data (5/?)   -> need bullet points
+## Visualizing our data (5/?)   -> need bullet points (Maria)
 ![Testing image](../results/04_plot_4.png){width=50%}
 
-## Visualizing our data (6/?)   -> need bullet points
+## Visualizing our data (6/?)   -> need bullet points (Maria)
 ![Testing image](../results/04_plot_5.png){width=50%}
 
 ## Visualizing our data (7/?) 
 - There is 16% of patients in stage 4 with bone metastases
 ![Testing image](../results/04_plot_6.png){width=50%}
 
-## Visualizing our data (8/?)   -> work in progress (Dayana)
+## Visualizing our data (8/?)  
 - blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where founf to be non-significant fro the survival rate.
 - The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
 
 ![Testing image](../results/05_plot_estimate.png){width=50%}
 
-## Visualizing our data (9/?)   -> work in progress (Dayana)
+## Visualizing our data (9/?)   
 - The manhattan plot corroborates the previous slides observations
 
 ![Testing image](../results/05_plot_manhattan.png){width=50%}
+
+## K-mean clustering   
+-For k-mean clustering we used k = 2 (dead, alive).
+-We excluded the variables found as non-significant.
+-The model had an accuracy of ~60%.
+![Testing image](../results/06_plot_kmean.png){width=50%}
+
+## Discussion - to be done
+
 
 ## Slide with R 
 
