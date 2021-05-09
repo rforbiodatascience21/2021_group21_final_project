@@ -78,10 +78,20 @@ However, some information about the attributes that the PCA found to be more rel
 
 ## Visualizing our data (4/?)   -> work in progress (Dayana)
 - higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
-- There is also a higher SG Index, which refers to histologic grade 
+- There is also a higher SG Index, which refers to histologic grade (well differenciated to undifferenciated)
 ![Testing image](../results/04_plot_3.png){width=50%}
 
-## Visualizing our data (5/?)   -> work in progress (Dayana)
+## Visualizing our data (5/?)   -> need bullet points
+![Testing image](../results/04_plot_4.png){width=50%}
+
+## Visualizing our data (6/?)   -> need bullet points
+![Testing image](../results/04_plot_5.png){width=50%}
+
+## Visualizing our data (7/?)   -> work in progress (Dayana)
+![Testing image](../results/04_plot_6.png){width=50%}
+
+## Visualizing our data (8/?)   -> work in progress (Dayana)
+
 
 
 ## Slide with R 
