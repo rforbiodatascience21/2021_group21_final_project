@@ -68,5 +68,5 @@ estimate_plot <- model_data %>%
 
 # Write data --------------------------------------------------------------
 save(model_data, file = "results/GLMmodel_data.RData")
-ggsave(Manhattan_plot, file = "results/04_plot_Manhattan.png")
-ggsave(estimate_plot, file = "results/04_plot_estimate.png")
+ggsave(Manhattan_plot, file = "results/05_plot_Manhattan.png")
+ggsave(estimate_plot, file = "results/05_plot_estimate.png")
