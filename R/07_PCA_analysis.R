@@ -30,6 +30,7 @@ data_clean_num <- data_clean_num %>%
 dropCol <- c("performance", "historyCardio", "boneMetastase", "stage", "electroCardioG")
 
 pca_data <- data_clean_num %>% 
+  select(-one_of(dropCol)) %>%
   select(!status) %>%
   prcomp(scale = TRUE)
 
