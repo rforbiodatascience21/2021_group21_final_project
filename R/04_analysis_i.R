@@ -49,7 +49,7 @@ plot1 <- data_clean_aug %>%
 
 #Plot 2 - Reason of Death Count, grouped by stage
 plot2 <- data_clean_aug %>% 
-  filter(!is.na(reasonDeath) & 
+  filter(reasonDeath != "not dead" & 
          reasonDeath != "unknown cause" & 
          reasonDeath != "other ca" & 
          reasonDeath != "other non-ca") %>% 
@@ -151,8 +151,8 @@ dataPlot5 <- dataPlot5 %>% group_by(dose) %>%
   mutate(percentage=round((ppl_no/ppl_total)*100, 1))
 
 #Make the plot
-
-plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
+plot5 <- dataPlot5 %>% 
+  ggplot(aes(x=ageGroup, y=percentage, fill = ageGroup)) +
   geom_bar(stat="identity",position="dodge") +
   facet_wrap(~ dose, nrow = 1, 
              labeller = labeller(dose = dose.labs), 
@@ -166,7 +166,7 @@ plot5 <- ggplot(dataPlot5, aes(x=ageGroup, y=percentage, fill = ageGroup)) +
         strip.background = element_blank(),
         plot.title = element_text(hjust = 0.5)) + 
   scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
-  scale_x_discrete(breaks = NULL)+
+  scale_x_discrete(breaks = NULL) +
   geom_text(aes(label=ageGroup, colour=ageGroup), 
             vjust=0.5, 
             hjust=0.5, 
