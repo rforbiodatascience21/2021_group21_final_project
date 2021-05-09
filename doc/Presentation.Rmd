@@ -1,9 +1,10 @@
 ---
 title: "22100: Final Project Presentation"
-subtitle : "Prognostic Variables for Survival for Prostatic Cancer"
+subtitle : "Prognostic Variables for Survival in Prostatic Cancer"
 author: "Group 21"
 date: "11/05/2021"
 output: ioslides_presentation
+
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +13,20 @@ knitr::opts_chunk$set(echo = FALSE)
  
 ## Introduction (1/2)
 ### Study objective
-The main objective of this study is to analyze the relation between survival of patients with prostatic cancer when given different treatments with estrogen medication. 
+
+Analyze the relation between survival of patients with prostatic cancer when given different treatments with estrogen. 
+
+Patients might be in different stages:
+
+- Stage 3: No distant metastasis 
+- Stage 4: Distant metastasis detected
+
+Four used treatments:
+
+- Placebo
+- 0.2 mg diethylstilbestrol (DES)
+- 1.0 mg DES
+- 5.0 mg DES
 
 ## Introduction (2/2)
 ### Study data
