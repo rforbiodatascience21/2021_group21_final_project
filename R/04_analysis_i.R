@@ -61,9 +61,9 @@ plot2 <- data_clean_aug %>%
   ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
   geom_col() +
   scale_fill_manual(values=c( "#00AFBB", "#E7B800")) +
-  ggtitle("Death Reason Count - Grouped By Cancer Stage") +
+  ggtitle("Death Reason - Grouped By Cancer Stage") +
   xlab("Reason of Death") +
-  ylab("Count") +   
+  ylab("Total patients") +   
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 25, vjust = 0.8, hjust=0.5, size=11))
 
