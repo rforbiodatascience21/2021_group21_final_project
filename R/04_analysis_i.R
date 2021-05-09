@@ -195,7 +195,7 @@ plot6 <- dataPlot6 %>%
   labs(title = "Survival rate based on treatment per age group", 
        y = "Percentage of alive patients")
 
-#plot 7
+#Plot 7 - Bone metastase vs cancer stage
 dataPlot7 <- data_clean_aug %>% 
   select(stage,boneMetastase) %>% 
   mutate(boneMetastase = case_when(boneMetastase == 0 ~ "No",
