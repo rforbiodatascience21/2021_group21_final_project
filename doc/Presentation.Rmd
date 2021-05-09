@@ -70,6 +70,7 @@ However, some information about the attributes that the PCA found to be more rel
 - With the higher cancer stage, we can see a skew to higher tumor sizes
 - expected since is more advanced stage where tumor has spread to other tissues
 ![Testing image](../results/04_plot_1.png){width=50%}
+
 ## Result and discussion 4 
 - deaths caused directly by prostate cancer have a higher component by stage 4 tumors
 - stage 4 characterize by spreading to more tissues and has a worse prognosis
@@ -77,7 +78,7 @@ However, some information about the attributes that the PCA found to be more rel
 
 ## Result and discussion 5 -> work in progress (Dayana)
 - higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
--There is also a higher SG Index, which refers to histologic grade 
+- There is also a higher SG Index, which refers to histologic grade 
 ![Testing image](../results/04_plot_3.png){width=50%}
 
 ## Slide with Bullets
