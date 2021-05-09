@@ -113,8 +113,7 @@ plot4 <- data_clean_aug %>%
   theme_minimal() +
   facet_wrap(~stage)
 
-#Plot 5 - Reason of death per dose - (in process)
-#Get distribution of reason of death by treatment dose
+#Plot 5 - Reason of death per dose
 dataPlot5 <- data_clean_aug %>% 
   filter(reasonDeath!="not dead" &
            reasonDeath!="unknown cause") %>% 
