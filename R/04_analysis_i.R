@@ -55,9 +55,9 @@ plot1 <- data_clean_aug %>%
 #Plot 2 - Reason of Death Count, grouped by stage
 plot2 <- data_clean_aug %>% 
   filter(reasonDeath != "not dead" & 
-         reasonDeath != "unknown cause" & 
-         reasonDeath != "other ca" & 
-         reasonDeath != "other non-ca") %>% 
+           reasonDeath != "unknown cause" & 
+           reasonDeath != "other ca" & 
+           reasonDeath != "other non-ca") %>% 
   count(reasonDeath, stage) %>% 
   ggplot(aes(x = reorder(reasonDeath, n, sum), y = n, fill = stage)) + 
   geom_col() +
@@ -97,26 +97,26 @@ p2 <-  data_clean_aug %>%
 
 plot3 <- p1 + p2
 
-#plot 3.5 - survival depending on treatment and by stage
-plot35 <- data_clean_aug %>%
+#plot 4 - survival depending on treatment and by stage
+plot4 <- data_clean_aug %>%
   filter(reasonDeath != "unknown cause" & 
-         reasonDeath != "other ca" & 
-         reasonDeath != "other non-ca") %>% 
+           reasonDeath != "other ca" & 
+           reasonDeath != "other non-ca") %>% 
   count(dose,status,stage) %>% 
   mutate(stage = case_when(stage == 3 ~ "Stage 3",
                            stage == 4 ~ "Stage 4")) %>% 
   ggplot(aes(x = as_factor(dose), y = n, fill=status)) +
-    geom_col(position = "dodge") +
-    labs(x= "Dose", y="Total patients", color="Status") +
-    scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
-    theme_minimal() +
-    facet_wrap(~stage)
+  geom_col(position = "dodge") +
+  labs(x= "Dose", y="Total patients", color="Status") +
+  scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
+  theme_minimal() +
+  facet_wrap(~stage)
 
-#Plot 4 - Reason of death per dose - (in process)
+#Plot 5 - Reason of death per dose - (in process)
 #Get distribution of reason of death by treatment dose
-dataPlot4 <- data_clean_aug %>% 
+dataPlot5 <- data_clean_aug %>% 
   filter(reasonDeath!="not dead" &
-         reasonDeath!="unknown cause") %>% 
+           reasonDeath!="unknown cause") %>% 
   group_by(reasonDeath,dose) %>% 
   summarise(percentage=n()) %>% 
   group_by(dose) %>% 
@@ -127,7 +127,7 @@ dose.labs <- c("Placebo", "Estrogen 0.2mg", "Estrogen 1mg", "Estrogen 5mg")
 names(dose.labs) <- c("0", "0.2", "1", "5" )
 
 #Make the plot
-plot4 <-  dataPlot4 %>%
+plot5 <-  dataPlot5 %>%
   ggplot(aes(x="", y=percentage, fill=reasonDeath)) +
   geom_bar(stat="identity", width=1, color="white" ) +
   coord_polar("y", start=0) +
@@ -143,9 +143,9 @@ plot4 <-  dataPlot4 %>%
         legend.title = element_blank())
 
 
-#Plot 5 - %alive versus treatment doses by age
+#Plot 6 - %alive versus treatment doses by age
 #Make groups of ages
-dataPlot5 <- data_clean_aug %>% 
+dataPlot6 <- data_clean_aug %>% 
   mutate(ageGroup = case_when(age >= 45 & age < 55 ~ "[45-54]",
                               age >= 55 & age < 65 ~ "[55-64]",
                               age >= 65 & age < 75 ~ "[65-74]",
@@ -153,24 +153,25 @@ dataPlot5 <- data_clean_aug %>%
                               age >= 85 & age < 95 ~ "[85-94]"))
 
 #Get table: dose + ageGroup + ppl_no
-dataPlot5 <- dataPlot5 %>% 
+dataPlot6 <- dataPlot6 %>% 
   group_by(dose, ageGroup) %>% 
   dplyr::summarize(ppl_no = n())  
 
 #Add percentage
 #Total of patients per dose
-patients_per_dose <- dataPlot5 %>% group_by(dose) %>%
+patients_per_dose <- dataPlot6 %>% 
+  group_by(dose) %>%
   dplyr::summarise(ppl_total = sum(ppl_no)) 
 
 #Put data all together
-dataPlot5 <- full_join(dataPlot5, patients_per_dose, by = "dose")
+dataPlot6 <- full_join(dataPlot6, patients_per_dose, by = "dose")
 
 #Compute percentage
-dataPlot5 <- dataPlot5 %>% group_by(dose) %>% 
+dataPlot6 <- dataPlot6 %>% group_by(dose) %>% 
   mutate(percentage=round((ppl_no/ppl_total)*100, 1))
 
 #Make the plot
-plot5 <- dataPlot5 %>% 
+plot6 <- dataPlot6 %>% 
   ggplot(aes(x=ageGroup, y=percentage, fill = ageGroup)) +
   geom_bar(stat="identity",position="dodge") +
   facet_wrap(~ dose, nrow = 1, 
@@ -194,15 +195,15 @@ plot5 <- dataPlot5 %>%
   labs(title = "Survival rate based on treatment per age group", 
        y = "Percentage of alive patients")
 
-#plot 6
-dataPlot6 <- data_clean_aug %>% 
+#plot 7
+dataPlot7 <- data_clean_aug %>% 
   select(stage,boneMetastase) %>% 
   mutate(boneMetastase = case_when(boneMetastase == 0 ~ "No",
                                    boneMetastase == 1 ~"Yes")) %>% 
   count(stage,boneMetastase) %>% 
   mutate(percentage = round(n*100/sum(n),1)) 
 
-plot6 <- dataPlot6 %>%
+plot7 <- dataPlot7 %>%
   ggplot(aes(x=stage,y=boneMetastase)) +
   geom_tile(aes(fill = n), color = "white") +
   geom_text (aes(label=n), vjust = -1) +
@@ -219,7 +220,7 @@ ggsave(plot0, file = "results/04_plot_0.png")
 ggsave(plot1, file = "results/04_plot_1.png")
 ggsave(plot2, file = "results/04_plot_2.png")
 ggsave(plot3, file = "results/04_plot_3.png")
-ggsave(plot35, file = "results/04_plot_3.5.png")
 ggsave(plot4, file = "results/04_plot_4.png")
 ggsave(plot5, file = "results/04_plot_5.png")
 ggsave(plot6, file = "results/04_plot_6.png")
+ggsave(plot7, file = "results/04_plot_7.png")

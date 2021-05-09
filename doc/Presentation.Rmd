@@ -83,17 +83,17 @@ Four used treatments:
 ## Data Visualization (5/10)
 - In survival by dose of treatment, the only difference found was on 1 mg dosage.
 - This difference was found only on stage 3 patients.
-![Treatment vs survival](../results/04_plot_3.5.png){width=70%}
+![Treatment vs survival](../results/04_plot_4.png){width=70%}
 
 ## Data Visualization (6/10)   -> need bullet points (Maria)
-![Testing image](../results/04_plot_4.png){width=50%}
+![Testing image](../results/04_plot_5.png){width=50%}
 
 ## Data Visualization (7/10)   -> need bullet points (Maria)
-![Testing image](../results/04_plot_5.png){width=50%}
+![Testing image](../results/04_plot_6.png){width=50%}
 
 ## Data Visualization (8/10) 
 - There is 16% of patients in stage 4 with bone metastases.
-- ![Bone metastases](../results/04_plot_6.png){width=75%}
+- ![Bone metastases](../results/04_plot_7.png){width=75%}
 
 ## Data Visualization (9/10)  
 - Blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where found to be non-significant for the survival rate.
