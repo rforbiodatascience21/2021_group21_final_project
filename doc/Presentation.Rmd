@@ -10,10 +10,16 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
  
-## Introduction
+## Introduction (1/2)
+### Study objective
+The main objective of this study is to analyze the relation between survival of patients with prostatic cancer when given different treatments with estrogen medication. 
 
+## Introduction (2/2)
+### Study data
+Data was obtained from a randomized clinical trial.
 
-## Methods
+## Methods(1/..)
+### Data flow
 
 
 ## Results and discussion
