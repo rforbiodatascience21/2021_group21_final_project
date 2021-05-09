@@ -5,48 +5,32 @@ author: "Group 21"
 date: "11/05/2021"
 output: ioslides_presentation
 ---
-##Introduction
-
-
-
-
-
-
-
----
-##Methods
-
-
-
----
-##Result and discussion 1
-
-
-
----
-##Result and discussion 2
-
-
----
-##Result and discussion 3
-
-
-
----
-##Result and discussion 4
-
-
-
----
-##Result and discussion 5
-
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+ 
+## Introduction
 
 
+## Methods
+
+
+## Results and discussion
+### PCA analysis
+
+
+
+## Result and discussion 2
+
+
+## Result and discussion 3
+
+
+## Result and discussion 4
+
+
+## Result and discussion 5
 
 ## Slide with Bullets
 
