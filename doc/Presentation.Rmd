@@ -37,10 +37,12 @@ Data was obtained from a randomized clinical trial.
 - With the higher cancer stage, we can see a skew to higher tumor sizes
 - expected since is more advanced stage where tumor has spread to other tissues
 ![Testing image](../results/04_plot_1.png){width=50%}
-## Result and discussion 4 -> work in progress (Dayana)
+## Result and discussion 4 
+- deaths caused directly by prostate cancer have a higher component by stage 4 tumors
+- stage 4 characterize by spreading to more tissues and has a worse prognosis
+![Testing image](../results/04_plot_2.png){width=50%}
 
-
-## Result and discussion 5
+## Result and discussion 5 -> work in progress (Dayana)
 
 ## Slide with Bullets
 
