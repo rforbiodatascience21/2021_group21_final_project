@@ -12,13 +12,13 @@ source(file = "R/99_project_functions.R")
 
 # Load data ---------------------------------------------------------------
 patient_raw_data <- read_tsv(file = "data/01_patient_raw_data.tsv.gz")
-cancer_raw_data <- read_tsv(file = "data/01_cancer_raw_data.tsv.gz")
+pretreatment_raw_data <- read_tsv(file = "data/01_pretreatment_raw_data.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 
 # Join both datasets to create one unified
 raw_data <- patient_raw_data %>%
-  inner_join(cancer_raw_data, by = 'patno') %>%
+  inner_join(pretreatment_raw_data, by = 'patno') %>%
   select(-sdate, -dtime) %>%
   rename(patientID  = patno, 
          treatment = rx, 
