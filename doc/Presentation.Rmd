@@ -60,32 +60,29 @@ However, some information about the attributes that the PCA found to be more rel
 
 
 
-## Visualizing our data 
+## Visualizing our data (1/?) 
 - In the dataset the is 284 patients in stage 3 cancer, and 210 in stage 4 cancer.
 - There are no patients with cancer stage 1 or 2 
 ![Testing image](../results/04_plot_0.png){width=50%}
 
 
-## Result and discussion 3  
+## Visualizing our data (2/?)  
 - With the higher cancer stage, we can see a skew to higher tumor sizes
 - expected since is more advanced stage where tumor has spread to other tissues
 ![Testing image](../results/04_plot_1.png){width=50%}
 
-## Result and discussion 4 
+## Visualizing our data (3/?)  
 - deaths caused directly by prostate cancer have a higher component by stage 4 tumors
 - stage 4 characterize by spreading to more tissues and has a worse prognosis
 ![Testing image](../results/04_plot_2.png){width=50%}
 
-## Result and discussion 5 -> work in progress (Dayana)
+## Visualizing our data (4/?)   -> work in progress (Dayana)
 - higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade 
 ![Testing image](../results/04_plot_3.png){width=50%}
 
-## Slide with Bullets
+## Visualizing our data (5/?)   -> work in progress (Dayana)
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
 
 ## Slide with R 
 
