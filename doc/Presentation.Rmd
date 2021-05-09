@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 
-## Result and discussion 2
+## Result and discussion 2 -> work in progress (Dayana)
 
 
 ## Result and discussion 3
