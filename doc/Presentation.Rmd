@@ -41,6 +41,21 @@ Four used treatments:
 ## Methods(1/..)
 ### Data flow
 
+## Data Cleaning and Augmenting
+- Two datasets are joined into one by their patient IDs.
+- Two columns are unselected (date on study and follow up time).
+- All the columns are renamed.
+- NAs in 4 different numeric columns replaced with their mean values.
+- NAs in 1 categorical column are dropped (8 rows)
+- New columns are created: dose, treatment, status and reasonDeath.
+
+![Testing image](../doc/img/beforeafter.png){width=50%}
+
+## Data Cleaning and Augmenting
+
+- abc
+- abc
+
 
 ## Results and discussion
 ### PCA analysis
