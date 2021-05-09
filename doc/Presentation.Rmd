@@ -33,10 +33,11 @@ Data was obtained from a randomized clinical trial.
 ![Testing image](../results/04_plot_0.png){width=50%}
 
 
-## Result and discussion 3  -> work in progress (Dayana)
-
-
-## Result and discussion 4
+## Result and discussion 3  
+- With the higher cancer stage, we can see a skew to higher tumor sizes
+- expected since is more advanced stage where tumor has spread to other tissues
+![Testing image](../results/04_plot_1.png){width=50%}
+## Result and discussion 4 -> work in progress (Dayana)
 
 
 ## Result and discussion 5
