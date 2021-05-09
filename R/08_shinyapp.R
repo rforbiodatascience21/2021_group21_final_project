@@ -101,8 +101,8 @@ server <- function(input, output, session) {
     
     if (input$category == "Performance") {
       perf_df <- data %>%
-                 filter(performance!="confined to bed")
-      df <- shiny_df( first(pairs %>% select(input$density) ) ,first(pairs %>% select(input$category)),perf_df)
+        filter(performance!="confined to bed")
+      df <- shiny_df( pairs %>% pull(input$density), pairs %>% pull(input$category), perf_df)
       df <- arrange(df, category)
     } 
     
