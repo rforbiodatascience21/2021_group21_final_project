@@ -46,4 +46,4 @@ plot <- pca_data %>% augment(data_clean_num) %>%
   theme(legend.position = "bottom")
 plot
 # Write data --------------------------------------------------------------
-ggsave(plot, file = "results/07_PCA.png")
+ggsave(plot, file = "results/07_plot_PCA.png")
