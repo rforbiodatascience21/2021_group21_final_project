@@ -49,11 +49,6 @@ data_clean_num <- data_clean_aug %>%
   select(-one_of(dropCol)) %>%
   mutate (status = case_when(status == "alive"  ~ 0,
                              status == "dead"  ~ 1)) %>%
-#creation of pca data
-data_clean_pca <- select(data_clean_aug, -c(treatment, reasonDeath)) %>%
-  mutate (status = case_when(status == "alive" ~ 0,
-                             status == "dead" ~ 1)) %>%
-  relocate(reasonDeathNum, .after = status) %>%
   mutate(electroCardioG = case_when(electroCardioG == "normal" ~ 0,
                                     electroCardioG == "benign" ~ 1,
                                     electroCardioG == "rhythmic disturb & electrolyte ch" ~ 2,

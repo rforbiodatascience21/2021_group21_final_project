@@ -13,5 +13,14 @@ The dataset compares four treatments for patients with prostatic cancer in Stage
 
 It can be found in the project folder /data/_raw or downloaded from the link: 
 https://biostat.app.vumc.org/wiki/pub/Main/DataSets/prostate.xls
+
+## Packages required
+- tidyverse
+- readr
+- ggplot2
+- ggridges
+- broom
+- patchwork
+- factoextra
  
 .

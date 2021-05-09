@@ -49,4 +49,4 @@ plot1 <- ggplot(kmean_aug, aes(x=status,y=cluster)) +
                 ylab("predicted cluster") 
 
 # Write data --------------------------------------------------------------
-ggsave(plot1, file = "results/05_plot_1.png")
+ggsave(plot1, file = "results/06_plot_kmean.png")

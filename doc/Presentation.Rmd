@@ -1,7 +1,8 @@
 ---
-title: "Presentation"
+title: "22100: Final Project Presentation"
+subtitle : "Prognostic Variables for Survival for Prostatic Cancer"
 author: "Group 21"
-date: "08/05/2021"
+date: "11/05/2021"
 output: ioslides_presentation
 ---
 
@@ -28,4 +29,8 @@ summary(cars)
 ```{r pressure}
 plot(pressure)
 ```
+
+## Slide uploading png image
+
+![Testing image](../results/04_plot_0.png){width=90%} 
 
