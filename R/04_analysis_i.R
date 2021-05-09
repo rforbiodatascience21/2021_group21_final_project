@@ -108,6 +108,7 @@ plot4 <- data_clean_aug %>%
   ggplot(aes(x = as_factor(dose), y = n, fill=status)) +
   geom_col(position = "dodge") +
   labs(x= "Dose", y="Total patients", color="Status") +
+  ggtitle("Survival Per Treatment - Grouped By Cancer Stage") +
   scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   facet_wrap(~stage)

@@ -100,18 +100,19 @@ Four used treatments:
 </center>
 
 ## Data Visualization (6/10) {.smaller} 
--The death rate decreases when the dose is increased.
--A dose of 5mg results in higher risk of cardiovascular problems
--Therefore, a dose of 1mg is recommended
-<center> ![Testing image](../results/04_plot_5.png){width=90%}
+- The death rate decreases when the treatment dose is increased.
+- A dose of 5 mg results in higher risk of cardiovascular problems.
+- Therefore, a dose of 1 mg is recommended.
+<center> 
+![Testing image](../results/04_plot_5.png){width=100%}
 </center>
 
 ## Data Visualization (7/10) {.smaller} 
--Treatment results are not generally afected by age
--Further analysis need to be done to assess the benefit of
+- Treatment results are not generally affected by age.
+- Further analysis needs to be done to assess the benefit of
 the highest dose on the oldest group age.
 <center> 
-![Testing image](../results/04_plot_6.png){width=60%} 
+![Testing image](../results/04_plot_6.png){width=70%} 
 </center>
 
 ## Data Visualization (8/10) {.smaller} 
