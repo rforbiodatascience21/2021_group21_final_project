@@ -87,12 +87,20 @@ However, some information about the attributes that the PCA found to be more rel
 ## Visualizing our data (6/?)   -> need bullet points
 ![Testing image](../results/04_plot_5.png){width=50%}
 
-## Visualizing our data (7/?)   -> work in progress (Dayana)
+## Visualizing our data (7/?) 
+- There is 16% of patients in stage 4 with bone metastases
 ![Testing image](../results/04_plot_6.png){width=50%}
 
 ## Visualizing our data (8/?)   -> work in progress (Dayana)
+- blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where founf to be non-significant fro the survival rate.
+- The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
 
+![Testing image](../results/05_plot_estimate.png){width=50%}
 
+## Visualizing our data (9/?)   -> work in progress (Dayana)
+- The manhattan plot corroborates the previous slides observations
+
+![Testing image](../results/05_plot_manhattan.png){width=50%}
 
 ## Slide with R 
 
