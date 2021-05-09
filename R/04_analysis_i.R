@@ -97,6 +97,20 @@ p2 <-  data_clean_aug %>%
 
 plot3 <- p1 + p2
 
+#plot 3.5 - survival depending on treatment and by stage
+plot35 <- data_clean_aug %>%
+  filter(reasonDeath != "unknown cause" & 
+         reasonDeath != "other ca" & 
+         reasonDeath != "other non-ca") %>% 
+  count(dose,status,stage) %>% 
+  mutate(stage = case_when(stage == 3 ~ "Stage 3",
+                           stage == 4 ~ "Stage 4")) %>% 
+  ggplot(aes(x = as_factor(dose), y = n, fill=status)) +
+    geom_col(position = "dodge") +
+    labs(x= "Dose", y="Total patients", color="Status") +
+    scale_fill_manual(values=c("#00AFBB", "#E7B800")) +
+    theme_minimal() +
+    facet_wrap(~stage)
 
 #Plot 4 - Reason of death per dose - (in process)
 #Get distribution of reason of death by treatment dose
@@ -205,6 +219,7 @@ ggsave(plot0, file = "results/04_plot_0.png")
 ggsave(plot1, file = "results/04_plot_1.png")
 ggsave(plot2, file = "results/04_plot_2.png")
 ggsave(plot3, file = "results/04_plot_3.png")
+ggsave(plot35, file = "results/04_plot_3.5.png")
 ggsave(plot4, file = "results/04_plot_4.png")
 ggsave(plot5, file = "results/04_plot_5.png")
 ggsave(plot6, file = "results/04_plot_6.png")
