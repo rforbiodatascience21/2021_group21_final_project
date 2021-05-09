@@ -39,7 +39,7 @@ Four used treatments:
 - 1 Column containing info of patient status and death reason together ("dead - cerebrovascular")
 - 27 NAs found 
 
-## Methods(1/..)
+## Methods(1/..) {.smaller} 
 
 ![Workflow](../doc/img/workflow.png){width=80%}
 
@@ -53,34 +53,34 @@ Four used treatments:
 
 ![Testing image](../doc/img/beforeafter.png){width=50%}
 
-## Data Cleaning and Augmenting
+## Data Cleaning and Augmenting {.smaller} 
 
 - abc
 - abc
 
 
-## Data Visualization (1/10) 
+## Data Visualization (1/10) {.smaller}  
 - There is 284 patients in cancer stage 3, and 210 in stage 4.
 - There are no patients with cancer stage 1 or 2.
 - ![Cancer stage](../results/04_plot_0.png){width=70%}
 
 
-## Data Visualization (2/10)  
+## Data Visualization (2/10) {.smaller}   
 - Wit a higher cancer stage, we can see a skew to higher tumor sizes.
 - This is expected since a tumor spreads to other tissues in an advanced stage.
 - ![size vs stage](../results/04_plot_1.png){width=65%}
 
-## Data Visualization (3/10)  
+## Data Visualization (3/10) {.smaller}   
 - Deaths caused directly by prostate cancer have a higher component by stage 4 tumors.
 - Stage 4 characterize by spreading to more tissues and has a worse prognosis.
 - ![Reason of death](../results/04_plot_2.png){width=65%}
 
-## Visualizing our data (4/10)
+## Visualizing our data (4/10) {.smaller} 
 - Higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade (well differentiated to undifferentiated)
 -![acid phosphatase and SG index](../results/04_plot_3.png){width=65%}
 
-## Data Visualization (5/10)
+## Data Visualization (5/10) {.smaller} 
 - In survival by dose of treatment, the only difference found was on 1 mg dosage.
 - This difference was found only on stage 3 patients.
 ![Treatment vs survival](../results/04_plot_4.png){width=70%}
@@ -97,20 +97,20 @@ Four used treatments:
 the highest dose on the oldest group age.
 ![Testing image](../results/04_plot_6.png){width=50%}
 
-## Data Visualization (8/10) 
+## Data Visualization (8/10) {.smaller} 
 - There is 16% of patients in stage 4 with bone metastases.
 - ![Bone metastases](../results/04_plot_7.png){width=75%}
 
-## Data Visualization (9/10)  
+## Data Visualization (9/10) {.smaller} 
 - Blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where found to be non-significant for the survival rate.
 - The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
 - ![estimates](../results/05_plot_estimate.png){width=65%}
 
-## Data Visualization (10/10)   
+## Data Visualization (10/10) {.smaller}    
 - The manhattan plot corroborates the previous slides observations.
 - ![Manhattan plot](../results/05_plot_manhattan.png){width=70%}
 
-## PCA Analysis
+## PCA Analysis {.smaller} 
 With the objective of getting a differentiation in the status (dead/alive), a PCA analysis was done to analyze attributes relevance and data distribution in space.
 
 ```{r image_grobs, fig.show = "hold", out.width = "50%", fig.align = "default"} 
@@ -118,19 +118,19 @@ knitr::include_graphics("../results/07_PCA_continuous.png")
 knitr::include_graphics("../results/07_PCA_variance.png")
 ```
 
-## PCA Analysis
+## PCA Analysis {.smaller} 
 
 However, some information about the attributes that the PCA found to be more relevant are:
 
 ![PCA attribute contribution](../results/07_PCA_contribution.png){width=65%}
 
-## K-mean Clustering   
+## K-mean Clustering {.smaller}    
 - For k-mean clustering we used k = 2 (dead, alive).
 - We excluded the variables found as non-significant.
 - The model has an accuracy of ~60%.
 - ![k-means clustering](../results/06_plot_kmean.png){width=70%}
 
-## Results and Discussion
+## Results and Discussion {.smaller} 
 ###♠ Discussion - to be done
 
 
