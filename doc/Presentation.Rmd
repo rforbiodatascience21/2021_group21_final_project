@@ -141,7 +141,7 @@ the highest dose on the oldest group age.
 - The manhattan plot corroborates the previous slides observations.
 
 <center>
-![Manhattan plot](../results/05_plot_manhattan.png){width=70%}
+![Manhattan plot](../results/05_plot_Manhattan.png){width=70%}
 </center>
 
 ## PCA Analysis {.smaller} 
