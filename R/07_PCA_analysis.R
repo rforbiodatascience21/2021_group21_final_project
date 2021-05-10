@@ -47,7 +47,7 @@ PCA1 <- pca1_data %>% augment(data_clean_num) %>%
 #PCA attributes contribution in the first 2 dimensions
 PCA1_contribution <- fviz_pca_var(pca1_data,
                                   col.var = "contrib", # Color by contributions to the PC
-                                  #gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+                                  gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
                                   repel = TRUE)     # Avoid text overlapping
 
 # Run a PCA with all variables
