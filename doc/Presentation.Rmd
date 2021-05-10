@@ -108,16 +108,16 @@ Four used treatments:
 - A dose of 5 mg results in higher risk of cardiovascular problems.
 - Therefore, a dose of 1 mg is recommended.
 <center>
-![Testing image](../results/04_plot_5.png){width=100%}
+![death cause vs dose](../results/04_plot_5.png){width=80%}
 </center>
 
 ## Data Visualization (7/10) {.smaller} 
 - Treatment results are not generally affected by age.
-- Further analysis needs to be done to assess the benefit of
+- Further analysis need to be done to assess the benefit of
 the highest dose on the oldest group age.
 
 <center> 
-![Testing image](../results/04_plot_6.png){width=60%} 
+![survival vs age](../results/04_plot_6.png){width=80%} 
 </center>
 
 ## Data Visualization (9/10) {.smaller} 

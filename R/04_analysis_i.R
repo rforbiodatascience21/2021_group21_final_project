@@ -169,9 +169,11 @@ plot5 <-  dataPlot5 %>%
   facet_wrap(~ dose, 
              nrow = 1, 
              labeller = labeller(dose = dose.labs)) +
-  theme(plot.title = element_text(hjust = 0.5), 
+  theme(plot.title = element_text(hjust = 0.5, vjust = 5), 
         legend.position = "bottom", 
-        legend.title = element_blank()) +
+        legend.title = element_blank(),
+        legend.key.size = unit(0.5, 'cm'),
+        legend.text = element_text(size=8)) +
   scale_fill_manual(
     values = c("#ff8c00", "#E7B800", "#ffc0cb", "#52854C", "#00AFBB", "grey", "#346299")) 
 
@@ -218,7 +220,7 @@ plot6 <- dataPlot6 %>%
         axis.title.y = element_text(size=10),
         strip.placement = "outside",
         strip.background = element_blank(),
-        plot.title = element_text(hjust = 0.5, size = 10),
+        plot.title = element_text(hjust = 0.5, size = 11),
         legend.title=element_text(size=10)) +
   scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
   scale_x_discrete(breaks = NULL) +
