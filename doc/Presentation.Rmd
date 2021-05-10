@@ -105,9 +105,7 @@ Four used treatments:
 </center>
 
 ## Data Visualization (6/7) {.smaller} 
-- Treatment results are not generally affected by age.
-- Further analysis need to be done to assess the benefit of
-the highest dose on the oldest group age.
+- higher dosis increment the survival percentage by group age, particularly in younger groups
 
 <center> 
 ![survival vs age](../results/04_plot_6.png){width=60%} 
