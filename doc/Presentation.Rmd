@@ -160,12 +160,15 @@ However, some information about the attributes that the PCA found to be more rel
 ![k-means clustering](../results/06_plot_kmean.png){width=65%}
 </center>
 
-##Shiny app
+## Shiny app
 This is the link for our published shiny app
-add link#####################################################################
+https://gulsudedemircan.shinyapps.io/final/
 
-## Results and Discussion {.smaller} 
-###♠ Discussion - to be done
+## Discussion and conclussion {.smaller} 
 
+- The models generated could not make a reliable prediction of the survival depending on the current variables in the dataset.
+- There is a slightly better survival for 1 mg DES for stage 3 patients.
+- The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications.
+- 
 
 
