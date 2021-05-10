@@ -70,7 +70,7 @@ Four used treatments:
 - There are no patients with cancer stage 1 or 2.
 
 <center>
-![Cancer stage](../results/04_plot_0.png){width=70%}
+![Cancer stage](../results/04_plot_0.png){width=65%}
 </center>
 
 ## Data Visualization (2/10) {.smaller}   
@@ -78,7 +78,7 @@ Four used treatments:
 - This is expected since a tumor spreads to other tissues in an advanced stage.
 
 <center>
-![size vs stage](../results/04_plot_1.png){width=65%}
+![size vs stage](../results/04_plot_1.png){width=60%}
 </center>
 
 ## Data Visualization (3/10) {.smaller}   
@@ -86,7 +86,7 @@ Four used treatments:
 - Stage 4 characterize by spreading to more tissues and has a worse prognosis.
 
 <center>
-![Reason of death](../results/04_plot_2.png){width=65%}
+![Reason of death](../results/04_plot_2.png){width=60%}
 </center>
 
 ## Visualizing our data (4/10) {.smaller} 
@@ -94,7 +94,7 @@ Four used treatments:
 - There is also a higher SG Index, which refers to histologic grade (well differentiated to undifferentiated).
 
 <center>
-![acid phosphatase and SG index](../results/04_plot_3.png){width=65%}
+![acid phosphatase and SG index](../results/04_plot_3.png){width=60%}
 </center>
 
 ## Data Visualization (5/10) {.smaller} 
@@ -102,7 +102,7 @@ Four used treatments:
 - This difference was found only on stage 3 patients.
 
 <center>
-![Treatment vs survival](../results/04_plot_4.png){width=70%}
+![Treatment vs survival](../results/04_plot_4.png){width=65%}
 </center>
 
 ## Data Visualization (6/10) {.smaller} 
