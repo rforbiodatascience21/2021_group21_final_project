@@ -16,9 +16,10 @@ source(file = "R/99_project_functions.R")
 # Load data ---------------------------------------------------------------
 data_clean_num <- read_tsv(file = "data/03_data_clean_num.tsv.gz")
 
-
 model_data <- data_clean_num %>% 
-  pivot_longer(!status, names_to = "measurements", values_to = "values") %>% 
+  pivot_longer(!status, 
+               names_to = "measurements", 
+               values_to = "values") %>% 
   group_by(measurements) %>% 
   nest %>% 
   ungroup %>%
