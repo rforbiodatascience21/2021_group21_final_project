@@ -28,7 +28,7 @@ model_data <- data_clean_num %>%
                                  family = binomial(link = "logit")))) %>% 
   mutate(model_tidy = map(model, ~tidy(., conf.int = TRUE))) %>%
   unnest(model_tidy) %>%
-  filter(str_detect(term, "values")) %>% 
+  filter(term == "values") %>% 
   mutate(identified_as = case_when(p.value < 0.05 ~ "Significant",
                                    TRUE ~ "Non-significant")) %>% 
   mutate(neg_log10_p = -log10(p.value))
@@ -51,7 +51,7 @@ Manhattan_plot <- model_data %>%
   theme(legend.position = "bottom", 
         plot.title = element_text(hjust = 0.5), 
         legend.title = element_blank()) +
-  labs(title = "PUT A TITLE HERE - manhattan in file 05_analysis_ii", x = "Parameters",
+  labs(title = "Manhattan plot on numeric attributes", x = "Parameters",
        y = "Minus log10(p)")
 
 estimate_plot <- model_data %>% 

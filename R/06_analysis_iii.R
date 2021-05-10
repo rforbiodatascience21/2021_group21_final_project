@@ -33,11 +33,11 @@ kClust <- kmeans(data_kmeans_noLabel,
 #compare with original status to check performance
 #create a "confussion" matrix
 kmean_aug <- augment(kClust, data_kmeans) %>% 
-  select(status, .cluster) %>% 
-  count(status, .cluster) %>% 
+  rename(cluster = .cluster) %>% 
+  select(status, cluster) %>% 
+  count(status, cluster) %>% 
   mutate(status = case_when(status == 1 ~ "Dead",
                             status == 0 ~ "Alive")) %>% 
-  rename(cluster = .cluster) %>% 
   mutate(percentage = n*100/sum(n))
 
 #plotting as a confussion matrix
