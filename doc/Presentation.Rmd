@@ -79,15 +79,8 @@ Four used treatments:
 ![size vs stage](../results/04_plot_1.png){width=60%}
 </center>
 
-## Data Visualization 3 {.smaller}   
-- Deaths caused directly by prostate cancer have a higher component by stage 4 tumors.
-- Stage 4 characterize by spreading to more tissues and has a worse prognosis.
 
-<center>
-![Reason of death](../results/04_plot_2.png){width=60%}
-</center>
-
-## Data Visualization 4 {.smaller} 
+## Data Visualization 3 {.smaller} 
 - Higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade (well differentiated to undifferentiated).
 
@@ -95,7 +88,7 @@ Four used treatments:
 ![acid phosphatase and SG index](../results/04_plot_3.png){width=60%}
 </center>
 
-## Data Visualization 5 {.smaller} 
+## Data Visualization 4 {.smaller} 
 - In survival by dose of treatment, the only difference found was on 1 mg dosage.
 - This difference was found only on stage 3 patients.
 
@@ -103,7 +96,7 @@ Four used treatments:
 ![Treatment vs survival](../results/04_plot_4.png){width=65%}
 </center>
 
-## Data Visualization 6 {.smaller} 
+## Data Visualization 5 {.smaller} 
 - The death rate decreases when the treatment dose is increased.
 - A dose of 5 mg results in higher risk of cardiovascular problems.
 - Therefore, a dose of 1 mg is recommended.
@@ -111,7 +104,7 @@ Four used treatments:
 ![death cause vs dose](../results/04_plot_5.png){width=80%}
 </center>
 
-## Data Visualization 7 {.smaller} 
+## Data Visualization 6 {.smaller} 
 - Treatment results are not generally affected by age.
 - Further analysis need to be done to assess the benefit of
 the highest dose on the oldest group age.
@@ -120,7 +113,7 @@ the highest dose on the oldest group age.
 ![survival vs age](../results/04_plot_6.png){width=60%} 
 </center>
 
-## Data Visualization 8  {.smaller}
+## Data Visualization 7  {.smaller}
 ### Shiny app
 The link for our published shiny app:
 https://gulsudedemircan.shinyapps.io/final/
