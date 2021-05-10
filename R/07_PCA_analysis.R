@@ -40,7 +40,8 @@ PCA1 <- pca1_data %>% augment(data_clean_num) %>%
   xlab("PC1") +
   ylab("PC2") + 
   theme_classic(base_size = 14) +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+  ggtitle("PCA analysis")
 
 #PCA attributes contribution in the first 2 dimensions
 PCA1_contribution <- fviz_pca_var(pca1_data,
