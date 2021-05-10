@@ -117,10 +117,15 @@ Four used treatments:
 the highest dose on the oldest group age.
 
 <center> 
-![survival vs age](../results/04_plot_6.png){width=80%} 
+![survival vs age](../results/04_plot_6.png){width=70%} 
 </center>
 
-## Data Visualization (9/10) {.smaller} 
+## Data Visualization (10/10) {.smaller}
+The link for our published shiny app:
+https://gulsudedemircan.shinyapps.io/final/
+
+
+## Data Visualization (9/10) --update title {.smaller} 
 - Blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where found to be non-significant for the survival rate.
 - The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
 
@@ -128,7 +133,7 @@ the highest dose on the oldest group age.
 ![estimates](../results/05_plot_estimate.png){width=60%}
 </center>
 
-## Data Visualization (10/10) {.smaller}    
+## Data Visualization (10/10) --update title {.smaller}    
 - The manhattan plot corroborates the previous slides observations.
 
 <center>
@@ -160,9 +165,6 @@ However, some information about the attributes that the PCA found to be more rel
 ![k-means clustering](../results/06_plot_kmean.png){width=65%}
 </center>
 
-## Shiny app
-This is the link for our published shiny app
-https://gulsudedemircan.shinyapps.io/final/
 
 ## Discussion and conclussion {.smaller} 
 
