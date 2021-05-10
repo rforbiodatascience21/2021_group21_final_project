@@ -141,7 +141,7 @@ plot4 <- data_clean_aug %>%
   labs(x= "Dose", 
        y="Total patients", 
        color="Status") +
-  ggtitle("Survival Per Treatment - Grouped By Cancer Stage") +
+  ggtitle("Survival Per Treatment - vs Cancer Stage") +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   facet_wrap(~stage)
