@@ -40,11 +40,14 @@ plot0 <- data_clean_aug %>%
   ggtitle("Total patients depending on cancer stage") +
   geom_text(stat = 'count', 
             aes(label = ..count..), 
-            vjust = -1) +
+            vjust = -0.5) +
   ylim(c(0,300)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none", 
+        plot.title = element_text(size = 11, 
+                                  hjust = 0.5, 
+                                  vjust = 0.5))
 
 
 #Plot 1 - tumor Size vs cancer Stage
@@ -217,11 +220,12 @@ plot6 <- dataPlot6 %>%
         axis.line = element_line(colour = "black"),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        axis.title.y = element_text(size=10),
+        axis.title.y = element_text(size = 10),
         strip.placement = "outside",
         strip.background = element_blank(),
+        strip.text = element_text(size = 8),
         plot.title = element_text(hjust = 0.5, size = 11),
-        legend.title=element_text(size=10)) +
+        legend.title = element_text(size = 9)) +
   scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
   scale_x_discrete(breaks = NULL) +
   scale_fill_manual(
