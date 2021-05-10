@@ -72,7 +72,7 @@ Four used treatments:
 </center>
 
 ## Data Visualization 2 {.smaller}   
-- Wit a higher cancer stage, we can see a skew to higher tumor sizes.
+- With a higher cancer stage, we can see a skew to higher tumor sizes.
 - This is expected since a tumor spreads to other tissues in an advanced stage.
 
 <center>
