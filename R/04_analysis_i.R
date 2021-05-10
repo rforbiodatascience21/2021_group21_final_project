@@ -61,9 +61,9 @@ plot1 <- data_clean_aug %>%
 #Plot 2 - Reason of Death Count, grouped by stage
 plot2 <- data_clean_aug %>% 
   filter(reasonDeath != "not dead" & 
-           reasonDeath != "unknown cause" & 
-           reasonDeath != "other ca" & 
-           reasonDeath != "other non-ca") %>% 
+         reasonDeath != "unknown cause" & 
+         reasonDeath != "other ca" & 
+         reasonDeath != "other non-ca") %>% 
   count(reasonDeath, stage) %>% 
   ggplot(aes(x = reorder(reasonDeath, n, sum), 
              y = n, 
@@ -113,8 +113,8 @@ p2 <-  data_clean_aug %>%
                width = 0.25,
                position = position_dodge(width = .25)) +
   labs(x = "Cancer stage", 
-       y ="SG Index", 
-       color ="Cancer stage") +
+       y = "SG Index", 
+       color = "Cancer stage") +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   theme(legend.position = "none")
@@ -126,11 +126,9 @@ plot3 <- p1 + p2
 #plot 4 - survival depending on treatment and by stage
 plot4 <- data_clean_aug %>%
   filter(reasonDeath != "unknown cause" & 
-           reasonDeath != "other ca" & 
-           reasonDeath != "other non-ca") %>% 
-  count(dose,
-        status,
-        stage) %>% 
+         reasonDeath != "other ca" & 
+         reasonDeath != "other non-ca") %>% 
+  count(dose, status, stage) %>% 
   mutate(stage = case_when(stage == 3 ~ "Stage 3",
                            stage == 4 ~ "Stage 4")) %>% 
   ggplot(aes(x = as_factor(dose), 
