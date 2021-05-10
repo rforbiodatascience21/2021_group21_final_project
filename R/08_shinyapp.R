@@ -12,11 +12,11 @@ library(reshape2)
 library(rsconnect)
 
 # Define functions --------------------------------------------------------
-source(file = "../R/99_project_functions.R")
+source(file = "R/99_project_functions.R")
 
 
 # Load data ---------------------------------------------------------------
-data <- read_tsv(file = "../data/03_data_clean_aug.tsv.gz")
+data <- read_tsv(file = "data/03_data_clean_aug.tsv.gz")
 
 # Wrangle data ------------------------------------------------------------
 data <- data %>% 
