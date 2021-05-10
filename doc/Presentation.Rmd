@@ -3,8 +3,9 @@ title: "Prognostic Variables for Survival in Prostatic Cancer"
 subtitle : "22100: R for Biodata Science Spring 21"
 author: "Group 21"
 date: "11/05/2021"
-output: ioslides_presentation
-
+output: 
+  ioslides_presentation:
+    logo: ../doc/img/logo.png
 ---
 
 ```{r setup, include=FALSE}
@@ -160,6 +161,10 @@ However, some information about the attributes that the PCA found to be more rel
 <center>
 ![k-means clustering](../results/06_plot_kmean.png){width=65%}
 </center>
+
+##Shiny app
+This is the link for our published shiny app
+add link#####################################################################
 
 ## Results and Discussion {.smaller} 
 ###♠ Discussion - to be done
