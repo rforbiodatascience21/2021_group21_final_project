@@ -119,19 +119,10 @@ The link for our published shiny app:
 https://gulsudedemircan.shinyapps.io/final/
 
 
-## Modeling {.smaller}
-### Linear model
-
-- The Manhattan plot shows that blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels are non-significant for the survival rate considering a linear model.
-
-<center>
-![Manhattan plot](../results/05_plot_Manhattan.png){width=70%}
-</center>
-
 ## Modeling{.smaller}    
 ### Linear model
 
-- The variables with stringest relation are bone metastases, history of cardiovascular disease and cancer stage.
+- The variables with strongest relation are bone metastases, history of cardiovascular disease and cancer stage.
 
 <center>
 ![estimates](../results/05_plot_estimate.png){width=60%}
