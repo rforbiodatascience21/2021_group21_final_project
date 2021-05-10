@@ -122,13 +122,6 @@ the highest dose on the oldest group age.
 ![Testing image](../results/04_plot_6.png){width=60%} 
 </center>
 
-## Data Visualization (8/10) {.smaller} 
-- There is 16% of patients in stage 4 with bone metastases.
-
-<center>
-![Bone metastases](../results/04_plot_7.png){width=70%} 
-</center>
-
 ## Data Visualization (9/10) {.smaller} 
 - Blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where found to be non-significant for the survival rate.
 - The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
