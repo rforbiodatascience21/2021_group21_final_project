@@ -206,7 +206,8 @@ patients_per_dose <- dataPlot6 %>%
 dataPlot6 <- full_join(dataPlot6, patients_per_dose, by = "dose")
 
 #Compute percentage
-dataPlot6 <- dataPlot6 %>% group_by(dose) %>% 
+dataPlot6 <- dataPlot6 %>% 
+  group_by(dose) %>% 
   mutate(percentage = round((ppl_no/ppl_total)*100, 1))
 
 #Make the plot
