@@ -33,10 +33,6 @@ raw_data <- patient_raw_data %>%
          SGindex = sg, 
          acidPhosphatase =  ap, 
          boneMetastase = bm )
-  
-
-# checking the data
-glimpse(raw_data)
 
 raw_data %>%
   summarise(n = n_distinct(patientID))  # 502 rows, 502 unique patients, so no duplicates in patients
