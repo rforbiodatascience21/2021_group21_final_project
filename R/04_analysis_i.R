@@ -175,7 +175,7 @@ plot5 <-  dataPlot5 %>%
         legend.key.size = unit(0.5, 'cm'),
         legend.text = element_text(size=8)) +
   scale_fill_manual(
-    values = c("#ff8c00", "#E7B800", "#ffc0cb", "#52854C", "#00AFBB", "grey", "#346299")) 
+    values = c("#ff8c00", "#E7B800", "#9999FF", "#ffc0cb", "#00AFBB", "#68bb59", "#346299")) 
 
 
 
@@ -225,7 +225,7 @@ plot6 <- dataPlot6 %>%
   scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
   scale_x_discrete(breaks = NULL) +
   scale_fill_manual(
-    values = c("grey", "#ffc0cb","#E7B800", "#00AFBB", "#ff8c00", "#346299"))+
+    values = c("#68bb59", "#ffc0cb","#E7B800", "#00AFBB", "#ff8c00"))+
   labs(title = "Survival rate based on treatment per age group", 
        y = "Percentage of alive patients", fill = "Age Group")
 
