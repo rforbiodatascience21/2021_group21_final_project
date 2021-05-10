@@ -40,11 +40,14 @@ plot0 <- data_clean_aug %>%
   ggtitle("Total patients depending on cancer stage") +
   geom_text(stat = 'count', 
             aes(label = ..count..), 
-            vjust = -1) +
+            vjust = -0.5) +
   ylim(c(0,300)) +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none", 
+        plot.title = element_text(size = 11, 
+                                  hjust = 0.5, 
+                                  vjust = 0.5))
 
 
 #Plot 1 - tumor Size vs cancer Stage
