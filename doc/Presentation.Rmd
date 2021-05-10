@@ -30,7 +30,7 @@ Four used treatments:
 - 5.0 mg DES
 
 
-## Materials & Methods {.smaller}
+## Materials & Methods (1/3) {.smaller}
 ### Study data
 - Study data was obtained from a randomized clinical trial https://biostat.app.vumc.org/wiki/pub/Main/DataSets/prostate.xls
 - The starting point for this project was a CSV file attached with the study.
@@ -44,13 +44,13 @@ Four used treatments:
 
 
 
-## Methods(1/..) {.smaller} 
+## Materials & Methods (2/3) {.smaller} 
 
 <center>
 ![Workflow](../doc/img/workflow.png){width=80%}
 </center>
 
-## Data Cleaning and Augmenting {.smaller}
+## Materials & Methods (3/3) {.smaller}
 - Two datasets are joined into one by their patient IDs.
 - Two columns are dropped (date on study and follow up time).
 - All the columns are renamed.
@@ -63,7 +63,7 @@ Four used treatments:
 </center>
 
 
-## Data Visualization (1/10) {.smaller}  
+## Data Visualization 1 {.smaller}  
 - There is 284 patients in cancer stage 3, and 210 in stage 4.
 - There are no patients with cancer stage 1 or 2.
 
@@ -71,7 +71,7 @@ Four used treatments:
 ![Cancer stage](../results/04_plot_0.png){width=65%}
 </center>
 
-## Data Visualization (2/10) {.smaller}   
+## Data Visualization 2 {.smaller}   
 - Wit a higher cancer stage, we can see a skew to higher tumor sizes.
 - This is expected since a tumor spreads to other tissues in an advanced stage.
 
@@ -79,7 +79,7 @@ Four used treatments:
 ![size vs stage](../results/04_plot_1.png){width=60%}
 </center>
 
-## Data Visualization (3/10) {.smaller}   
+## Data Visualization 3 {.smaller}   
 - Deaths caused directly by prostate cancer have a higher component by stage 4 tumors.
 - Stage 4 characterize by spreading to more tissues and has a worse prognosis.
 
@@ -87,7 +87,7 @@ Four used treatments:
 ![Reason of death](../results/04_plot_2.png){width=60%}
 </center>
 
-## Visualizing our data (4/10) {.smaller} 
+## Data Visualization 4 {.smaller} 
 - Higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade (well differentiated to undifferentiated).
 
@@ -95,7 +95,7 @@ Four used treatments:
 ![acid phosphatase and SG index](../results/04_plot_3.png){width=60%}
 </center>
 
-## Data Visualization (5/10) {.smaller} 
+## Data Visualization 5 {.smaller} 
 - In survival by dose of treatment, the only difference found was on 1 mg dosage.
 - This difference was found only on stage 3 patients.
 
@@ -103,7 +103,7 @@ Four used treatments:
 ![Treatment vs survival](../results/04_plot_4.png){width=65%}
 </center>
 
-## Data Visualization (6/10) {.smaller} 
+## Data Visualization 6 {.smaller} 
 - The death rate decreases when the treatment dose is increased.
 - A dose of 5 mg results in higher risk of cardiovascular problems.
 - Therefore, a dose of 1 mg is recommended.
@@ -111,16 +111,22 @@ Four used treatments:
 ![death cause vs dose](../results/04_plot_5.png){width=80%}
 </center>
 
-## Data Visualization (7/10) {.smaller} 
+## Data Visualization 7 {.smaller} 
 - Treatment results are not generally affected by age.
 - Further analysis need to be done to assess the benefit of
 the highest dose on the oldest group age.
 
 <center> 
-![survival vs age](../results/04_plot_6.png){width=80%} 
+![survival vs age](../results/04_plot_6.png){width=60%} 
 </center>
 
-## Data Visualization (9/10) {.smaller} 
+## Data Visualization 8  {.smaller}
+### Shiny app
+The link for our published shiny app:
+https://gulsudedemircan.shinyapps.io/final/
+
+
+## Modelling 1 {.smaller} 
 - Blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels where found to be non-significant for the survival rate.
 - The most significant variables were bone metastases, history of cardiovascular disease and cancer stage.
 
@@ -128,7 +134,7 @@ the highest dose on the oldest group age.
 ![estimates](../results/05_plot_estimate.png){width=60%}
 </center>
 
-## Data Visualization (10/10) {.smaller}    
+## Modelling 2  --update title {.smaller}    
 - The manhattan plot corroborates the previous slides observations.
 
 <center>
@@ -143,14 +149,6 @@ knitr::include_graphics("../results/07_PCA_continuous.png")
 knitr::include_graphics("../results/07_PCA_variance.png")
 ```
 
-## PCA Analysis {.smaller} 
-
-However, some information about the attributes that the PCA found to be more relevant are:
-
-<center>
-![PCA attribute contribution](../results/07_PCA_contribution.png){width=65%}
-</center>
-
 ## K-mean Clustering {.smaller}    
 - For k-mean clustering we used k = 2 (dead, alive).
 - We excluded the variables found as non-significant.
@@ -160,15 +158,16 @@ However, some information about the attributes that the PCA found to be more rel
 ![k-means clustering](../results/06_plot_kmean.png){width=65%}
 </center>
 
-## Shiny app
-This is the link for our published shiny app
-https://gulsudedemircan.shinyapps.io/final/
 
 ## Discussion and conclussion {.smaller} 
 
 - The models generated could not make a reliable prediction of the survival depending on the current variables in the dataset.
 - There is a slightly better survival for 1 mg DES for stage 3 patients.
-- The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications.
+- The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications. In the literature is reported the hormone therapy with DES was discontinued because of  unacceptable high rates of cardiovascular side effects (Nelson et al, 2014)
 - Our data modelling is suggesting that in order to find an insightful relation between, new attributes should be considered.
+
+## References
+
+-Nelson A.; Tilley W.; Neal D; Carrol J. (2014). "Estrogen receptor beta in prostate cancer: friend or foe?". Endocrine-Related Cancer Journal. https://doi.org/10.1530/ERC-13-0508.
 
 

@@ -98,7 +98,7 @@ p1 <- data_clean_aug %>%
   labs(x = "Cancer stage", 
        y = "Log of acid phosphatase", 
        color = "Cancer stage") +
-  ggtitle("Violin Plot of Acid Phosphatases and SG Index") +
+  ggtitle("Acid Phosphatases and SG Index") +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   theme(legend.position = "none")
@@ -141,7 +141,7 @@ plot4 <- data_clean_aug %>%
   labs(x= "Dose", 
        y="Total patients", 
        color="Status") +
-  ggtitle("Survival Per Treatment - Grouped By Cancer Stage") +
+  ggtitle("Survival Per Treatment - vs Cancer Stage") +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   facet_wrap(~stage)
@@ -194,13 +194,13 @@ dataPlot6 <- data_clean_aug %>%
 #Get table: dose + ageGroup + ppl_no
 dataPlot6 <- dataPlot6 %>% 
   group_by(dose, ageGroup) %>% 
-  dplyr::summarize(ppl_no = n())  
+  summarize(ppl_no = n())  
 
 #Add percentage
 #Total of patients per dose
 patients_per_dose <- dataPlot6 %>% 
   group_by(dose) %>%
-  dplyr::summarise(ppl_total = sum(ppl_no)) 
+  summarise(ppl_total = sum(ppl_no)) 
 
 #Put data all together
 dataPlot6 <- full_join(dataPlot6, patients_per_dose, by = "dose")

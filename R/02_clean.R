@@ -71,7 +71,8 @@ raw_data <- raw_data %>%
 NA_values <- sum(is.na(raw_data)) # 8 values
 
 #for electroCardioG we decided to drop the NaN
-data_clean <- raw_data %>% drop_na() 
+data_clean <- raw_data %>% 
+  drop_na() 
 
 
 # Write data --------------------------------------------------------------
