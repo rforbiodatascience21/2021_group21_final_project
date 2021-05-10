@@ -25,7 +25,7 @@ pca1_data <- data_clean_num %>%
   select(!status) %>%
   prcomp(scale = TRUE)
 
-PCA_variance <- fviz_eig(pca1_data)
+PCA_variance <- fviz_eig(pca1_data, barfill = "#00AFBB", barcolor = "#00AFBB", linecolor = "#E7B800")
 
 PCA1 <- pca1_data %>% augment(data_clean_num) %>%
   mutate(status = case_when(status == 0 ~ "Alive",
