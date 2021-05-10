@@ -44,11 +44,14 @@ Manhattan_plot <- model_data %>%
   geom_point() +
   geom_hline(yintercept = -log10(0.05),
              linetype = "dashed") +
+  scale_color_manual(values = c("#E7B800", "#00AFBB")) +
   theme_classic(base_family = "Avenir",
                 base_size = 8) +
   theme(axis.text.x=element_text(angle=45,hjust=1)) +
-  theme(legend.position = "bottom") +
-  labs(x = "Parameters",
+  theme(legend.position = "bottom", 
+        plot.title = element_text(hjust = 0.5), 
+        legend.title = element_blank()) +
+  labs(title = "PUT A TITLE HERE - manhattan in file 05_analysis_ii", x = "Parameters",
        y = "Minus log10(p)")
 
 estimate_plot <- model_data %>% 
@@ -63,11 +66,12 @@ estimate_plot <- model_data %>%
                      height = 0.2)) +
   theme_classic(base_family = "Avenir",
                 base_size = 8) +
-  theme(axis.text.y = element_text("Parameters"),
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.y = element_text("Parameters"),
         legend.position = "bottom",
         legend.title = element_blank()) + 
   scale_color_manual(values = c("#E7B800", "#00AFBB")) +
-  labs(y = "")
+  labs(title = "PUT A TITLE HERE - estimate plot in file 05_analysis_ii", y = "")
 
 # Write data --------------------------------------------------------------
 save(model_data, file = "results/GLMmodel_data.RData")
