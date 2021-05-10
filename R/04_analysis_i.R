@@ -258,7 +258,7 @@ plot7 <- dataPlot7 %>%
 # Write data --------------------------------------------------------------
 ggsave(plot0, file = "results/04_plot_0.png")
 ggsave(plot1, file = "results/04_plot_1.png")
-ggsave(plot2, file = "results/04_plot_2.png")
+ggsave(plot2, file = "results/04_plot_2(not used on presentation).png")
 ggsave(plot3, file = "results/04_plot_3.png")
 ggsave(plot4, file = "results/04_plot_4.png")
 ggsave(plot5, file = "results/04_plot_5.png")
