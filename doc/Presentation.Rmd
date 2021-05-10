@@ -143,14 +143,6 @@ knitr::include_graphics("../results/07_PCA_continuous.png")
 knitr::include_graphics("../results/07_PCA_variance.png")
 ```
 
-## PCA Analysis {.smaller} 
-
-However, some information about the attributes that the PCA found to be more relevant are:
-
-<center>
-![PCA attribute contribution](../results/07_PCA_contribution.png){width=65%}
-</center>
-
 ## K-mean Clustering {.smaller}    
 - For k-mean clustering we used k = 2 (dead, alive).
 - We excluded the variables found as non-significant.
@@ -168,7 +160,11 @@ https://gulsudedemircan.shinyapps.io/final/
 
 - The models generated could not make a reliable prediction of the survival depending on the current variables in the dataset.
 - There is a slightly better survival for 1 mg DES for stage 3 patients.
-- The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications.
+- The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications. In the literature is reported the hormone therapy with DES was discontinued because of  unacceptable high rates of cardiovascular side effects (Nelson et al, 2014)
 - Our data modelling is suggesting that in order to find an insightful relation between, new attributes should be considered.
+
+## References
+
+-Nelson A.; Tilley W.; Neal D; Carrol J. (2014). "Estrogen receptor beta in prostate cancer: friend or foe?". Endocrine-Related Cancer Journal. https://doi.org/10.1530/ERC-13-0508.
 
 
