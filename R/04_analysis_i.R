@@ -98,7 +98,7 @@ p1 <- data_clean_aug %>%
   labs(x = "Cancer stage", 
        y = "Log of acid phosphatase", 
        color = "Cancer stage") +
-  ggtitle("Violin Plot of Acid Phosphatases and SG Index") +
+  ggtitle("Acid Phosphatases and SG Index") +
   scale_fill_manual(values = c("#00AFBB", "#E7B800")) +
   theme_minimal() +
   theme(legend.position = "none")
