@@ -30,7 +30,6 @@ data_clean_aug <- data_clean %>%
                                                                      end = 3),
                           str_detect(treatment, 
                                      pattern = "placebo") ~ "0")) %>%
-  mutate(dose = as.numeric(dose)) %>%
   relocate(dose, .after = stage) %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
                                 str_detect(treatment, pattern = "estrogen") ~ "estrogen")) %>%
