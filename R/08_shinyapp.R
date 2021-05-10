@@ -43,13 +43,19 @@ ui <- fluidPage(theme = shinytheme("united"),
                     
                     selectInput("category", 
                                 label = "Category", 
-                                choices=c("Cancer Stage", "Treatment Dose", "Performance","Bone Metastases"),
-                                selected= "Cancer Stage"),
+                                choices = c("Cancer Stage", 
+                                            "Treatment Dose", 
+                                            "Performance",
+                                            "Bone Metastases"),
+                                selected = "Cancer Stage"),
                     
                     selectInput("density", 
                                 label = "Density", 
-                                choices=c("Age", "Weight Index", "Tumor Size", "Systolic Blood Pressure",
-                                          "Diastolic Blood Pressure","SG Index"),
+                                choices=c("Age", "Weight Index", 
+                                          "Tumor Size", 
+                                          "Systolic Blood Pressure",
+                                          "Diastolic Blood Pressure",
+                                          "SG Index"),
                                 selected= "Age"),
 
                   ),
@@ -87,31 +93,31 @@ server <- function(input, output, session) {
     
     pairs <- spread(pairs, key, val)
     
-    df <- shiny_df( first(pairs %>% select(input$density)) ,first(pairs %>% select(input$category)), data)
+    df <- shiny_df( first(pairs %>% select(input$density)), first(pairs %>% select(input$category)), data)
     
     if (input$category == "Treatment Dose") {
       dose_df <- data %>%
-        mutate(dose = case_when (dose == 0.0 ~ "Placebo",
-                                 dose == 0.2 ~ "Estrogen 0.2 mg",
-                                 dose == 1 ~ "Estrogen 1 mg",
-                                 dose == 5 ~ "Estrogen 5 mg"))
-      df <- shiny_df( first(pairs %>% select(input$density) ) ,first(pairs %>% select(input$category)),dose_df)
+        mutate(dose = case_when(dose == 0.0 ~ "Placebo",
+                                dose == 0.2 ~ "Estrogen 0.2 mg",
+                                dose == 1 ~ "Estrogen 1 mg",
+                                dose == 5 ~ "Estrogen 5 mg"))
+      df <- shiny_df( first(pairs %>% select(input$density) ) ,first(pairs %>% select(input$category)), dose_df)
       df <- arrange(df, category)
     }
     
     if (input$category == "Performance") {
       perf_df <- data %>%
-        filter(performance!="confined to bed")
+        filter(performance != "confined to bed")
       df <- shiny_df( pairs %>% pull(input$density), pairs %>% pull(input$category), perf_df)
       df <- arrange(df, category)
     } 
     
     df %>%
-      ggplot( aes(y=category, x=density, fill=category)) +
+      ggplot( aes(y=category, x = density, fill = category)) +
       geom_density_ridges(alpha=0.7) +
       ggtitle(str_c(input$density, " Density Plot Categorized by ", input$category)) +
-      xlab(str_c("Density - ",input$density)) +
-      ylab(str_c("Category - ",input$category)) + 
+      xlab(str_c("Density - ", input$density)) +
+      ylab(str_c("Category - ", input$category)) + 
       theme_minimal()
   })
 }
