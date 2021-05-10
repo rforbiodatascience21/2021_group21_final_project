@@ -62,11 +62,6 @@ Four used treatments:
 ![Testing image](../doc/img/beforeafter.png){width=60%}
 </center>
 
-## Data Cleaning and Augmenting {.smaller} 
-
-- abc
-- abc
-
 
 ## Data Visualization (1/10) {.smaller}  
 - There is 284 patients in cancer stage 3, and 210 in stage 4.
