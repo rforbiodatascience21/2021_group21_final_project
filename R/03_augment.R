@@ -18,10 +18,18 @@ data_clean <- read_tsv(file = "data/02_data_clean.tsv.gz")
 
 #creation  of our augmented data
 data_clean_aug <- data_clean %>% 
-  mutate(status = str_replace(status, pattern = "alive", replacement = "alive - not dead")) %>%
-  separate(status,c("status","reasonDeath")," - ") %>%
-  mutate(dose = case_when(str_detect(treatment, pattern = "estrogen") ~ str_sub(treatment, start = 1, end = 3),
-                          str_detect(treatment, pattern = "placebo") ~ "0")) %>%
+  mutate(status = str_replace(status, 
+                              pattern = "alive", 
+                              replacement = "alive - not dead")) %>%
+  separate(status,
+           c("status","reasonDeath"),
+           " - ") %>%
+  mutate(dose = case_when(str_detect(treatment, 
+                                     pattern = "estrogen") ~ str_sub(treatment, 
+                                                                     start = 1, 
+                                                                     end = 3),
+                          str_detect(treatment, 
+                                     pattern = "placebo") ~ "0")) %>%
   mutate(dose = as.numeric(dose)) %>%
   relocate(dose, .after = stage) %>%
   mutate(treatment = case_when (str_detect(treatment, pattern = "placebo") ~ "placebo",
@@ -39,7 +47,6 @@ data_clean_aug <- data_clean %>%
   mutate(reasonDeath = case_when(reasonDeath == "other specific non-ca" ~ "other non-ca",
                                  reasonDeath == "unspecified non-ca" ~ "other non-ca",
                                  TRUE ~ reasonDeath))
-glimpse(data_clean_aug)
 
 # Data set with all attributes double
 
@@ -60,8 +67,6 @@ data_clean_num <- data_clean_aug %>%
                                  performance == "in bed < 50% daytime" ~ 2.5, # in bed, and thus for <50% and > 50%, the mid-points 2.5
                                  performance == "in bed > 50% daytime" ~ 7.5, # and 7.5 will be used, respectively
                                  performance == "confined to bed" ~ 10))
-
-glimpse(data_clean_num)
 
 # Write data --------------------------------------------------------------
 write_tsv(x = data_clean_aug,
