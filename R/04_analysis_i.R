@@ -182,58 +182,27 @@ plot5 <-  dataPlot5 %>%
 
 
 #Plot 6 - %alive versus treatment doses by age
-#Make groups of ages
-dataPlot6 <- data_clean_aug %>% 
+dataPlot6 <- data_clean_aug %>%
   select(status, dose, age) %>%
   mutate(ageGroup = case_when(age >= 45 & age < 55 ~ "[45-54]",
                               age >= 55 & age < 65 ~ "[55-64]",
                               age >= 65 & age < 75 ~ "[65-74]",
                               age >= 75 & age < 85 ~ "[75-84]",
-                              age >= 85 & age < 95 ~ "[85-94]"))
-
-#Get table: dose + ageGroup + ppl_no
-dataPlot6 <- dataPlot6 %>%
-  filter(status == "alive") %>%
+                              age >= 85 & age < 95 ~ "[85-94]")) %>% 
+  count(status,dose,ageGroup) %>% 
   group_by(dose, ageGroup) %>% 
-  summarize(ppl_no = n())  
+  mutate(percentage = n/sum(n)*100) %>% 
+  filter(status == "alive")
 
-#Add percentage
-#Total of patients per dose
-patients_per_dose <- data_clean_aug %>% 
-  group_by(dose) %>%
-  summarize(ppl_total = n()) 
-
-#Put data all together
-dataPlot6 <- full_join(dataPlot6, patients_per_dose, by = "dose")
-
-#Compute percentage
-dataPlot6 <- dataPlot6 %>% 
-  group_by(dose) %>% 
-  mutate(percentage = round((ppl_no/ppl_total)*100, 1))
-
-#Make the plot
-plot6 <- dataPlot6 %>% 
-  ggplot(aes(x = ageGroup, y = percentage, fill = ageGroup)) +
-  geom_bar(stat = "identity",position = "dodge") +
-  facet_wrap(~ dose, nrow = 1, 
-             labeller = labeller(dose = dose.labs), 
-             strip.position = "bottom") +
-  theme(panel.background = element_blank(), 
-        axis.line = element_line(colour = "black"),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.title.y = element_text(size = 12),
-        strip.placement = "outside",
-        strip.background = element_blank(),
-        strip.text = element_text(size = 10),
-        plot.title = element_text(hjust = 0.5, size = 11),
-        legend.title = element_text(size = 11)) +
-  scale_y_continuous(expand = c(0,0), limit = c(0,30)) +
-  scale_x_discrete(breaks = NULL) +
-  scale_fill_manual(
-    values = c("#68bb59", "#ffc0cb","#E7B800", "#00AFBB", "#ff8c00"))+
+plot6 <- dataPlot6 %>% ggplot(aes(x=as_factor(dose),y=percentage,fill=ageGroup)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#68bb59", "#4055d7","#E7B800", "#00AFBB", "#ff8c00")) +
   labs(title = "Survival rate based on treatment per age group", 
-       y = "Percentage of alive patients", fill = "Age Group")
+       y = "Percentage of survival by group age (%)",
+       x = "Dose of estrogen (mg)",
+       fill = "Age Group") +
+  theme_minimal()
+
 
 #Plot 7 - Bone metastase vs cancer stage
 dataPlot7 <- data_clean_aug %>% 
