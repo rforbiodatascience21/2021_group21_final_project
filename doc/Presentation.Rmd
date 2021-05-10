@@ -126,14 +126,17 @@ The link for our published shiny app:
 https://gulsudedemircan.shinyapps.io/final/
 
 
-## Modelling 1 {.smaller} 
+## Modeling {.smaller}
+### Linear model
+
 - The Manhattan plot shows that blood pressure (diastolic and systolic), dosage of treatment, and acid phosphatase levels are non-significant for the survival rate considering a linear model.
 
 <center>
 ![Manhattan plot](../results/05_plot_Manhattan.png){width=70%}
 </center>
 
-## Modelling 2 {.smaller}    
+## Modeling{.smaller}    
+### Linear model
 
 - The variables with stringest relation are bone metastases, history of cardiovascular disease and cancer stage.
 
@@ -141,7 +144,7 @@ https://gulsudedemircan.shinyapps.io/final/
 ![estimates](../results/05_plot_estimate.png){width=60%}
 </center>
 
-## PCA Analysis {.smaller} 
+## PCA analysis {.smaller} 
 With the objective of getting a differentiation in the status (dead/alive), a PCA analysis was done to analyze attributes relevance and data distribution in space.
 
 ```{r image_grobs, fig.show = "hold", out.width = "50%", fig.align = "default"} 
@@ -164,7 +167,7 @@ knitr::include_graphics("../results/07_PCA_variance.png")
 - The models generated could not make a reliable prediction of the survival depending on the current variables in the dataset.
 - There is a slightly better survival for 1 mg DES for stage 3 patients.
 - The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications. In the literature is reported the hormone therapy with DES was discontinued because of  unacceptable high rates of cardiovascular side effects (Nelson et al, 2014)
-- Our data modelling is suggesting that in order to find an insightful relation between, new attributes should be considered.
+- Our data modeling is suggesting that in order to find an insightful relation to predict the patient survival, new attributes should be considered.
 
 ## References
 
