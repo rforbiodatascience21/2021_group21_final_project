@@ -54,6 +54,8 @@ Manhattan_plot <- model_data %>%
   labs(title = "Manhattan plot on numeric attributes", x = "Parameters",
        y = "Minus log10(p)")
 
+# Estimate confidence plot from the linear model
+
 estimate_plot <- model_data %>% 
   ggplot(aes(x = estimate,
              y = reorder(measurements, -estimate),
@@ -71,7 +73,7 @@ estimate_plot <- model_data %>%
         legend.position = "bottom",
         legend.title = element_blank()) + 
   scale_color_manual(values = c("#E7B800", "#00AFBB")) +
-  labs(title = "PUT A TITLE HERE - estimate plot in file 05_analysis_ii", y = "")
+  labs(title = "Estimate confidence plot", y = "")
 
 # Write data --------------------------------------------------------------
 save(model_data, file = "results/GLMmodel_data.RData")
