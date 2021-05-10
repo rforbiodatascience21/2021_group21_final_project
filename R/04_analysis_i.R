@@ -222,6 +222,8 @@ plot6 <- dataPlot6 %>%
         legend.title=element_text(size=10)) +
   scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
   scale_x_discrete(breaks = NULL) +
+  scale_fill_manual(
+    values = c("grey", "#ffc0cb","#E7B800", "#00AFBB", "#ff8c00", "#346299"))+
   labs(title = "Survival rate based on treatment per age group", 
        y = "Percentage of alive patients", fill = "Age Group")
 
