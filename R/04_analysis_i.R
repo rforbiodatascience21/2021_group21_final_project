@@ -169,9 +169,14 @@ plot5 <-  dataPlot5 %>%
   facet_wrap(~ dose, 
              nrow = 1, 
              labeller = labeller(dose = dose.labs)) +
-  theme(plot.title = element_text(hjust = 0.5), 
+  theme(plot.title = element_text(hjust = 0.5, vjust = 5), 
         legend.position = "bottom", 
-        legend.title = element_blank())
+        legend.title = element_blank(),
+        legend.key.size = unit(0.5, 'cm'),
+        legend.text = element_text(size=8)) +
+  scale_fill_manual(
+    values = c("#ff8c00", "#E7B800", "#ffc0cb", "#52854C", "#00AFBB", "grey", "#346299")) 
+
 
 
 #Plot 6 - %alive versus treatment doses by age
@@ -212,19 +217,17 @@ plot6 <- dataPlot6 %>%
         axis.line = element_line(colour = "black"),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        legend.position = "none",
+        axis.title.y = element_text(size=10),
         strip.placement = "outside",
         strip.background = element_blank(),
-        plot.title = element_text(hjust = 0.5)) + 
+        plot.title = element_text(hjust = 0.5, size = 11),
+        legend.title=element_text(size=10)) +
   scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
   scale_x_discrete(breaks = NULL) +
-  geom_text(aes(label = ageGroup, colour=ageGroup), 
-            vjust = 0.5, 
-            hjust = 0.5, 
-            size = 2,
-            nudge_y = 1) +
+  scale_fill_manual(
+    values = c("grey", "#ffc0cb","#E7B800", "#00AFBB", "#ff8c00", "#346299"))+
   labs(title = "Survival rate based on treatment per age group", 
-       y = "Percentage of alive patients")
+       y = "Percentage of alive patients", fill = "Age Group")
 
 #Plot 7 - Bone metastase vs cancer stage
 dataPlot7 <- data_clean_aug %>% 
