@@ -181,7 +181,6 @@ plot5 <-  dataPlot5 %>%
     values = c("#ff8c00", "#E7B800", "#9999FF", "#ffc0cb", "#00AFBB", "#68bb59", "#346299")) 
 
 
-
 #Plot 6 - %alive versus treatment doses by age
 #Make groups of ages
 dataPlot6 <- data_clean_aug %>% 
@@ -193,12 +192,13 @@ dataPlot6 <- data_clean_aug %>%
 
 #Get table: dose + ageGroup + ppl_no
 dataPlot6 <- dataPlot6 %>% 
+  filter(status == "alive") %>%
   group_by(dose, ageGroup) %>% 
   summarize(ppl_no = n())  
 
 #Add percentage
 #Total of patients per dose
-patients_per_dose <- dataPlot6 %>% 
+patients_per_dose <- data_clean_aug %>% 
   group_by(dose) %>%
   summarise(ppl_total = sum(ppl_no)) 
 
