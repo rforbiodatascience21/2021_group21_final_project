@@ -64,7 +64,9 @@ estimate_plot <- model_data %>%
   theme_classic(base_family = "Avenir",
                 base_size = 8) +
   theme(axis.text.y = element_text("Parameters"),
-        legend.position = "bottom") + 
+        legend.position = "bottom",
+        legend.title = element_blank()) + 
+  scale_color_manual(values = c("#E7B800", "#00AFBB")) +
   labs(y = "")
 
 # Write data --------------------------------------------------------------
