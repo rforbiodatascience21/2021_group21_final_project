@@ -46,7 +46,7 @@ Manhattan_plot <- model_data %>%
              linetype = "dashed") +
   scale_color_manual(values = c("#E7B800", "#00AFBB")) +
   theme_classic(base_family = "Avenir",
-                base_size = 8) +
+                base_size = 14) +
   theme(axis.text.x=element_text(angle=45,hjust=1)) +
   theme(legend.position = "bottom", 
         plot.title = element_text(hjust = 0.5), 
@@ -67,7 +67,7 @@ estimate_plot <- model_data %>%
                      xmax = conf.high,
                      height = 0.2)) +
   theme_classic(base_family = "Avenir",
-                base_size = 8) +
+                base_size = 14) +
   theme(plot.title = element_text(hjust = 0.5),
         axis.text.y = element_text("Parameters"),
         legend.position = "bottom",
