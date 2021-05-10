@@ -12,7 +12,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Introduction (1/2) {.smaller}  
+## Introduction {.smaller}  
 ### Study objective 
 
 Analyze the relation between survival of patients with prostate cancer when given different treatments with estrogen and other relevant clinical parameters. 
@@ -30,9 +30,9 @@ Four used treatments:
 - 5.0 mg DES
 
 
-## Introduction (2/2) {.smaller}
+## Materials & Methods {.smaller}
 ### Study data
-- Study data was obtained from a randomized clinical trial.
+- Study data was obtained from a randomized clinical trial https://biostat.app.vumc.org/wiki/pub/Main/DataSets/prostate.xls
 - The starting point for this project was a CSV file attached with the study.
 - Dimention of the data:
 <center>
