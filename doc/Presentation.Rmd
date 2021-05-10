@@ -34,11 +34,17 @@ Four used treatments:
 ### Study data
 - Study data was obtained from a randomized clinical trial.
 - The starting point for this project was a CSV file attached with the study.
-- Total amount of 502 patients --> 502 rows
-- Initially 18 attributes, but we will work with 16 --> 16 columns
-- 1 Column containing both numerical and categorical information ("0.2 mg estrogen")
-- 1 Column containing info of patient status and death reason together ("dead - cerebrovascular")
-- 27 NAs found
+- Dimention of the data:
+<center>
+![Reason of death](../doc/img/rawdataset.png){width=70%}
+</center>
+- 1 Column containing both numerical and categorical information 
+("0.2 mg estrogen").
+- 1 Column containing info of patient status and death reason together 
+("dead - cerebrovascular").
+- 27 NAs found in total.
+
+
 
 
 ## Methods(1/..) {.smaller} 
