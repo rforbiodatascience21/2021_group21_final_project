@@ -184,6 +184,7 @@ plot5 <-  dataPlot5 %>%
 #Plot 6 - %alive versus treatment doses by age
 #Make groups of ages
 dataPlot6 <- data_clean_aug %>% 
+  select(status, dose, age) %>%
   mutate(ageGroup = case_when(age >= 45 & age < 55 ~ "[45-54]",
                               age >= 55 & age < 65 ~ "[55-64]",
                               age >= 65 & age < 75 ~ "[65-74]",
@@ -191,7 +192,7 @@ dataPlot6 <- data_clean_aug %>%
                               age >= 85 & age < 95 ~ "[85-94]"))
 
 #Get table: dose + ageGroup + ppl_no
-dataPlot6 <- dataPlot6 %>% 
+dataPlot6 <- dataPlot6 %>%
   filter(status == "alive") %>%
   group_by(dose, ageGroup) %>% 
   summarize(ppl_no = n())  
@@ -200,7 +201,7 @@ dataPlot6 <- dataPlot6 %>%
 #Total of patients per dose
 patients_per_dose <- data_clean_aug %>% 
   group_by(dose) %>%
-  summarise(ppl_total = sum(ppl_no)) 
+  summarize(ppl_total = n()) 
 
 #Put data all together
 dataPlot6 <- full_join(dataPlot6, patients_per_dose, by = "dose")
@@ -221,13 +222,13 @@ plot6 <- dataPlot6 %>%
         axis.line = element_line(colour = "black"),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
-        axis.title.y = element_text(size = 10),
+        axis.title.y = element_text(size = 12),
         strip.placement = "outside",
         strip.background = element_blank(),
-        strip.text = element_text(size = 8),
+        strip.text = element_text(size = 10),
         plot.title = element_text(hjust = 0.5, size = 11),
-        legend.title = element_text(size = 9)) +
-  scale_y_continuous(expand = c(0,0), limit = c(0,59)) +
+        legend.title = element_text(size = 11)) +
+  scale_y_continuous(expand = c(0,0), limit = c(0,30)) +
   scale_x_discrete(breaks = NULL) +
   scale_fill_manual(
     values = c("#68bb59", "#ffc0cb","#E7B800", "#00AFBB", "#ff8c00"))+
