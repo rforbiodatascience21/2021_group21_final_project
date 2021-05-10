@@ -5,7 +5,6 @@ rm(list = ls())
 library("tidyverse")
 library("ggridges")
 library("ggplot2")
-library("ggridges")
 library("broom")
 library("patchwork")
 

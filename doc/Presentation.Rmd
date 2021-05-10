@@ -63,7 +63,7 @@ Four used treatments:
 </center>
 
 
-## Data Visualization 1 {.smaller}  
+## Data Visualization (1/7) {.smaller}  
 - There is 284 patients in cancer stage 3, and 210 in stage 4.
 - There are no patients with cancer stage 1 or 2.
 
@@ -71,7 +71,7 @@ Four used treatments:
 ![Cancer stage](../results/04_plot_0.png){width=65%}
 </center>
 
-## Data Visualization 2 {.smaller}   
+## Data Visualization (2/7) {.smaller}   
 - With a higher cancer stage, we can see a skew to higher tumor sizes.
 - This is expected since a tumor spreads to other tissues in an advanced stage.
 
@@ -80,7 +80,7 @@ Four used treatments:
 </center>
 
 
-## Data Visualization 3 {.smaller} 
+## Data Visualization (3/7) {.smaller} 
 - Higher cancer stage, there is a higher measurement of acid phosphatase, a blood indicator related to prostate cancer.
 - There is also a higher SG Index, which refers to histologic grade (well differentiated to undifferentiated).
 
@@ -88,7 +88,7 @@ Four used treatments:
 ![acid phosphatase and SG index](../results/04_plot_3.png){width=60%}
 </center>
 
-## Data Visualization 4 {.smaller} 
+## Data Visualization (4/7) {.smaller} 
 - In survival by dose of treatment, the only difference found was on 1 mg dosage.
 - This difference was found only on stage 3 patients.
 
@@ -96,7 +96,7 @@ Four used treatments:
 ![Treatment vs survival](../results/04_plot_4.png){width=65%}
 </center>
 
-## Data Visualization 5 {.smaller} 
+## Data Visualization (5/7) {.smaller} 
 - The death rate decreases when the treatment dose is increased.
 - A dose of 5 mg results in higher risk of cardiovascular problems.
 - Therefore, a dose of 1 mg is recommended.
@@ -104,7 +104,7 @@ Four used treatments:
 ![death cause vs dose](../results/04_plot_5.png){width=80%}
 </center>
 
-## Data Visualization 6 {.smaller} 
+## Data Visualization (6/7) {.smaller} 
 - Treatment results are not generally affected by age.
 - Further analysis need to be done to assess the benefit of
 the highest dose on the oldest group age.
@@ -113,13 +113,13 @@ the highest dose on the oldest group age.
 ![survival vs age](../results/04_plot_6.png){width=60%} 
 </center>
 
-## Data Visualization 7  {.smaller}
+## Data Visualization (7/7)  {.smaller}
 ### Shiny app
 The link for our published shiny app:
 https://gulsudedemircan.shinyapps.io/final/
 
 
-## Modeling{.smaller}    
+## Modeling {.smaller}    
 ### Linear model
 
 - The variables with strongest relation are bone metastases, history of cardiovascular disease and cancer stage.
