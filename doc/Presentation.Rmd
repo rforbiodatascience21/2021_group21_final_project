@@ -68,7 +68,7 @@ Four used treatments:
 - There are no patients with cancer stage 1 or 2.
 
 <center>
-![Cancer stage](../results/04_plot_0.png){width=65%}
+![Cancer stage](../results/04_plot_0.png){width=70%}
 </center>
 
 ## Data Visualization (2/7) {.smaller}   
@@ -76,7 +76,7 @@ Four used treatments:
 - This is expected since a tumor spreads to other tissues in an advanced stage.
 
 <center>
-![size vs stage](../results/04_plot_1.png){width=60%}
+![size vs stage](../results/04_plot_1.png){width=70%}
 </center>
 
 
@@ -85,7 +85,7 @@ Four used treatments:
 - There is also a higher SG Index, which refers to histologic grade (well differentiated to undifferentiated).
 
 <center>
-![acid phosphatase and SG index](../results/04_plot_3.png){width=60%}
+![acid phosphatase and SG index](../results/04_plot_3.png){width=70%}
 </center>
 
 ## Data Visualization (4/7) {.smaller} 
@@ -93,7 +93,7 @@ Four used treatments:
 - This difference was found only on stage 3 patients.
 
 <center>
-![Treatment vs survival](../results/04_plot_4.png){width=65%}
+![Treatment vs survival](../results/04_plot_4.png){width=70%}
 </center>
 
 ## Data Visualization (5/7) {.smaller} 
@@ -108,7 +108,7 @@ Four used treatments:
 - higher dosis increment the survival percentage by group age, particularly in younger groups
 
 <center> 
-![survival vs age](../results/04_plot_6.png){width=60%} 
+![survival vs age](../results/04_plot_6.png){width=70%} 
 </center>
 
 ## Data Visualization (7/7)  {.smaller}
@@ -123,7 +123,7 @@ https://gulsudedemircan.shinyapps.io/final/
 - The variables with strongest relation are bone metastases, history of cardiovascular disease and cancer stage.
 
 <center>
-![estimates](../results/05_plot_estimate.png){width=60%}
+![estimates](../results/05_plot_estimate.png){width=70%}
 </center>
 
 ## PCA analysis {.smaller} 
