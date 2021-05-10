@@ -97,7 +97,7 @@ Four used treatments:
 </center>
 
 ## Data Visualization (5/7) {.smaller} 
-- The death rate decreases when the treatment dose is increased.
+- The death rate by prostatic cancer decreases when the treatment dose is increased.
 - A dose of 5 mg results in higher risk of cardiovascular problems.
 - Therefore, a dose of 1 mg is recommended.
 <center>
