@@ -195,7 +195,7 @@ dataPlot6 <- data_clean_aug %>%
 
 plot6 <- dataPlot6 %>% ggplot(aes(x=as_factor(dose),y=percentage,fill=ageGroup)) +
   geom_col(position = "dodge") +
-  scale_fill_manual(values = c("#68bb59", "#4055d7","#E7B800", "#00AFBB", "#ff8c00")) +
+  scale_fill_manual(values = c("#68bb59", "#4055d7", "#E7B800", "#00AFBB", "#ff8c00")) +
   labs(title = "Survival rate based on treatment per age group", 
        y = "Percentage of survival by group age (%)",
        x = "Dose of estrogen (mg)",
