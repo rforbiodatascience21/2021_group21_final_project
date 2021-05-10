@@ -9,6 +9,7 @@ bar <- function(x){
 shiny_df <- function(x,y,df){
   df <- df %>% 
     select(y, x)
-  df <- df %>% rename(density=x, category=y)
+  df <- df %>% 
+    rename(density=x, category=y)
   return(df)
 }
