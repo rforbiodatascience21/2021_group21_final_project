@@ -1,6 +1,6 @@
 ---
-title: "22100: Final Project Presentation"
-subtitle : "Prognostic Variables for Survival in Prostatic Cancer"
+title: "Prognostic Variables for Survival in Prostatic Cancer"
+subtitle : "22100: R for Biodata Science Spring 21"
 author: "Group 21"
 date: "11/05/2021"
 output: ioslides_presentation
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Introduction (1/2) {.smaller}  
 ### Study objective 
 
-Analyze the relation between survival of patients with prostate cancer when given different treatments with estrogen. 
+Analyze the relation between survival of patients with prostate cancer when given different treatments with estrogen and other relevant clinical parameters. 
 
 Patients might be in different stages:
 
@@ -35,7 +35,6 @@ Four used treatments:
 - The starting point for this project was a CSV file attached with the study.
 - Total amount of 502 patients --> 502 rows
 - Initially 18 attributes, but we will work with 16 --> 16 columns
-- 4 categorical attributes and 12 numeric
 - 1 Column containing both numerical and categorical information ("0.2 mg estrogen")
 - 1 Column containing info of patient status and death reason together ("dead - cerebrovascular")
 - 27 NAs found
