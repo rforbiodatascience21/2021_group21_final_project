@@ -41,6 +41,7 @@ PCA1 <- pca1_data %>% augment(data_clean_num) %>%
   ylab("PC2") + 
   theme_classic(base_size = 14) +
   theme(legend.position = "bottom") +
+  scale_color_manual(values = c("#00AFBB", "#E7B800"))+
   ggtitle("PCA analysis")
 
 #PCA attributes contribution in the first 2 dimensions
@@ -64,7 +65,9 @@ PCA2 <- pca2_data %>% augment(data_clean_num) %>%
   xlab("PC1") +
   ylab("PC2") + 
   theme_classic(base_size = 14) +
-  theme(legend.position = "bottom")
+  scale_color_manual(values = c("#00AFBB", "#E7B800")) +
+  theme(legend.position = "bottom") +
+  ggtitle("PCA analysis")
 
 # Write data --------------------------------------------------------------
 ggsave(PCA1, file = "results/07_PCA_continuous.png")
