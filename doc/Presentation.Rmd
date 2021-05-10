@@ -105,7 +105,7 @@ Four used treatments:
 </center>
 
 ## Data Visualization (6/7) {.smaller} 
-- higher dosis increment the survival percentage by group age, particularly in younger groups
+- Higher dose of treatment increases the survival percentage by group age, particularly in younger groups.
 
 <center> 
 ![survival vs age](../results/04_plot_6.png){width=70%} 
