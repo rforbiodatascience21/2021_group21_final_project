@@ -169,6 +169,6 @@ https://gulsudedemircan.shinyapps.io/final/
 - The models generated could not make a reliable prediction of the survival depending on the current variables in the dataset.
 - There is a slightly better survival for 1 mg DES for stage 3 patients.
 - The data suggest that the highest dosage of DES (5mg) have the lowest percentage for death by prostatic cancer but increases for heart or vascular complications.
-- 
+- Our data modelling is suggesting that in order to find an insightful relation between, new attributes should be considered.
 
 
