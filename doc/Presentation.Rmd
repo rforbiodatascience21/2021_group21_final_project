@@ -166,7 +166,7 @@ However, some information about the attributes that the PCA found to be more rel
 - The model has an accuracy of ~60%.
 
 <center>
-![k-means clustering](../results/06_plot_kmean.png){width=70%}
+![k-means clustering](../results/06_plot_kmean.png){width=65%}
 </center>
 
 ## Results and Discussion {.smaller} 
