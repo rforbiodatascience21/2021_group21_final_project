@@ -117,7 +117,7 @@ Four used treatments:
 the highest dose on the oldest group age.
 
 <center> 
-![survival vs age](../results/04_plot_6.png){width=70%} 
+![survival vs age](../results/04_plot_6.png){width=60%} 
 </center>
 
 ## Data Visualization 8  {.smaller}
