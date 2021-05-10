@@ -38,12 +38,9 @@ Four used treatments:
 <center>
 ![Reason of death](../doc/img/rawdataset.png){width=70%}
 </center>
-- 1 Column containing both numerical and categorical information 
-("0.2 mg estrogen").
-- 1 Column containing info of patient status and death reason together 
-("dead - cerebrovascular").
+- 1 Column containing both numerical and categorical information ("0.2 mg estrogen").
+- 1 Column containing info of patient status and death reason together ("dead - cerebrovascular").
 - 27 NAs found in total.
-
 
 
 
@@ -55,14 +52,14 @@ Four used treatments:
 
 ## Data Cleaning and Augmenting {.smaller}
 - Two datasets are joined into one by their patient IDs.
-- Two columns are unselected (date on study and follow up time).
+- Two columns are dropped (date on study and follow up time).
 - All the columns are renamed.
 - NAs in 4 different numeric columns replaced with their mean values.
-- NAs in 1 categorical column are dropped (8 rows)
-- New columns are created: dose, treatment, status and reasonDeath.
+- NAs in 1 categorical column are dropped (8 rows).
+- New columns are created: dose, treatment, status, reasonDeath and reasonDeathNum
 
 <center>
-![Testing image](../doc/img/beforeafter.png){width=50%}
+![Testing image](../doc/img/beforeafter.png){width=60%}
 </center>
 
 ## Data Cleaning and Augmenting {.smaller} 
