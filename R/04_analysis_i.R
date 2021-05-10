@@ -194,13 +194,13 @@ dataPlot6 <- data_clean_aug %>%
 #Get table: dose + ageGroup + ppl_no
 dataPlot6 <- dataPlot6 %>% 
   group_by(dose, ageGroup) %>% 
-  dplyr::summarize(ppl_no = n())  
+  summarize(ppl_no = n())  
 
 #Add percentage
 #Total of patients per dose
 patients_per_dose <- dataPlot6 %>% 
   group_by(dose) %>%
-  dplyr::summarise(ppl_total = sum(ppl_no)) 
+  summarise(ppl_total = sum(ppl_no)) 
 
 #Put data all together
 dataPlot6 <- full_join(dataPlot6, patients_per_dose, by = "dose")
